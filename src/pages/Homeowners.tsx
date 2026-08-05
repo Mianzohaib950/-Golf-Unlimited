@@ -1,4 +1,5 @@
 import CTASection from '../components/CTASection'
+import CountUp from '../components/CountUp'
 import type { Page } from '../App'
 
 interface Props { navigate: (p: Page) => void }
@@ -52,7 +53,7 @@ export default function Homeowners({ navigate }: Props) {
         <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
           {[['300+', 'Residential installs'], ['20yr', 'UV-rated net lifespan'], ['100%', 'Custom sizing']].map(([n, l], i) => (
             <div key={n} style={{ padding: '44px 40px', borderLeft: i > 0 ? '1px solid rgba(26,26,24,0.08)' : 'none' }}>
-              <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 200, letterSpacing: '-0.04em', color: '#1A1A18', marginBottom: '8px' }}>{n}</p>
+              <CountUp value={n} style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 200, letterSpacing: '-0.04em', color: '#1A1A18', marginBottom: '8px' }} />
               <p style={{ fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.38)' }}>{l}</p>
             </div>
           ))}
