@@ -1,6 +1,7 @@
 import type { Page } from '../App'
 import CTASection from '../components/CTASection'
 import Testimonials from '../components/Testimonials'
+import CountUp from '../components/CountUp'
 
 interface Props { navigate: (p: Page) => void }
 
@@ -108,9 +109,7 @@ export default function Home({ navigate }: Props) {
                 key={s.num}
                 style={{ padding: '52px 40px', borderRight: '1px solid #F0EFE9', borderBottom: '1px solid transparent' }}
               >
-                <div style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.04em', lineHeight: 1 }}>
-                  {s.num}
-                </div>
+                <CountUp value={s.num} style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.04em', lineHeight: 1 }} />
                 <div style={{ marginTop: '12px', fontSize: '0.8125rem', fontWeight: 500, color: '#1A1A18' }}>{s.label}</div>
                 <div style={{ marginTop: '4px', fontSize: '0.72rem', color: 'rgba(26,26,24,0.4)', letterSpacing: '0.02em' }}>{s.note}</div>
               </div>

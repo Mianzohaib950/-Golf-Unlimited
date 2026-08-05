@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const testimonials = [
   {
@@ -30,6 +30,13 @@ const testimonials = [
 export default function Testimonials() {
   const [active, setActive] = useState(0)
   const t = testimonials[active]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive(prev => (prev + 1) % testimonials.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [active])
 
   return (
     <section style={{ backgroundColor: '#F0EFE9', padding: '96px 0' }}>
