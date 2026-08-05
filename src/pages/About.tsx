@@ -59,7 +59,7 @@ export default function About({ navigate }: Props) {
       {/* Stats */}
       <section style={{ borderTop: '1px solid rgba(26,26,24,0.08)', borderBottom: '1px solid rgba(26,26,24,0.08)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          {[['800+', 'Projects completed'], ['20yr', 'In business'], ['2', 'Regional offices'], ['5yr', 'Warranty standard']].map(([n, l], i) => (
+          {[['800+', 'Projects completed'], ['20yr', 'In business'], ['1', 'Regional office'], ['5yr', 'Warranty standard']].map(([n, l], i) => (
             <div key={n} style={{ padding: '44px 40px', borderLeft: i > 0 ? '1px solid rgba(26,26,24,0.08)' : 'none' }}>
               <CountUp value={n} style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2rem, 3.5vw, 2.8rem)', fontWeight: 200, letterSpacing: '-0.04em', color: '#1A1A18', marginBottom: '8px' }} />
               <p style={{ fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.38)' }}>{l}</p>
