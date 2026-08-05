@@ -14,7 +14,7 @@ export default function CTASection({
   navigate,
   headline = 'Ready to Protect Your Property?',
   subtext = "Get a free, no-obligation quote. We'll assess your site and recommend the right system — no pressure, no commitment.",
-  primaryLabel = 'Get a Free Quote',
+  primaryLabel = 'Get a Quote',
   primaryPage = 'contact',
   secondaryLabel = 'View Our Work',
   secondaryPage = 'gallery',

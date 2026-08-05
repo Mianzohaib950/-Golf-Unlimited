@@ -55,7 +55,7 @@ export default function HOA({ navigate }: Props) {
       {/* Split */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         <div style={{ position: 'relative', minHeight: '520px' }}>
-          <img src="https://images.unsplash.com/photo-1592578629295-73a86d9df25d?w=800&h=640&fit=crop&auto=format" alt="Community golf" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="https://images.unsplash.com/photo-1592919505780-303950717480?w=800&h=640&fit=crop&auto=format" alt="Community golf" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
         <div style={{ backgroundColor: '#ECEAE3', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '24px' }}>Partnership Program</p>

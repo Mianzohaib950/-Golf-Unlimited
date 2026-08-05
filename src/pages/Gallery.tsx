@@ -11,7 +11,7 @@ const images = [
   { id: 3, src: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=600&fit=crop&auto=format', category: 'Driving Range', title: 'Desert Ridge Practice Facility', location: 'Phoenix, AZ' },
   { id: 4, src: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=900&fit=crop&auto=format', category: 'HOA', title: 'Pinehurst Community — Phase 1', location: 'Charlotte, NC' },
   { id: 5, src: 'https://images.unsplash.com/photo-1611374243147-44a702c2d44c?w=800&h=600&fit=crop&auto=format', category: 'Residential', title: 'Fairway Court — Fence-Top System', location: 'Jupiter, FL' },
-  { id: 6, src: 'https://images.unsplash.com/photo-1592578629295-73a86d9df25d?w=800&h=700&fit=crop&auto=format', category: 'HOA', title: 'Ironwood Estates — Full Community', location: 'Tucson, AZ' },
+  { id: 6, src: 'https://images.unsplash.com/photo-1592919505780-303950717480?w=800&h=700&fit=crop&auto=format', category: 'HOA', title: 'Ironwood Estates — Full Community', location: 'Tucson, AZ' },
   { id: 7, src: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&h=600&fit=crop&auto=format', category: 'Specialty', title: 'Multi-Sport Complex — Baseball', location: 'Atlanta, GA' },
   { id: 8, src: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=900&fit=crop&auto=format', category: 'Specialty', title: 'Skybridge Safety System', location: 'Denver, CO' },
   { id: 9, src: 'https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=800&h=600&fit=crop&auto=format', category: 'Residential', title: 'Golf View Heights — Overhead Catch', location: 'Hilton Head, SC' },

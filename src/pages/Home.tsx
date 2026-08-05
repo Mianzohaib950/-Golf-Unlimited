@@ -75,7 +75,7 @@ export default function Home({ navigate }: Props) {
               onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = '#F8F7F4')}
               onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = '#fff')}
             >
-              Get a Free Quote
+              Get a Quote
             </button>
             <button
               onClick={() => navigate('gallery')}

@@ -88,7 +88,7 @@ export default function Footer({ navigate }: FooterProps) {
           {/* Hours + CTA */}
           <div>
             <span style={label}>Hours</span>
-            {[['Mon – Fri', '8:00 – 18:00'], ['Saturday', '9:00 – 16:00'], ['Sunday', 'Closed']].map(([day, hrs]) => (
+            {[['Mon – Fri', '7:00 am – 4:00 pm'], ['Saturday', 'Closed'], ['Sunday', 'Closed']].map(([day, hrs]) => (
               <div key={day} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                 <span style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.75)' }}>{day}</span>
                 <span style={{ fontSize: '0.8125rem', color: '#fff' }}>{hrs}</span>
@@ -99,17 +99,20 @@ export default function Footer({ navigate }: FooterProps) {
               style={{ marginTop: '28px', width: '100%', padding: '13px', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', border: '1px solid rgba(255,255,255,0.5)', color: '#fff', backgroundColor: 'transparent', transition: 'background-color 0.2s, border-color 0.2s' }}
               onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(255,255,255,0.15)'; (e.currentTarget as HTMLButtonElement).style.borderColor = '#fff' }}
               onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.5)' }}
-            >Free Quote</button>
+            >Get a Quote</button>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '24px', flexWrap: 'wrap', gap: '12px' }}>
           <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
-            © {new Date().getFullYear()} Golf Nets Unlimited. All rights reserved.
+            © {new Date().getFullYear()} Golf Nets Unlimited. All rights reserved. (An authorized branch of Nets Unlimited products)
           </p>
           <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
-            An authorized dealer of Nets Unlimited products
+            Designed &amp; Developed by{' '}
+            <a href="https://novatoresols.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'underline' }}>
+              Novatore Solutions
+            </a>
           </p>
         </div>
       </div>

@@ -96,7 +96,7 @@ export default function Contact({ navigate: _navigate }: Props) {
                 Every project begins with a conversation. Tell us what you're experiencing and we'll arrange a site visit within the week.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {[['Phone', '(555) 123-4567'], ['Email', 'info@golfnetsunlimited.com'], ['Hours', 'Mon–Fri 8am–6pm · Sat 9am–4pm']].map(([lbl, val]) => (
+                {[['Phone', '(555) 123-4567'], ['Email', 'info@golfnetsunlimited.com'], ['Hours', 'Mon–Fri 7am–4pm']].map(([lbl, val]) => (
                   <div key={lbl} style={{ display: 'flex', gap: '16px' }}>
                     <span style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', width: '52px', paddingTop: '1px', flexShrink: 0 }}>{lbl}</span>
                     <span style={{ fontSize: '0.875rem', color: 'rgba(26,26,24,0.6)' }}>{val}</span>
@@ -178,12 +178,7 @@ export default function Contact({ navigate: _navigate }: Props) {
 
             {/* Info + offices */}
             <div>
-              <div style={{ padding: '48px 40px', backgroundColor: '#ECEAE3', marginBottom: '2px' }}>
-                <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '20px' }}>Florida Office</p>
-                <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.1rem', fontWeight: 300, color: '#1A1A18', lineHeight: 1.5, marginBottom: '16px' }}>1234 Fairway Drive<br />Golf Park, FL 34102</p>
-                <p style={{ fontSize: '0.8125rem', color: 'rgba(26,26,24,0.5)', lineHeight: 1.7 }}>Serving Florida, Georgia,<br />South Carolina & North Carolina</p>
-              </div>
-              <div style={{ padding: '48px 40px', backgroundColor: '#E4E2DA', marginBottom: '24px' }}>
+              <div style={{ padding: '48px 40px', backgroundColor: '#ECEAE3', marginBottom: '24px' }}>
                 <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '20px' }}>Arizona Office</p>
                 <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.1rem', fontWeight: 300, color: '#1A1A18', lineHeight: 1.5, marginBottom: '16px' }}>5678 Desert Course Blvd<br />Scottsdale, AZ 85260</p>
                 <p style={{ fontSize: '0.8125rem', color: 'rgba(26,26,24,0.5)', lineHeight: 1.7 }}>Serving Arizona, Nevada,<br />New Mexico & Southern California</p>

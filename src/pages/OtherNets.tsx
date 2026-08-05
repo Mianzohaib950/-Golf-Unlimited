@@ -14,7 +14,7 @@ const nets = [
   {
     category: 'Aviary & Agricultural',
     title: 'Bird & Wildlife Netting',
-    img: 'https://images.unsplash.com/photo-1573402563668-0dbc67c5cbe0?w=800&h=500&fit=crop&auto=format',
+    img: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&h=500&fit=crop&auto=format',
     desc: 'Enclosures for aviaries, orchards, vineyards, and aquaculture ponds. UV-stabilized polyethylene with mesh sizes tuned to the target species and application.',
     uses: ['Aviary enclosures', 'Orchard & vineyard bird protection', 'Aquaculture pond covers', 'Pest deterrent systems'],
   },
