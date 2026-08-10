@@ -67,7 +67,7 @@ export default function Home({ navigate }: Props) {
             <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.65)', fontWeight: 200 }}>Matters.</em>
           </h1>
           <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)', maxWidth: '480px', margin: '0 auto 40px' }}>
-            Premium golf ball containment and netting systems — custom-engineered for homeowners, driving ranges, HOAs, and commercial facilities.
+            Premium golf ball deterrent and netting systems — custom-engineered for homeowners, driving ranges, HOAs, and commercial facilities.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <button
@@ -128,7 +128,7 @@ export default function Home({ navigate }: Props) {
             </div>
             <div>
               <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 300, color: '#1A1A18', lineHeight: 1.45, letterSpacing: '-0.01em', marginBottom: '24px' }}>
-                Golf Nets Unlimited is the region's premier provider of golf ball containment systems — an authorized dealer and certified installer for Nets Unlimited, the industry's leading manufacturer.
+                Golf Nets Unlimited is the region's premier provider of golf ball deterrent systems — an authorized dealer and certified installer for Nets Unlimited, the industry's leading manufacturer.
               </p>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.75, color: 'rgba(26,26,24,0.55)', maxWidth: '540px' }}>
                 For over two decades, we have brought unmatched expertise and craftsmanship to every project, from single-family residences to full-scale commercial driving ranges. Every system is custom-engineered, professionally installed, and backed by a written warranty.

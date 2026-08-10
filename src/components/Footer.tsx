@@ -38,7 +38,7 @@ export default function Footer({ navigate }: FooterProps) {
               <span style={{ fontSize: '0.55rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', fontWeight: 600 }}>Est. 2003</span>
             </button>
             <p style={{ fontSize: '0.8125rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.75)', maxWidth: '260px', marginBottom: '32px' }}>
-              Premium golf ball containment and specialty netting solutions for residential and commercial clients throughout the region.
+              Premium golf ball deterrent and specialty netting solutions for residential and commercial clients throughout the region.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <a href="tel:+15551234567" style={{ fontSize: '0.8125rem', color: '#fff', transition: 'opacity 0.2s' }}
@@ -109,7 +109,7 @@ export default function Footer({ navigate }: FooterProps) {
             © {new Date().getFullYear()} Golf Nets Unlimited. All rights reserved. (An authorized branch of Nets Unlimited products)
           </p>
           <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
-            Designed &amp; Developed by{' '}
+              Developed by{' '}
             <a href="https://novatoresols.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'underline' }}>
               Novatore Solutions
             </a>

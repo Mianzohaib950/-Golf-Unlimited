@@ -22,7 +22,7 @@ Think Apple-level attention to detail combined with the craftsmanship of luxury 
 
 # Business Overview
 
-Golf Nets Unlimited designs and installs custom golf ball containment systems for:
+Golf Nets Unlimited designs and installs custom golf ball deterrent systems for:
 
 • Residential Homes
 • Homeowner Associations (HOA)

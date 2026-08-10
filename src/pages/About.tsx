@@ -45,10 +45,10 @@ export default function About({ navigate }: Props) {
         <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', paddingTop: '6px' }}>Our Story</p>
         <div>
           <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', fontWeight: 300, lineHeight: 1.55, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '28px' }}>
-            We started in 2003 with a truck, a used cable gun, and a contract to protect three houses on a golf course in Clearwater. Every system we install today reflects what we learned on that first job: that precision matters more than speed, and that a net installed correctly lasts 20 years.
+            We started in 2003 with a truck, a used cable gun, and a contract to protect three houses on a golf course in Clearwater. Every system we install today reflects what we learned on that first job: that precision matters more than speed, and that our netting carries a 10-year UV rating.
           </p>
           <p style={{ fontSize: '0.875rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.5)', marginBottom: '20px' }}>
-            Since then we have grown into a regional leader in golf ball containment and specialty netting — serving residential homeowners, HOA communities, driving ranges, and commercial facilities across Florida, Arizona, and the Southeast.
+            Since then we have grown into a regional leader in golf ball deterrent and specialty netting — serving residential homeowners, HOA communities, driving ranges, and commercial facilities across Florida, Arizona, and the Southeast.
           </p>
           <p style={{ fontSize: '0.875rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.5)' }}>
             Our partnership with Nets Unlimited gives us access to the most rigorously tested materials in the netting industry. Combined with our in-house design and engineering team, that means every system we install is both structurally sound and built to last.

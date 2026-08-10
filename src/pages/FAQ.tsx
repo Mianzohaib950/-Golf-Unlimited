@@ -8,7 +8,7 @@ const faqs = [
   {
     category: 'General',
     items: [
-      { q: 'What types of netting systems do you install?', a: 'We specialize in golf ball containment systems for residential properties, HOA communities, and commercial driving ranges. We also install specialty netting for sports, aviary, pet enclosures, agricultural, and architectural applications.' },
+      { q: 'What types of netting systems do you install?', a: 'We specialize in golf ball deterrent systems for residential properties, HOA communities, and commercial driving ranges. We also install specialty netting for sports, aviary, pet enclosures, agricultural, and architectural applications.' },
       { q: 'How long does installation typically take?', a: 'Residential projects typically take 1–2 days. Commercial and community-scale projects run 3–10 days depending on scope. We will provide a detailed timeline in your proposal.' },
       { q: 'Do you service my area?', a: 'We currently operate in Florida and Arizona with regional crews available throughout the Southeast and Southwest United States. Contact us to confirm coverage for your specific location.' },
       { q: 'Is there a minimum project size?', a: 'We do not have a minimum project size — we serve single-family homeowners and 500-acre golf resorts alike. Every inquiry receives a site visit and a written proposal.' },
@@ -18,7 +18,7 @@ const faqs = [
     category: 'Products & Materials',
     items: [
       { q: 'What materials do you use?', a: 'We are an authorized dealer of Nets Unlimited products — the industry standard for high-performance netting. Materials include UV-stabilized HDPE, knotted nylon, and braided polyester depending on the application.' },
-      { q: 'How long will my net system last?', a: 'Residential systems installed with quality UV-rated HDPE typically last 15–20 years with minimal maintenance. Commercial systems in high-ball-volume environments are rated at 10–15 years. Annual inspections extend system life significantly.' },
+      { q: 'How long will my net system last?', a: 'Our netting carries a 10-year UV rating. Annual inspections and proper maintenance help keep the system performing at its best.' },
       { q: 'What colors are available?', a: 'Most systems are installed in black or dark green, which offers the best UV resistance and the least visual intrusion. Custom color matching is available for architectural applications.' },
       { q: 'Are your materials safe for children and pets?', a: 'Yes. All materials used in our systems are non-toxic, non-reactive, and tested for outdoor safety. Pet enclosure and play area netting specifically uses materials with no sharp edges or chemical treatments.' },
     ],
@@ -35,7 +35,7 @@ const faqs = [
   {
     category: 'Warranty & Maintenance',
     items: [
-      { q: 'What warranty do you offer?', a: 'All residential installations carry a 5-year workmanship warranty. Commercial installations carry a 10-year workmanship warranty. Material warranties from Nets Unlimited run separately and range from 5–20 years depending on the product.' },
+      { q: 'What warranty do you offer?', a: 'All residential installations carry a 5-year workmanship warranty. Commercial installations carry a 10-year workmanship warranty. The netting also carries a 10-year pro-rated warranty against UV degradation.' },
       { q: 'Do I need to maintain my net system?', a: 'Annual inspections are strongly recommended and are included in our commercial service agreements. Homeowners should visually inspect tension and anchors seasonally. We offer a maintenance program that includes annual site visits.' },
       { q: 'What if my net is damaged by a storm or vandalism?', a: 'We offer emergency repair services with a target response time of 48 hours for contract clients and 5 business days for all other customers. Repairs are warrantied for 12 months.' },
       { q: 'Will you remove and reinstall if I am renovating?', a: 'Yes — system removal, storage, and reinstallation is a standard service. Existing systems are typically reusable if removed carefully. We inspect components during reinstallation and replace any degraded elements.' },
