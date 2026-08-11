@@ -106,7 +106,16 @@ export default function Footer({ navigate }: FooterProps) {
         {/* Bottom bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '24px', flexWrap: 'wrap', gap: '12px' }}>
           <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
-            © {new Date().getFullYear()} Golf Nets Unlimited. All rights reserved. (An authorized branch of Nets Unlimited products)
+            © {new Date().getFullYear()} Golf Nets Unlimited. All rights reserved. (An authorized branch of{' '}
+            <a
+              href="https://netsunlimited.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'inherit', textDecoration: 'underline' }}
+            >
+              Nets Unlimited
+            </a>{' '}
+            products)
           </p>
           <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
               Developed by{' '}

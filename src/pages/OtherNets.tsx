@@ -60,9 +60,21 @@ export default function OtherNets({ navigate }: Props) {
       {/* Intro */}
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 40px', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'start' }}>
         <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', paddingTop: '6px' }}>Specialty Work</p>
-        <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.1rem, 2.2vw, 1.5rem)', fontWeight: 300, lineHeight: 1.6, color: '#1A1A18', letterSpacing: '-0.01em' }}>
-          Our team has designed and installed netting systems across sports, agriculture, architecture, and themed entertainment. If it needs to be contained, supported, or protected — we have the expertise to design a system for it.
-        </p>
+        <div>
+          <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.1rem, 2.2vw, 1.5rem)', fontWeight: 300, lineHeight: 1.6, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '24px' }}>
+            Our team has designed and installed netting systems across sports, agriculture, architecture, and themed entertainment. If it needs to be contained, supported, or protected — we have the expertise to design a system for it.
+          </p>
+          <a
+            href="https://netsunlimited.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '16px', padding: '16px 22px', border: '1px solid rgba(26,26,24,0.5)', color: '#1A1A18', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', transition: 'background-color 0.2s, color 0.2s' }}
+            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#1E4D2B'; e.currentTarget.style.color = '#fff' }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#1A1A18' }}
+          >
+            Explore Nets Unlimited Website <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </section>
 
       {/* Net types */}
