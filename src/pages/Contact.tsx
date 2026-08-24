@@ -3,14 +3,12 @@ import type { Page } from '../App'
 
 interface Props { navigate: (p: Page) => void }
 
-type FormState = { name: string; email: string; phone: string; subject: string; message: string }
-type FocusState = { name: boolean; email: boolean; phone: boolean; subject: boolean; message: boolean }
-
-const SUBJECTS = ['General Inquiry', 'Residential — New Installation', 'Commercial / Driving Range', 'HOA / Community Project', 'Specialty Netting', 'Service / Repair', 'Other']
+type FormState = { name: string; email: string; phone: string }
+type FocusState = { name: boolean; email: boolean; phone: boolean }
 
 export default function Contact({ navigate: _navigate }: Props) {
-  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '', subject: '', message: '' })
-  const [focus, setFocus] = useState<FocusState>({ name: false, email: false, phone: false, subject: false, message: false })
+  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '' })
+  const [focus, setFocus] = useState<FocusState>({ name: false, email: false, phone: false })
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState<Partial<FormState>>({})
@@ -19,7 +17,6 @@ export default function Contact({ navigate: _navigate }: Props) {
     const e: Partial<FormState> = {}
     if (!form.name.trim()) e.name = 'Required'
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = 'Valid email required'
-    if (!form.message.trim()) e.message = 'Required'
     return e
   }
 
@@ -65,10 +62,10 @@ export default function Contact({ navigate: _navigate }: Props) {
             Message received
           </h2>
           <p style={{ fontSize: '0.875rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.5)', marginBottom: '40px' }}>
-            Thank you for reaching out. A member of our team will respond within one business day with next steps.
+            Thank you for reaching out to Golf Nets Unlimited.
           </p>
           <button
-            onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', subject: '', message: '' }) }}
+            onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '' }) }}
             style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '13px 28px', border: '1px solid rgba(26,26,24,0.2)', color: 'rgba(26,26,24,0.5)', transition: 'all 0.2s' }}
           >
             Send Another Message
@@ -88,15 +85,15 @@ export default function Contact({ navigate: _navigate }: Props) {
             <div>
               <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '16px' }}>Contact</p>
               <h1 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 6vw, 5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.025em', lineHeight: 1.05 }}>
-                Let's talk about your project
+                Contact Us
               </h1>
             </div>
             <div>
               <p style={{ fontSize: '0.875rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.5)', marginBottom: '32px' }}>
-                Every project begins with a conversation. Tell us what you're experiencing and we'll arrange a site visit within the week.
+                Golf Nets Unlimited — 20625 N. 29th Place, Phoenix, Arizona 85050, United States
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {[['Phone', '(555) 123-4567'], ['Email', 'info@golfnetsunlimited.com'], ['Hours', 'Mon–Fri 7am–4pm']].map(([lbl, val]) => (
+                {[['Phone', '(480) 515-1300'], ['Hours', 'Open today 07:00 am – 04:00 pm']].map(([lbl, val]) => (
                   <div key={lbl} style={{ display: 'flex', gap: '16px' }}>
                     <span style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', width: '52px', paddingTop: '1px', flexShrink: 0 }}>{lbl}</span>
                     <span style={{ fontSize: '0.875rem', color: 'rgba(26,26,24,0.6)' }}>{val}</span>
@@ -131,7 +128,7 @@ export default function Contact({ navigate: _navigate }: Props) {
                     onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
                     onFocus={() => setFocus(f => ({ ...f, phone: true }))}
                     onBlur={() => setFocus(f => ({ ...f, phone: false }))}
-                    placeholder="(555) 000-0000" style={inputStyle('phone')} />
+                    placeholder="(480) 515-1300" style={inputStyle('phone')} />
                 </div>
               </div>
 
@@ -145,48 +142,26 @@ export default function Contact({ navigate: _navigate }: Props) {
                 {errors.email && <p style={{ fontSize: '0.7rem', color: '#C0392B', marginTop: '6px' }}>{errors.email}</p>}
               </div>
 
-              <div style={{ marginBottom: '32px' }}>
-                <label style={labelStyle}>Subject</label>
-                <select value={form.subject}
-                  onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-                  onFocus={() => setFocus(f => ({ ...f, subject: true }))}
-                  onBlur={() => setFocus(f => ({ ...f, subject: false }))}
-                  style={{ ...inputStyle('subject'), appearance: 'none', cursor: 'pointer' }}>
-                  <option value="">Select a topic...</option>
-                  {SUBJECTS.map(s => <option key={s} value={s}>{s}</option>)}
-                </select>
-              </div>
-
-              <div style={{ marginBottom: '48px' }}>
-                <label style={labelStyle}>Message *</label>
-                <textarea value={form.message}
-                  onChange={e => { setForm(f => ({ ...f, message: e.target.value })); setErrors(r => ({ ...r, message: undefined })) }}
-                  onFocus={() => setFocus(f => ({ ...f, message: true }))}
-                  onBlur={() => setFocus(f => ({ ...f, message: false }))}
-                  placeholder="Describe your project — property type, location, what you're experiencing, and any HOA restrictions."
-                  rows={5} style={{ ...inputStyle('message'), resize: 'vertical', lineHeight: 1.7 }} />
-                {errors.message && <p style={{ fontSize: '0.7rem', color: '#C0392B', marginTop: '6px' }}>{errors.message}</p>}
-              </div>
-
               <button type="submit" disabled={submitting}
                 style={{ padding: '16px 40px', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: '#1E4D2B', color: '#F8F7F4', border: 'none', cursor: submitting ? 'wait' : 'pointer', opacity: submitting ? 0.6 : 1, transition: 'background-color 0.2s, opacity 0.2s', fontFamily: 'Inter, system-ui, sans-serif' }}
                 onMouseEnter={e => { if (!submitting) (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#0F2A18' }}
                 onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#1E4D2B' }}>
                 {submitting ? 'Sending...' : 'Send Message'}
               </button>
+              <p style={{ marginTop: '18px', fontSize: '0.68rem', lineHeight: 1.6, color: 'rgba(26,26,24,0.4)' }}>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
             </form>
 
             {/* Info + offices */}
             <div>
               <div style={{ padding: '48px 40px', backgroundColor: '#ECEAE3', marginBottom: '24px' }}>
-                <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '20px' }}>Arizona Office</p>
-                <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.1rem', fontWeight: 300, color: '#1A1A18', lineHeight: 1.5, marginBottom: '16px' }}>5678 Desert Course Blvd<br />Scottsdale, AZ 85260</p>
-                <p style={{ fontSize: '0.8125rem', color: 'rgba(26,26,24,0.5)', lineHeight: 1.7 }}>Serving Arizona, Nevada,<br />New Mexico & Southern California</p>
+                <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '20px' }}>Golf Nets Unlimited</p>
+                <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.1rem', fontWeight: 300, color: '#1A1A18', lineHeight: 1.5, marginBottom: '16px' }}>20625 N. 29th Place<br />Phoenix, Arizona 85050<br />United States</p>
+                <p style={{ fontSize: '0.8125rem', color: 'rgba(26,26,24,0.5)', lineHeight: 1.7 }}>(480) 515-1300</p>
               </div>
               <div style={{ padding: '24px 0', borderTop: '1px solid rgba(26,26,24,0.08)' }}>
-                <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', marginBottom: '10px' }}>Response Time</p>
+                <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.35)', marginBottom: '10px' }}>Additional</p>
                 <p style={{ fontSize: '0.8125rem', lineHeight: 1.75, color: 'rgba(26,26,24,0.5)' }}>
-                  We respond within one business day. Site visits are typically scheduled within 5–7 business days.
+                  Email Us · Get directions
                 </p>
               </div>
             </div>
@@ -229,14 +204,14 @@ export default function Contact({ navigate: _navigate }: Props) {
           {/* Label card */}
           <div style={{ marginTop: '12px', backgroundColor: '#fff', padding: '10px 16px', boxShadow: '0 4px 24px rgba(0,0,0,0.12)', textAlign: 'center', whiteSpace: 'nowrap' }}>
             <p style={{ fontSize: '0.78rem', fontWeight: 700, color: '#1A1A18', marginBottom: '2px' }}>Golf Nets Unlimited</p>
-            <p style={{ fontSize: '0.68rem', color: 'rgba(26,26,24,0.45)' }}>Multiple locations — FL & AZ</p>
+            <p style={{ fontSize: '0.68rem', color: 'rgba(26,26,24,0.45)' }}>20625 N. 29th Place, Phoenix, Arizona 85050</p>
           </div>
         </div>
 
         {/* Overlay label */}
         <div style={{ position: 'absolute', bottom: '24px', left: '32px', backgroundColor: 'rgba(255,255,255,0.9)', padding: '12px 20px' }}>
-          <p style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.5)', marginBottom: '2px' }}>Service Region</p>
-          <p style={{ fontSize: '0.8125rem', fontWeight: 500, color: '#1A1A18' }}>Florida · Arizona · Southeast USA</p>
+          <p style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.5)', marginBottom: '2px' }}>Get Directions</p>
+          <p style={{ fontSize: '0.8125rem', fontWeight: 500, color: '#1A1A18' }}>Golf Nets Unlimited</p>
         </div>
       </section>
     </div>

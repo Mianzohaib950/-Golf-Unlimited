@@ -9,8 +9,8 @@
   --color-warm-gray: #F0EFE9;
   --color-mid-gray: #C4C3BC;
   --color-earth: #8B7355;
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 html {
@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-body);
   background-color: #F8F7F4;
   color: #1A1A18;
   -webkit-font-smoothing: antialiased;
@@ -35,11 +35,17 @@ body {
 ::-webkit-scrollbar-thumb { background: #C4C3BC; }
 ::-webkit-scrollbar-thumb:hover { background: #1E4D2B; }
 
+button, input, select, textarea, a { font-family: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display) !important;
+  font-weight: 300 !important;
+}
+
 .num {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 200;
+  font-family: var(--font-display);
+  font-weight: 300;
   letter-spacing: -0.03em;
 }
 

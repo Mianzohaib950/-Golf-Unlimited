@@ -4,123 +4,30 @@ import type { Page } from '../App'
 interface Props { navigate: (p: Page) => void }
 
 const nets = [
-  {
-    category: 'Sport Netting',
-    title: 'Multi-Sport Containment',
-    img: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop&auto=format',
-    desc: 'Baseball batting cages, soccer backstops, tennis court barriers, and multi-sport court enclosures. All systems engineered for the specific ball type and impact frequency of each sport.',
-    uses: ['Baseball & softball cages', 'Soccer goal backstops', 'Tennis court barriers', 'Pickleball enclosures'],
-  },
-  {
-    category: 'Aviary & Agricultural',
-    title: 'Bird & Wildlife Netting',
-    img: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&h=500&fit=crop&auto=format',
-    desc: 'Enclosures for aviaries, orchards, vineyards, and aquaculture ponds. UV-stabilized polyethylene with mesh sizes tuned to the target species and application.',
-    uses: ['Aviary enclosures', 'Orchard & vineyard bird protection', 'Aquaculture pond covers', 'Pest deterrent systems'],
-  },
-  {
-    category: 'Pet & Animal',
-    title: 'Enclosure Systems',
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop&auto=format',
-    desc: 'Cat containment, dog run covers, and livestock management netting. Corrosion-resistant hardware throughout — built for daily use in outdoor environments.',
-    uses: ['Cat containment systems', 'Dog run covers', 'Livestock management', 'Backyard enclosures'],
-  },
-  {
-    category: 'Architectural',
-    title: 'Safety & Fall Arrest',
-    img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=500&fit=crop&auto=format',
-    desc: 'Staircase guardrail infill, balcony safety nets, bridge walkway protection, and construction debris netting. Designed to meet relevant building codes and fall-protection standards.',
-    uses: ['Staircase infill netting', 'Balcony child safety', 'Bridge & walkway protection', 'Construction safety'],
-  },
-  {
-    category: 'Decorative',
-    title: 'Landscape & Theming',
-    img: 'https://images.unsplash.com/photo-1416169607655-0c2b3ce2e1cc?w=800&h=500&fit=crop&auto=format',
-    desc: 'Climbing plant support structures, outdoor shade canopies, themed entertainment environments, and garden trellis systems. Where function and aesthetics are equal priorities.',
-    uses: ['Climbing plant supports', 'Shade canopy systems', 'Themed entertainment', 'Garden trellis systems'],
-  },
+  { category: "Sport Netting & Children's Nets", title: 'Batting Cages', img: '/images/golf-nets/other-nets/service-09.jpeg', desc: 'Whether you need a single cage for your home or multiple cages for an entertainment center we can help you build what you need, or replace existing damaged nets.' },
+  { category: "Sport Netting & Children's Nets", title: "Obstacle Courses & Kid's Climbs", img: '/images/golf-nets/other-nets/service-01.jpeg', desc: "Nets Unlimited, Inc. can also create and install the netting for any of your kid's climbs and obstacle course needs, either at your home or business." },
+  { category: "Sport Netting & Children's Nets", title: 'Sport Court Containment', img: '/images/golf-nets/other-nets/service-06.jpeg', desc: "Do you have a sports court that needs barriers so the balls stay in the court? We can customize containment netting to keep those balls in play and out of the neighbor's yard." },
+  { category: 'Aviaries, Pet Protection, & Shade', title: 'Aviaries', img: '/images/golf-nets/other-nets/service-03.jpeg', desc: 'Do you have a special bird that deserves more than an ordinary cage? We can help.' },
+  { category: 'Aviaries, Pet Protection, & Shade', title: 'Pet Netting Protection', img: '/images/golf-nets/other-nets/service-08.jpeg', desc: 'Do you have an animal that you need to protect from predators like coyotes or hawks, or do you simply need to keep your pet in your yard? We can do that too.' },
+  { category: 'Aviaries, Pet Protection, & Shade', title: 'Shade Structures', img: '/images/golf-nets/other-nets/service-02.jpeg', desc: 'Nets Unlimited Inc. can provide shade structures for outdoor patios, pools, seating areas, pathways, and more.' },
+  { category: 'Themeing, Thatch, & Decor', title: 'Handrails', img: '/images/golf-nets/other-nets/service-04.jpeg', desc: 'We can add decorative and functional handrails anywhere that you may need them. Nets Unlimited Inc. has installed handrail nets around patios, raised decks, walkways, boardwalks, and more.' },
+  { category: 'Themeing, Thatch, & Decor', title: 'Bridges & Tunnels', img: '/images/golf-nets/other-nets/service-05.jpeg', desc: 'Nets Unlimited Inc. has created hundreds of bridges and tunnels over the years, we can install them for decor, or truly functional bridges hundreds of feet in the air.' },
+  { category: 'Themeing, Thatch, & Decor', title: 'Thatch Umbrellas & Cabanas', img: '/images/golf-nets/other-nets/service-07.jpeg', desc: 'Do you need a shade umbrella or cabana, but want something different than everyone else? Let us help you build a perfect patio oasis with natural or artificial thatch.' },
 ]
 
 export default function OtherNets({ navigate }: Props) {
-  return (
-    <div style={{ backgroundColor: '#F8F7F4' }}>
+  return <div style={{ backgroundColor: '#F8F7F4' }}>
+    <section style={{ position: 'relative', height: '60vh', minHeight: '440px', display: 'flex', alignItems: 'flex-end' }}>
+      <img src="/images/golf-nets/other-nets/service-01.jpeg" alt="Children playing on a custom rope-and-net climbing structure" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75), rgba(10,16,11,0.2) 55%, transparent)' }} />
+      <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}><p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '16px' }}>Other Nets</p><h1 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 6vw, 5rem)', fontWeight: 200, color: '#fff', lineHeight: 1.05, letterSpacing: '-0.025em' }}>We don't just do golf nets</h1></div>
+    </section>
+    <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 40px', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px' }}><p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B' }}>Specialty Work</p><div><p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.1rem, 2.2vw, 1.5rem)', fontWeight: 300, lineHeight: 1.6, color: '#1A1A18', marginBottom: '24px' }}>Sport netting, children's nets, aviaries, pet protection, shade structures, themeing, thatch, and decor.</p><a href="https://netsunlimited.com/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', gap: '16px', padding: '16px 22px', border: '1px solid rgba(26,26,24,0.5)', color: '#1A1A18', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Explore Nets Unlimited Website <span>→</span></a></div></section>
+    <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px 96px' }}><div style={{ display: 'flex', flexDirection: 'column', gap: '1px', backgroundColor: 'rgba(26,26,24,0.08)' }}>{nets.map((net, i) => <div key={net.title} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', backgroundColor: '#F8F7F4' }}>{i % 2 === 0 && <NetImage net={net} />}<div style={{ padding: '64px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}><p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '16px' }}>{net.category}</p><h2 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 200, color: '#1A1A18', marginBottom: '20px' }}>{net.title}</h2><p style={{ fontSize: '0.8125rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.5)' }}>{net.desc}</p></div>{i % 2 !== 0 && <NetImage net={net} />}</div>)}</div></section>
+    <CTASection navigate={navigate} headline="Call Us!" subtext="We would be happy to tell you more about any of the products on this page and to discuss any of your project needs with you. Call us any time!" primaryLabel="Contact Us" primaryPage="contact" secondaryLabel="Find Out More" secondaryPage="gallery" />
+  </div>
+}
 
-      {/* Hero */}
-      <section style={{ position: 'relative', height: '60vh', minHeight: '440px', display: 'flex', alignItems: 'flex-end' }}>
-        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1600&h=900&fit=crop&auto=format" alt="Specialty netting" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75) 0%, rgba(10,16,11,0.2) 55%, transparent 100%)' }} />
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
-          <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '16px' }}>Specialty Netting</p>
-          <h1 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 6vw, 5rem)', fontWeight: 200, color: '#fff', lineHeight: 1.05, letterSpacing: '-0.025em', maxWidth: '700px' }}>
-            Beyond golf — netting for every application
-          </h1>
-        </div>
-      </section>
-
-      {/* Intro */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 40px', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'start' }}>
-        <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', paddingTop: '6px' }}>Specialty Work</p>
-        <div>
-          <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.1rem, 2.2vw, 1.5rem)', fontWeight: 300, lineHeight: 1.6, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '24px' }}>
-            Our team has designed and installed netting systems across sports, agriculture, architecture, and themed entertainment. If it needs to be contained, supported, or protected — we have the expertise to design a system for it.
-          </p>
-          <a
-            href="https://netsunlimited.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '16px', padding: '16px 22px', border: '1px solid rgba(26,26,24,0.5)', color: '#1A1A18', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', transition: 'background-color 0.2s, color 0.2s' }}
-            onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#1E4D2B'; e.currentTarget.style.color = '#fff' }}
-            onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#1A1A18' }}
-          >
-            Explore Nets Unlimited Website <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </section>
-
-      {/* Net types */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px 96px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', backgroundColor: 'rgba(26,26,24,0.08)' }}>
-          {nets.map((net, i) => (
-            <div key={i} style={{ display: 'grid', gridTemplateColumns: i % 2 === 0 ? '1fr 1fr' : '1fr 1fr', backgroundColor: '#F8F7F4' }}>
-              {i % 2 === 0 ? (
-                <>
-                  <div style={{ position: 'relative', minHeight: '360px' }}>
-                    <img src={net.img} alt={net.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                  <div style={{ padding: '64px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '16px' }}>{net.category}</p>
-                    <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: '20px' }}>{net.title}</h2>
-                    <p style={{ fontSize: '0.8125rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.5)', marginBottom: '24px' }}>{net.desc}</p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                      {net.uses.map(u => (
-                        <span key={u} style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.06em', padding: '5px 12px', border: '1px solid rgba(26,26,24,0.15)', color: 'rgba(26,26,24,0.5)', textTransform: 'uppercase' }}>{u}</span>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div style={{ padding: '64px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '16px' }}>{net.category}</p>
-                    <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: '20px' }}>{net.title}</h2>
-                    <p style={{ fontSize: '0.8125rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.5)', marginBottom: '24px' }}>{net.desc}</p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                      {net.uses.map(u => (
-                        <span key={u} style={{ fontSize: '0.68rem', fontWeight: 500, letterSpacing: '0.06em', padding: '5px 12px', border: '1px solid rgba(26,26,24,0.15)', color: 'rgba(26,26,24,0.5)', textTransform: 'uppercase' }}>{u}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div style={{ position: 'relative', minHeight: '360px' }}>
-                    <img src={net.img} alt={net.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                </>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <CTASection navigate={navigate} headline="Have a Unique Application in Mind?" subtext="If you can describe the problem, we can engineer a net system to solve it. We've handled everything from zoo enclosures to film set rigging." primaryLabel="Describe Your Project" primaryPage="contact" secondaryLabel="See Our Work" secondaryPage="gallery" />
-    </div>
-  )
+function NetImage({ net }: { net: typeof nets[number] }) {
+  return <div style={{ position: 'relative', minHeight: '360px' }}><img src={net.img} alt={net.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} /></div>
 }

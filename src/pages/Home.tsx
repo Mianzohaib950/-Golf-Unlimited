@@ -1,19 +1,17 @@
 import type { Page } from '../App'
 import CTASection from '../components/CTASection'
-import Testimonials from '../components/Testimonials'
-import CountUp from '../components/CountUp'
 
 interface Props { navigate: (p: Page) => void }
 
 const IMG = {
-  hero: 'https://images.unsplash.com/photo-1776717163992-1919b844d715?w=1920&h=1080&fit=crop&auto=format',
-  golfBall: 'https://images.unsplash.com/photo-1621005570352-6418df03796b?w=1200&h=900&fit=crop&auto=format',
-  patio: 'https://images.unsplash.com/photo-1634316888962-75074307f81c?w=900&h=1100&fit=crop&auto=format',
-  range: 'https://images.unsplash.com/photo-1783530558756-1d0709dee1c9?w=900&h=1100&fit=crop&auto=format',
-  g1: 'https://images.unsplash.com/photo-1776717163995-7807586c229b?w=700&h=900&fit=crop&auto=format',
-  g2: 'https://images.unsplash.com/photo-1776723670814-6f786c205117?w=700&h=560&fit=crop&auto=format',
-  g3: 'https://images.unsplash.com/photo-1775144581077-ef2b00f156e7?w=700&h=560&fit=crop&auto=format',
-  g4: 'https://images.unsplash.com/photo-1776723670896-4c8d9e7055ab?w=700&h=900&fit=crop&auto=format',
+  hero: '/images/golf-nets/home/home-residential.jpg',
+  golfBall: '/images/golf-nets/homeowners/residential-system.jpg',
+  patio: '/images/golf-nets/homeowners/residential-net.jpg',
+  range: '/images/golf-nets/driving-range/driving-range.jpg',
+  g1: '/images/golf-nets/gallery/gallery-01.jpg',
+  g2: '/images/golf-nets/gallery/gallery-02.jpeg',
+  g3: '/images/golf-nets/gallery/gallery-03.jpg',
+  g4: '/images/golf-nets/gallery/gallery-04.jpg',
 }
 
 const S = {
@@ -41,7 +39,7 @@ export default function Home({ navigate }: Props) {
       <section style={{ position: 'relative', height: '100vh', minHeight: '680px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {/* Background */}
         <div style={{ position: 'absolute', inset: 0, backgroundColor: '#0E1710' }}>
-          <img src={IMG.hero} alt="Aerial view of a golf course" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.75 }} />
+          <img src={IMG.hero} alt="Residential golf ball deterrent netting beside a golf course" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.75 }} />
         </div>
 
         {/* Dark overlay for text legibility */}
@@ -50,7 +48,7 @@ export default function Home({ navigate }: Props) {
         {/* Content — centered */}
         <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 40px', maxWidth: '900px', width: '100%' }}>
           <p style={{ ...S.label, color: 'rgba(255,255,255,0.6)', marginBottom: '32px', letterSpacing: '0.22em' }}>
-            Golf Nets Unlimited — Est. 2003
+            Golf Ball Protection
           </p>
           <h1 style={{
             fontFamily: 'Fraunces, Georgia, serif',
@@ -62,12 +60,11 @@ export default function Home({ navigate }: Props) {
             marginBottom: '36px',
             textShadow: '0 2px 40px rgba(0,0,0,0.4)',
           }}>
-            Protecting<br />
-            What{' '}
-            <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.65)', fontWeight: 200 }}>Matters.</em>
+            Protect Your<br />
+            <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.65)', fontWeight: 200 }}>Home & Family.</em>
           </h1>
           <p style={{ fontSize: '1rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)', maxWidth: '480px', margin: '0 auto 40px' }}>
-            Premium golf ball deterrent and netting systems — custom-engineered for homeowners, driving ranges, HOAs, and commercial facilities.
+            Learn how we can help you protect your home and family from errant golf balls with our golf protection netting. We understand the issues facing both homeowners and Home Owner Associations.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <button
@@ -96,42 +93,20 @@ export default function Home({ navigate }: Props) {
         </div>
       </section>
 
-      {/* ── STATS BAND ───────────────────────────────────────── */}
-      <section style={{ backgroundColor: '#F8F7F4', borderBottom: '1px solid #E8E7E1' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderLeft: '1px solid #F0EFE9' }}>
-            {[
-              { num: '500+', label: 'Projects completed', note: 'Since 2003' },
-              { num: '20+', label: 'Years of expertise', note: 'Nets Unlimited authorized dealer' },
-              { num: '100%', label: 'Satisfaction guaranteed', note: 'Written warranty on all work' },
-            ].map((s, i) => (
-              <div
-                key={s.num}
-                style={{ padding: '52px 40px', borderRight: '1px solid #F0EFE9', borderBottom: '1px solid transparent' }}
-              >
-                <CountUp value={s.num} style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 5vw, 4.5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.04em', lineHeight: 1 }} />
-                <div style={{ marginTop: '12px', fontSize: '0.8125rem', fontWeight: 500, color: '#1A1A18' }}>{s.label}</div>
-                <div style={{ marginTop: '4px', fontSize: '0.72rem', color: 'rgba(26,26,24,0.4)', letterSpacing: '0.02em' }}>{s.note}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── ABOUT STRIP ──────────────────────────────────────── */}
       <section style={{ backgroundColor: '#F8F7F4', padding: '96px 0' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'start' }}>
             <div>
-              <p style={S.label}>About the Company</p>
+              <p style={S.label}>Golf Nets Unlimited</p>
               <div style={{ marginTop: '20px', width: '32px', height: '1px', backgroundColor: '#1E4D2B' }} />
             </div>
             <div>
               <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', fontWeight: 300, color: '#1A1A18', lineHeight: 1.45, letterSpacing: '-0.01em', marginBottom: '24px' }}>
-                Golf Nets Unlimited is the region's premier provider of golf ball deterrent systems — an authorized dealer and certified installer for Nets Unlimited, the industry's leading manufacturer.
+                Nets Unlimited Inc. is the industry leader in the fabrication and installation of golf ball deterrent netting systems for homes and businesses on or near the fairway.
               </p>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.75, color: 'rgba(26,26,24,0.55)', maxWidth: '540px' }}>
-                For over two decades, we have brought unmatched expertise and craftsmanship to every project, from single-family residences to full-scale commercial driving ranges. Every system is custom-engineered, professionally installed, and backed by a written warranty.
+                Our systems create a non-invasive, yet necessary barrier to the real perils posed by wayward golf balls. They are an attractive and professional solution to expensive property damage and the threat of personal injury.
               </p>
               <button
                 onClick={() => navigate('about')}
@@ -155,25 +130,25 @@ export default function Home({ navigate }: Props) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'stretch' }}>
             {/* Image — constrained to text height */}
             <div style={{ overflow: 'hidden', backgroundColor: '#E8E7E1', margin: '0 -40px 0 -40px', position: 'relative' }} className="section-img-left">
-              <img src={IMG.golfBall} alt="Golf ball on pristine green grass" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', position: 'absolute', inset: 0 }} />
+              <img src={IMG.golfBall} alt="Residential golf ball deterrent netting system" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', position: 'absolute', inset: 0 }} />
             </div>
 
             {/* Text */}
             <div style={{ padding: '72px 0 72px 72px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <p style={S.label}>How It Works</p>
+              <p style={S.label}>Our Solution</p>
               <h2 style={{ ...S.h2, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', marginTop: '20px', marginBottom: '24px' }}>
-                Engineered to Stop Golf Balls Before They Cause Damage
+                Custom Designed Golf Ball Deterrent Systems
               </h2>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.75, color: 'rgba(26,26,24,0.6)', marginBottom: '32px' }}>
-                Our high-tensile containment systems intercept and absorb impact from golf balls at full velocity. Every system is custom-engineered to your site's specific dimensions, exposure, and aesthetic requirements.
+                Nets Unlimited gives you back the enjoyment of living on a golf course by creating a non-invasive barrier to wayward golf balls.
               </p>
               <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '40px' }}>
                 {[
-                  'Custom-engineered for every site and application',
-                  'UV-stabilized, weatherproof materials built to last',
-                  'Certified installation by experienced technicians',
-                  'Low-profile designs that complement your landscape',
-                  'ASTM-compliant structural posts and hardware',
+                  'Fabrication and installation by Nets Unlimited Inc.',
+                  'Solutions for homes and businesses',
+                  'Designed for properties on or near the fairway',
+                  'Protection from expensive property damage',
+                  'Protection from the threat of personal injury',
                 ].map(item => (
                   <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', fontSize: '0.8125rem', color: 'rgba(26,26,24,0.7)', lineHeight: 1.6 }}>
                     <span style={{ marginTop: '7px', flexShrink: 0, width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#1E4D2B' }} />
@@ -202,7 +177,7 @@ export default function Home({ navigate }: Props) {
             <div>
               <p style={S.label}>Solutions</p>
               <h2 style={{ ...S.h2, fontSize: 'clamp(2rem, 4vw, 3.2rem)', marginTop: '12px' }}>
-                Built for Every Setting
+                Protection for Homeowners and Property Managers
               </h2>
             </div>
             <button
@@ -224,15 +199,15 @@ export default function Home({ navigate }: Props) {
               {
                 page: 'homeowners' as Page,
                 tag: 'Homeowners',
-                title: 'Residential Deterrent Systems',
-                desc: 'Protect your home, vehicles, and landscaping with minimal visual impact.',
+                title: 'Homeowners',
+                desc: 'A wide array of aesthetically pleasing golf net solutions that protect against property damage and personal injury from stray golf balls.',
                 img: IMG.patio,
               },
               {
                 page: 'driving-range' as Page,
                 tag: 'Driving Range & Practice',
-                title: 'Commercial Range Containment',
-                desc: 'Industry-grade netting built to withstand high-volume daily use.',
+                title: 'Property Managers',
+                desc: 'Contact Golf Nets Unlimited for budgetary information and to schedule an on-site appointment for a detailed custom estimate.',
                 img: IMG.range,
               },
             ].map(card => (
@@ -317,9 +292,9 @@ export default function Home({ navigate }: Props) {
           {/* 3-column equal grid */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px' }}>
             {[
-              { src: IMG.g1, alt: 'Aerial golf course', aspect: '3/4' },
-              { src: IMG.g2, alt: 'Golf course fairway', aspect: '3/4' },
-              { src: IMG.g3, alt: 'Golfer at driving range', aspect: '3/4' },
+              { src: IMG.g1, alt: 'Golf Nets Unlimited project installation', aspect: '3/4' },
+              { src: IMG.g2, alt: 'Residential golf protection netting project', aspect: '3/4' },
+              { src: IMG.g3, alt: 'Golf-course netting installation', aspect: '3/4' },
             ].map((img, i) => (
               <div
                 key={i}
@@ -367,12 +342,9 @@ export default function Home({ navigate }: Props) {
             {/* List-style specialty items */}
             <div>
               {[
-                { num: '01', label: 'Sport Containment', desc: 'Baseball, softball, tennis, soccer, football, lacrosse, batting cages, and multi-sport fields.' },
-                { num: '02', label: 'Aviaries & Bird Enclosures', desc: 'Secure, humane enclosures for backyard aviaries to zoological facilities.' },
-                { num: '03', label: 'Pet Protection', desc: 'Catio enclosures, dog runs, pool safety nets, stair and balcony barriers.' },
-                { num: '04', label: 'Decorative & Architectural', desc: 'Balcony infill, staircase panels, feature walls, and themed environments.' },
-                { num: '05', label: 'Handrails & Safety', desc: 'OSHA-compliant safety barriers for mezzanines, loading docks, and open edges.' },
-                { num: '06', label: 'Bridges & Structures', desc: 'Debris containment, fall protection, and safety nets for infrastructure.' },
+                { num: '01', label: 'Sport Containment Netting', desc: "Keep balls in play rather than in the neighbor's yard." },
+                { num: '02', label: 'Aviaries & Pet Protection', desc: 'Options to obtain the perfect environment, whether you are trying to keep an animal in or out.' },
+                { num: '03', label: 'Theming & Decor', desc: 'A wide range of nets and decor to create your perfect backyard oasis.' },
               ].map((item, i) => (
                 <div
                   key={item.num}
@@ -401,9 +373,7 @@ export default function Home({ navigate }: Props) {
         </div>
       </section>
 
-      <Testimonials />
-
-      <CTASection navigate={navigate} />
+      <CTASection navigate={navigate} headline="Contact Us" subtext="Call Nets Unlimited today to speak with our knowledgeable and experienced team about the right netting solution for you!" primaryLabel="Contact Us" primaryPage="contact" secondaryLabel="See Our Gallery" secondaryPage="gallery" />
 
       <style>{`
         @media (max-width: 1024px) {

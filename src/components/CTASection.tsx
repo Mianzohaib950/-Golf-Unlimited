@@ -23,7 +23,7 @@ export default function CTASection({
     <section style={{ position: 'relative', padding: '100px 0', overflow: 'hidden' }}>
       {/* Background image */}
       <img
-        src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1600&h=600&fit=crop&auto=format"
+        src="/images/golf-nets/home/home-residential.jpg"
         alt=""
         aria-hidden="true"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}

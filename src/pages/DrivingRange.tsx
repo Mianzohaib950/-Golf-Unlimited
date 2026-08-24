@@ -1,13 +1,12 @@
 import CTASection from '../components/CTASection'
-import CountUp from '../components/CountUp'
 import type { Page } from '../App'
 
 interface Props { navigate: (p: Page) => void }
 
 const solutions = [
-  { title: 'Perimeter Containment', desc: 'Full-height nets enclosing the range perimeter — engineered for commercial ball volumes, wind loads, and regulatory compliance.' },
-  { title: 'Divider Netting', desc: 'Bay and lane separation systems that reduce conflict between shooters and maintain a safe practice environment.' },
-  { title: 'Target & Flag Nets', desc: 'Intermediate target nets at 50, 100, and 150 yard markers — structural pole systems with tuned tension.' },
+  { title: 'Tee Box', desc: 'Golf ball deterrent systems can be adapted to be placed near the Tee Box, which makes teeing off less stressful for both golfers and nearby homeowners.' },
+  { title: 'Hitting Nets', desc: 'The same nets used for deterrent are used for practice bays, which can be set up anywhere you have room.' },
+  { title: 'Driving Range & Pathway Nets', desc: 'Protect pathways for golf carts and pedestrians walking between holes, and protect open spaces near clubhouses to mitigate liability risks on and off the course.' },
 ]
 
 export default function DrivingRange({ navigate }: Props) {
@@ -16,37 +15,25 @@ export default function DrivingRange({ navigate }: Props) {
 
       {/* Hero */}
       <section style={{ position: 'relative', height: '72vh', minHeight: '500px', display: 'flex', alignItems: 'flex-end' }}>
-        <img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=900&fit=crop&auto=format" alt="Driving range" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src="/images/golf-nets/driving-range/driving-range.jpg" alt="Golf driving range protection netting" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75) 0%, rgba(10,16,11,0.2) 55%, transparent 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
           <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '16px' }}>Commercial Solutions</p>
           <h1 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 6vw, 5rem)', fontWeight: 200, color: '#fff', lineHeight: 1.05, letterSpacing: '-0.025em', maxWidth: '700px' }}>
-            Commercial-grade containment for serious facilities
+            Driving Range & Practice Protection
           </h1>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section style={{ borderBottom: '1px solid rgba(26,26,24,0.08)' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          {[['50+', 'Range facilities served'], ['40ft', 'Max post height'], ['200k', 'Balls per day capacity'], ['10yr', 'Commercial warranty']].map(([n, l], i) => (
-            <div key={n} style={{ padding: '44px 40px', borderLeft: i > 0 ? '1px solid rgba(26,26,24,0.08)' : 'none', borderTop: '1px solid rgba(26,26,24,0.08)' }}>
-              <CountUp value={n} style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 200, letterSpacing: '-0.04em', color: '#1A1A18', marginBottom: '8px' }} />
-              <p style={{ fontSize: '0.72rem', fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.38)' }}>{l}</p>
-            </div>
-          ))}
         </div>
       </section>
 
       {/* Intro */}
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '88px 40px', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'start' }}>
-        <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', paddingTop: '6px' }}>Overview</p>
+        <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', paddingTop: '6px' }}>Why Nets Unlimited?</p>
         <div>
           <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', fontWeight: 300, lineHeight: 1.55, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '28px' }}>
-            Driving ranges operate at a scale that demands industrial-grade netting — high ball volumes, UV exposure, and wind loads require systems engineered far beyond residential standards.
+            Nets Unlimited, Inc. is a licensed, bonded, and insured contractor. We understand the importance of maintaining a beautiful course and driving range while protecting the golfers themselves.
           </p>
           <p style={{ fontSize: '0.875rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.5)' }}>
-            We design and install complete range containment systems, from perimeter barriers to internal dividers and target nets. Every installation includes structural engineering sign-off and a 10-year commercial warranty.
+            With over 15 years of experience, we build unobtrusive and effective protection that preserves course aesthetics and gives property managers and course owners peace of mind.
           </p>
         </div>
       </section>
@@ -67,16 +54,16 @@ export default function DrivingRange({ navigate }: Props) {
       {/* Full bleed split */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         <div style={{ backgroundColor: '#ECEAE3', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '24px' }}>Why Choose Us</p>
+          <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '24px' }}>Driving Ranges</p>
           <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.6rem, 2.8vw, 2.4rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '40px' }}>
-            Built to handle the demands of a commercial operation
+            Custom netting, posts, and professional installation
           </h2>
           {[
-            'Structural engineering included — no extra cost',
-            'OSHA-compliant installation procedures',
-            'Crane-rated anchor systems for tall structures',
-            'Panel replacement program for high-wear zones',
-            'Emergency repair response within 48 hours',
+            '100% knotless polyester netting',
+            'UV and weather resistant netting',
+            'Custom heights for each course',
+            'Wood or steel poles selected for your needs',
+            'On-site installation from posts to nets',
           ].map((item, i) => (
             <div key={i} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start', marginBottom: '16px' }}>
               <span style={{ color: '#1E4D2B', fontSize: '0.8rem', paddingTop: '3px', flexShrink: 0 }}>✓</span>
@@ -85,11 +72,11 @@ export default function DrivingRange({ navigate }: Props) {
           ))}
         </div>
         <div style={{ position: 'relative', minHeight: '480px' }}>
-          <img src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=640&fit=crop&auto=format" alt="Range netting" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/golf-nets/driving-range/cart-path.jpg" alt="Golf cart path protection netting on a steel structure" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       </section>
 
-      <CTASection navigate={navigate} headline="Upgrade Your Range This Off-Season" subtext="We work around your operating schedule. Most commercial installations are completed in 3–5 days with zero range downtime." primaryLabel="Request a Proposal" secondaryLabel="View Completed Projects" secondaryPage="gallery" />
+      <CTASection navigate={navigate} headline="Work With Nets Unlimited" subtext="See how we can help create the perfect range or protection systems for your driving range, practice areas, and course." primaryLabel="Learn More" primaryPage="contact" secondaryLabel="Find Out More" secondaryPage="gallery" />
     </div>
   )
 }

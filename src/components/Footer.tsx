@@ -35,21 +35,21 @@ export default function Footer({ navigate }: FooterProps) {
           <div>
             <button onClick={() => go('home')} style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, gap: '4px', marginBottom: '24px' }}>
               <span style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.25rem', fontWeight: 300, color: '#fff', letterSpacing: '-0.02em' }}>Golf Nets Unlimited</span>
-              <span style={{ fontSize: '0.55rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', fontWeight: 600 }}>Est. 2003</span>
+              <span style={{ fontSize: '0.55rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', fontWeight: 600 }}>A Division of Nets Unlimited, Inc.</span>
             </button>
             <p style={{ fontSize: '0.8125rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.75)', maxWidth: '260px', marginBottom: '32px' }}>
-              Premium golf ball deterrent and specialty netting solutions for residential and commercial clients throughout the region.
+              Attractive, professional golf ball deterrent netting systems for homes and businesses on or near the fairway.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <a href="tel:+15551234567" style={{ fontSize: '0.8125rem', color: '#fff', transition: 'opacity 0.2s' }}
+              <a href="tel:+14805151300" style={{ fontSize: '0.8125rem', color: '#fff', transition: 'opacity 0.2s' }}
                 onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.opacity = '0.7')}
                 onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.opacity = '1')}
-              >(555) 123-4567</a>
-              <a href="mailto:info@golfnetsunlimited.com" style={{ fontSize: '0.8125rem', color: '#fff', transition: 'opacity 0.2s' }}
+              >(480) 515-1300</a>
+              <a href="mailto:info@netsunlimited.com" style={{ fontSize: '0.8125rem', color: '#fff', transition: 'opacity 0.2s' }}
                 onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.opacity = '0.7')}
                 onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.opacity = '1')}
-              >info@golfnetsunlimited.com</a>
-              <span style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.75)' }}>1234 Fairway Drive, Golf Park, CA</span>
+              >info@netsunlimited.com</a>
+              <span style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.75)' }}>20625 North 29th Place, Phoenix, Arizona 85050</span>
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export default function Footer({ navigate }: FooterProps) {
         {/* Bottom bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '24px', flexWrap: 'wrap', gap: '12px' }}>
           <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
-            © {new Date().getFullYear()} Golf Nets Unlimited. All rights reserved. (An authorized branch of{' '}
+            © 2020 Nets Unlimited — All Rights Reserved. Golf Nets Unlimited is an operating division of{' '}
             <a
               href="https://netsunlimited.com/"
               target="_blank"
@@ -114,8 +114,7 @@ export default function Footer({ navigate }: FooterProps) {
               style={{ color: 'inherit', textDecoration: 'underline' }}
             >
               Nets Unlimited
-            </a>{' '}
-            products)
+            </a>.
           </p>
           <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
               Developed by{' '}

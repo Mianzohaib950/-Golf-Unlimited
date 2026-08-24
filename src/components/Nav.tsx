@@ -69,7 +69,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
               Golf Nets Unlimited
             </span>
             <span style={{ fontSize: '0.5rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: isDark ? 'rgba(255,255,255,0.5)' : '#1E4D2B', fontWeight: 600, fontFamily: 'Inter, system-ui, sans-serif', transition: 'color 0.3s' }}>
-              Est. 2003
+              A Division of Nets Unlimited, Inc.
             </span>
           </button>
 
