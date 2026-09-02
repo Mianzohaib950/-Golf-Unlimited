@@ -3,11 +3,23 @@ import type { Page } from '../App'
 
 interface Props { navigate: (p: Page) => void }
 
-const systems = [
-  { num: '01', title: 'How Do They Look?', desc: 'We use commercial-grade materials for many years of non-obtrusive protection. Our inconspicuous structures allow the eye to look right through them, much like a screen on your window.' },
-  { num: '02', title: 'Customized for Your Home', desc: 'All netting and net systems are customized and tailored to fit your home. We work one on one with you to create the best solution for your individual needs.' },
-  { num: '03', title: 'Options Other Than a Full Structure', desc: 'For HOA restrictions or other needs, we can develop creative solutions for windows, a specific yard area, or a patio area.' },
-]
+const eyebrow: React.CSSProperties = {
+  fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em',
+  textTransform: 'uppercase', color: '#1E4D2B',
+}
+
+const qHeading: React.CSSProperties = {
+  fontFamily: 'Playfair Display, Georgia, serif',
+  fontSize: 'clamp(1.5rem, 3vw, 2.2rem)',
+  fontWeight: 200,
+  color: '#1A1A18',
+  letterSpacing: '-0.02em',
+  lineHeight: 1.15,
+}
+
+const body: React.CSSProperties = {
+  fontSize: '0.9rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.6)',
+}
 
 export default function Homeowners({ navigate }: Props) {
   return (
@@ -22,71 +34,98 @@ export default function Homeowners({ navigate }: Props) {
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.72) 0%, rgba(10,16,11,0.2) 60%, transparent 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
-          <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '16px' }}>
-            Residential Solutions
-          </p>
-          <h1 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 6vw, 5rem)', fontWeight: 200, color: '#fff', lineHeight: 1.05, letterSpacing: '-0.025em', maxWidth: '680px' }}>
+          <p style={{ ...eyebrow, color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>Homeowners</p>
+          <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(2.6rem, 6vw, 5rem)', fontWeight: 200, color: '#fff', lineHeight: 1.05, letterSpacing: '-0.025em', maxWidth: '760px' }}>
             Golf Ball Deterrent Netting Systems
           </h1>
         </div>
       </section>
 
-      {/* Intro */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '88px 40px', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'start' }}>
-        <div style={{ paddingTop: '6px' }}>
-          <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B' }}>The Problem</p>
-        </div>
-        <div>
-          <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', fontWeight: 300, lineHeight: 1.55, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '28px' }}>
-            When buying a home on a beautiful green golf course, many homeowners do not realize that errant golf balls can lead to expensive property damage and pose a threat of personal injury.
-          </p>
-          <p style={{ fontSize: '0.875rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.5)' }}>
-            When you need protection, Nets Unlimited's custom residential golf ball deterrent systems are the answer. Our systems use commercial-grade steel and netting to provide safety and security without compromising your view or the aesthetics of your home.
-          </p>
-        </div>
-      </section>
-
-      {/* Systems */}
+      {/* What is a golf ball deterrent netting system? */}
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 40px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', marginBottom: '64px', alignItems: 'end' }}>
+        <div className="ho-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'start' }}>
+          <h2 style={{ ...qHeading }}>What is a golf ball deterrent netting system?</h2>
           <div>
-            <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '12px' }}>Residential Solutions</p>
-            <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
-              Protection designed around your home
-            </h2>
+            <p style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.15rem, 2.4vw, 1.55rem)', fontWeight: 300, lineHeight: 1.55, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '28px' }}>
+              When buying a home on a beautiful green golf course, many homeowners do not realize that errant golf balls can lead to expensive property damage and pose a threat of personal injury.
+            </p>
+            <p style={body}>
+              When you need protection, Nets Unlimited's custom residential golf ball deterrent systems are the answer. Our systems are made with commercial-grade steel and netting to provide safety and security without compromising your view or the aesthetics of your home.
+            </p>
           </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1px', backgroundColor: 'rgba(26,26,24,0.08)' }}>
-          {systems.map(s => (
-            <div key={s.num} style={{ backgroundColor: '#F8F7F4', padding: '40px 32px' }}>
-              <p style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1.5rem', fontWeight: 200, color: 'rgba(26,26,24,0.15)', letterSpacing: '-0.03em', marginBottom: '20px' }}>{s.num}</p>
-              <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, color: '#1A1A18', marginBottom: '14px', lineHeight: 1.3 }}>{s.title}</h3>
-              <p style={{ fontSize: '0.8125rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.5)' }}>{s.desc}</p>
-            </div>
-          ))}
+      </section>
+
+      {/* How do they look? */}
+      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="ho-split">
+        <div style={{ position: 'relative', minHeight: '460px' }}>
+          <img src="/images/golf-nets/homeowners/residential-net.jpg" alt="Inconspicuous residential golf netting structure" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+        <div style={{ backgroundColor: '#fff', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <h2 style={{ ...qHeading, marginBottom: '28px' }}>How do they look?</h2>
+          <p style={{ ...body, marginBottom: '18px' }}>
+            Nets Unlimited only uses top commercial-grade materials. Once installed these materials will last for many years of non-obtrusive enjoyment and protection.
+          </p>
+          <p style={{ ...body, marginBottom: '18px' }}>
+            We specialize in inconspicuous structures that do not draw the eye but allow the eye to look right through them much like a screen on your window.
+          </p>
+          <p style={body}>
+            All of the netting and net systems by Nets Unlimited are customized and tailored to fit your home. We work one on one with you to create the best solution for your individual needs.
+          </p>
         </div>
       </section>
 
-      {/* Split */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-        <div style={{ position: 'relative', minHeight: '520px' }}>
+      {/* Are there options other than a full structure? */}
+      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="ho-split ho-split-rev">
+        <div style={{ backgroundColor: '#ECEAE3', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <h2 style={{ ...qHeading, marginBottom: '28px' }}>Are there options other than a full structure?</h2>
+          <p style={{ ...body, marginBottom: '18px' }}>
+            Many homeowners call Nets Unlimited looking for other creative solutions to their golf ball problem, or possibly the HOA will not allow for a full structure.
+          </p>
+          <p style={{ ...body, marginBottom: '24px' }}>
+            Whether you have just a couple of windows that need extra protection, or a specific yard or patio area, Nets Unlimited can help. We will review with you the various options so that you can find the best solution to protect you and your home.
+          </p>
+          <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'rgba(26,26,24,0.45)', lineHeight: 1.7 }}>
+            (Photo left: infill panels attached to decorative archways to protect windows and seating area under covered patio)
+          </p>
+        </div>
+        <div style={{ position: 'relative', minHeight: '460px' }}>
           <img src="/images/golf-nets/homeowners/patio-infill.jpeg" alt="Net infill panels protecting patio windows and seating" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
-        <div style={{ backgroundColor: '#ECEAE3', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '24px' }}>What's Next?</p>
-          <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(1.6rem, 2.8vw, 2.2rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.02em', lineHeight: 1.15, marginBottom: '40px' }}>
-            From your questions to a custom plan
-          </h2>
-          {['Discuss — General budget information and your questions', 'Site Visit — A site specialist reviews your property with you', "Assess — We discuss the damage, location, and what you're hoping to achieve", 'Custom Plan — We generate a custom plan and provide an estimate'].map((step, i) => (
-            <div key={i} style={{ display: 'flex', gap: '18px', alignItems: 'flex-start', marginBottom: '20px' }}>
-              <span style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '0.68rem', fontWeight: 200, color: '#1E4D2B', minWidth: '20px', paddingTop: '2px' }}>0{i + 1}</span>
-              <span style={{ fontSize: '0.8125rem', lineHeight: 1.7, color: 'rgba(26,26,24,0.55)' }}>{step}</span>
-            </div>
-          ))}
+      </section>
+
+      {/* What's Next? */}
+      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 40px' }}>
+        <div className="ho-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'start' }}>
+          <h2 style={{ ...qHeading }}>What's Next?</h2>
+          <div>
+            <p style={{ ...body, marginBottom: '20px' }}>
+              We are happy to discuss general budget information and answer any questions you may have over the phone. Then, a Nets Unlimited team member will schedule one of our site specialists to come out and review your property with you.
+            </p>
+            <p style={body}>
+              During our on-site visit we will take a look at your location; discuss the nature of the damage you've seen, and ask questions about what you are hoping to achieve. We will then generate a custom plan and provide you with an estimate for Nets Unlimited to get you back to enjoying your yard.
+            </p>
+          </div>
         </div>
       </section>
 
-      <CTASection navigate={navigate} headline="What's Next?" subtext="Call us to schedule a visit or talk about your project." primaryLabel="Contact Us" primaryPage="contact" secondaryLabel="Find Out More" secondaryPage="gallery" />
+      <CTASection
+        navigate={navigate}
+        centered
+        subtext="Call us to schedule a visit or talk about your project"
+        primaryLabel="Find out more"
+        primaryPage="contact"
+      />
+
+      <style>{`
+        @media (max-width: 900px) {
+          .ho-row { grid-template-columns: 1fr !important; gap: 28px !important; }
+          .ho-split { grid-template-columns: 1fr !important; }
+          .ho-split > div { padding: 56px 28px !important; }
+          .ho-split > div[style*="minHeight"] { min-height: 320px !important; padding: 0 !important; }
+          .ho-split-rev > div:first-child { order: 2; }
+        }
+      `}</style>
     </div>
   )
 }

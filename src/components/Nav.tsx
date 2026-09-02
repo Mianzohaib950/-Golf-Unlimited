@@ -9,13 +9,13 @@ interface NavProps {
 const navItems: { label: string; page: Page }[] = [
   { label: 'Home', page: 'home' },
   { label: 'Homeowners', page: 'homeowners' },
-  { label: 'Driving Range', page: 'driving-range' },
+  { label: 'Driving Range & Practice', page: 'driving-range' },
   { label: 'HOA', page: 'hoa' },
   { label: 'Other Nets', page: 'other-nets' },
   { label: 'Gallery', page: 'gallery' },
-  { label: 'About', page: 'about' },
-  { label: 'FAQ', page: 'faq' },
-  { label: 'Contact', page: 'contact' },
+  { label: 'Contact Us', page: 'contact' },
+  { label: 'About Us', page: 'about' },
+  { label: 'FAQs', page: 'faq' },
 ]
 
 // Pages with a dark hero — nav should be white text when unscrolled
@@ -23,6 +23,7 @@ const darkHeroPages: Page[] = ['home']
 
 export default function Nav({ currentPage, navigate }: NavProps) {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -30,9 +31,13 @@ export default function Nav({ currentPage, navigate }: NavProps) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [currentPage])
+
   const go = (p: Page) => navigate(p)
 
-  const isDark = darkHeroPages.includes(currentPage) && !scrolled
+  const isDark = darkHeroPages.includes(currentPage) && !scrolled && !menuOpen
 
   return (
     <header
@@ -42,13 +47,9 @@ export default function Nav({ currentPage, navigate }: NavProps) {
         left: 0,
         right: 0,
         zIndex: 50,
-        backgroundColor: isDark
-          ? 'rgba(10,16,11,0.0)'
-          : scrolled
-            ? 'rgba(248,247,244,0.85)'
-            : 'rgba(248,247,244,0.85)',
-        backdropFilter: scrolled || !isDark ? 'blur(20px)' : 'none',
-        WebkitBackdropFilter: scrolled || !isDark ? 'blur(20px)' : 'none',
+        backgroundColor: isDark ? 'rgba(10,16,11,0)' : 'rgba(248,247,244,0.85)',
+        backdropFilter: isDark ? 'none' : 'blur(20px)',
+        WebkitBackdropFilter: isDark ? 'none' : 'blur(20px)',
         borderBottom: isDark
           ? '1px solid rgba(255,255,255,0.08)'
           : scrolled
@@ -63,18 +64,15 @@ export default function Nav({ currentPage, navigate }: NavProps) {
           {/* Logo */}
           <button
             onClick={() => go('home')}
-            style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, textAlign: 'left', gap: '1px', flexShrink: 0 }}
+            style={{ display: 'flex', alignItems: 'center', lineHeight: 1, textAlign: 'left', flexShrink: 0 }}
           >
-            <span style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: '1rem', fontWeight: 400, color: isDark ? '#fff' : '#1A1A18', letterSpacing: '-0.02em', transition: 'color 0.3s' }}>
+            <span style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '1.05rem', fontWeight: 400, color: isDark ? '#fff' : '#1A1A18', letterSpacing: '-0.02em', transition: 'color 0.3s' }}>
               Golf Nets Unlimited
-            </span>
-            <span style={{ fontSize: '0.5rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: isDark ? 'rgba(255,255,255,0.5)' : '#1E4D2B', fontWeight: 600, fontFamily: 'Inter, system-ui, sans-serif', transition: 'color 0.3s' }}>
-              A Division of Nets Unlimited, Inc.
             </span>
           </button>
 
-          {/* All nav links */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+          {/* Desktop nav links */}
+          <nav className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
             {navItems.map(item => {
               const active = currentPage === item.page
               return (
@@ -88,7 +86,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                     color: isDark
                       ? active ? '#fff' : 'rgba(255,255,255,0.72)'
                       : active ? '#1E4D2B' : '#1A1A18',
-                    padding: '6px 10px',
+                    padding: '6px 9px',
                     borderRadius: '4px',
                     backgroundColor: active && !isDark ? 'rgba(30,77,43,0.08)' : 'transparent',
                     transition: 'color 0.2s, background-color 0.2s',
@@ -113,8 +111,9 @@ export default function Nav({ currentPage, navigate }: NavProps) {
             })}
           </nav>
 
-          {/* CTA */}
+          {/* Desktop CTA */}
           <button
+            className="nav-desktop"
             onClick={() => go('contact')}
             style={{
               flexShrink: 0,
@@ -137,10 +136,63 @@ export default function Nav({ currentPage, navigate }: NavProps) {
               btn.style.backgroundColor = isDark ? 'rgba(255,255,255,0.15)' : '#1E4D2B'
             }}
           >
-            Get a Quote
+            Contact Us
+          </button>
+
+          {/* Mobile toggle */}
+          <button
+            className="nav-mobile-toggle"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Menu"
+            style={{ display: 'none', flexDirection: 'column', gap: '5px', padding: '8px', flexShrink: 0 }}
+          >
+            {[0, 1, 2].map(i => (
+              <span key={i} style={{ display: 'block', width: '22px', height: '1.5px', backgroundColor: isDark ? '#fff' : '#1A1A18' }} />
+            ))}
           </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="nav-mobile-panel" style={{ display: 'none', backgroundColor: '#F8F7F4', borderTop: '1px solid rgba(196,195,188,0.5)', padding: '16px 32px 28px' }}>
+          {navItems.map(item => {
+            const active = currentPage === item.page
+            return (
+              <button
+                key={item.page}
+                onClick={() => go(item.page)}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  textAlign: 'left',
+                  padding: '12px 0',
+                  fontSize: '0.95rem',
+                  fontWeight: active ? 600 : 400,
+                  color: active ? '#1E4D2B' : '#1A1A18',
+                  borderBottom: '1px solid rgba(196,195,188,0.4)',
+                }}
+              >
+                {item.label}
+              </button>
+            )
+          })}
+          <button
+            onClick={() => go('contact')}
+            style={{ marginTop: '20px', width: '100%', padding: '13px', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: '#1E4D2B', color: '#fff' }}
+          >
+            Contact Us
+          </button>
+        </div>
+      )}
+
+      <style>{`
+        @media (max-width: 1100px) {
+          .nav-desktop { display: none !important; }
+          .nav-mobile-toggle { display: flex !important; }
+          .nav-mobile-panel { display: block !important; }
+        }
+      `}</style>
     </header>
   )
 }

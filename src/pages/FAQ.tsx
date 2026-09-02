@@ -1,128 +1,63 @@
 import { useState } from 'react'
-import CTASection from '../components/CTASection'
 import type { Page } from '../App'
 
 interface Props { navigate: (p: Page) => void }
 
-const faqs = [
-  {
-    category: 'General',
-    items: [
-      { q: 'Where does Nets Unlimited work?', a: 'Nets Unlimited will ship nets anywhere in the world. We predominantly install homeowner golf nets in Arizona, but will travel anywhere installation services are requested. We can also provide net materials and work with your local contractor, offering tips on building the system correctly.' },
-      { q: 'What about my HOA?', a: "Nets Unlimited has extensive experience working with HOAs. We provide documentation, drawings, samples, and other required materials. We have also helped HOAs without set requirements create community guidelines." },
-      { q: 'Do you have other types of netting products?', a: 'We specialize in a wide variety of rope and netting products, including tropical themeing and pet safety netting. Call one of our representatives or visit our parent company website for information and inspiration.' },
-    ],
-  },
-  {
-    category: 'Systems & Materials',
-    items: [
-      { q: 'Does Nets Unlimited work with existing structures?', a: 'We replace netting on existing structures when the structure is still sound. We can make minor net repairs, repaint or repair existing structures, and remove and replace structures that are no longer sound.' },
-      { q: 'Can I buy just the netting?', a: 'Absolutely. Netting is available as a material-only purchase. Contact us for pricing and fabrication timing; everything we make is custom.' },
-      { q: 'What are the systems made out of?', a: 'Poles are schedule 40 galvanized steel, sized for the structure height. Black is most common, with custom powder-coated or painted colors available. Nets are high-performance polyester or nylon with a polypropylene rope border. Common colors are Black, Beige, White, and Green.' },
-    ],
-  },
-  {
-    category: 'Cost & Process',
-    items: [
-      { q: 'What is the cost of the system?', a: 'Every home and course has different dynamics, so costs range from a few hundred dollars to several thousand. Nets Unlimited provides a no-cost estimate by phone or can visit your residence to prepare a custom quote.' },
-      { q: 'I have an estimate, what are the next steps?', a: 'We require a 50% deposit with the order and the balance upon completion. After receiving the deposit, we provide a site plan for approval and support the HOA approval process if applicable. Installation is scheduled after approvals and generally takes 2–5 days.' },
-    ],
-  },
-  {
-    category: 'Warranty & Maintenance',
-    items: [
-      { q: 'Is there a Warranty?', a: 'Nets Unlimited offers a 1-year warranty for defects in material and workmanship on all new structures installed. The netting also carries a 10-year pro-rated warranty against UV degradation.' },
-      { q: 'What are the maintenance requirements?', a: 'Routine maintenance or repair should not be necessary as long as plants are kept well-trimmed and away from the net. If something does occur, we are available to make repairs at reasonable rates.' },
-    ],
-  },
+const faqs: [string, string][] = [
+  ['Where does Nets Unlimited work?', 'Nets Unlimited will ship nets anywhere in the world. We predominantly provide installations of golf nets in Arizona for homeowners. We will travel anywhere that someone wants our installation services. If, however, you prefer to stay local we will also work with your contractor to provide the net materials and offer tips on how to build your golf ball deterrent system the right way.'],
+  ['What about my HOA?', "For homeowners living in HOA restricted communities, Nets Unlimited has extensive experience in working with HOA's. We provide most anything an HOA requires from documentation and drawings to samples. We have also worked with HOA's that do not have set requirements yet, to create guidelines for their communities."],
+  ['Is there a Warranty?', 'Nets Unlimited offers a 1-year warranty for defects in material and workmanship on all new structures installed. The netting carries a 10-year pro-rated warranty against UV degradation as well.'],
+  ['Does Nets Unlimited work with existing structures?', 'Nets Unlimited will replace netting on an existing structure, so long as that structure is still sound. We can also make minor repairs on the netting or repaint/repair the existing structures in order to maintain soundness. Should a structure need to be replaced we can remove the old one and replace it with a new one as well.'],
+  ['What is the cost of the system?', 'Unfortunately, since each home and course provide different dynamics, the cost of a golf net can vary widely, from a few hundred dollars to several thousand. Nets Unlimited will provide a no-cost estimate over the phone, or we are happy to come to your residence as well to give you a custom quote.'],
+  ['I have an estimate, what are the next steps?', 'We require a 50% deposit with the placement of the order, with the balance due upon completion.\n\nOnce a deposit is received, we will provide a site plan for your approval and continue to work with you throughout the course of your HOA approval process, if applicable. We will schedule the installation of your golf ball deterrent system based on availability after everything is approved. In most cases, installation takes between 2-5 days to complete.'],
+  ['What are the maintenance requirements for golf net deterrent systems?', 'Routine maintenance or repair should not be necessary for the netting structure as long as plants are kept well-trimmed, and away from the net. However, if something does occur we are available to make repairs at reasonable rates.'],
+  ["I don't want to build a new structure... Can I buy just the netting?", 'Absolutely! We are happy to provide netting as a material only purchase. Just give us a call or send a request through our contact page and we can provide pricing and information about the time it takes for fabrication. Everything we do is custom so let us know what you are interested in and we are happy to help.'],
+  ['What do you make the golf net deterrent systems out of?', 'All of our poles are schedule 40 galvanized steel for strength, durability, and longevity. The size of the post depends on the height of your structure. Heights of structures vary with terrain, proximity to the Tee, the home, and HOA allowances. Black is the most common color for the steel structures but poles can be custom colored with either powder coating in an array of colors or painted to match the HOA requirements or home color.\n\nOur golf nets are high-performance sports netting made of either polyester or nylon for superior UV ratings and typically have a polypropylene rope border. Black, Beige, White, and Green are the most common color choices—others are available upon request.'],
+  ['Do you have other types of netting products?', "We specialize in a wide variety of rope and netting products. Whether you want to add a tropical theme to your backyard, add safety netting for your pets, or have another project in mind, we would love to help. Either give us a call to speak to one of our specialized representatives or go to our parent company's main website for information and inspiration!"],
 ]
 
 export default function FAQ({ navigate }: Props) {
-  const [openItem, setOpenItem] = useState<string | null>(null)
-  const [activeCategory, setActiveCategory] = useState('All')
-
-  const toggle = (key: string) => setOpenItem(openItem === key ? null : key)
-
-  const filteredFaqs = activeCategory === 'All' ? faqs : faqs.filter(f => f.category === activeCategory)
+  const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <div style={{ backgroundColor: '#F8F7F4' }}>
+    <main style={{ backgroundColor: '#F8F7F4' }}>
+      <header style={{ maxWidth: '980px', margin: '0 auto', padding: '150px 40px 56px' }}>
+        <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(3rem, 8vw, 5.5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.03em', lineHeight: 1 }}>
+          FAQS
+        </h1>
+      </header>
 
-      {/* Header */}
-      <section style={{ paddingTop: '140px', borderBottom: '1px solid rgba(26,26,24,0.08)' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px 64px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'end' }}>
-          <div>
-            <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '16px' }}>FAQ</p>
-            <h1 style={{ fontFamily: 'Fraunces, Georgia, serif', fontSize: 'clamp(2.8rem, 6vw, 5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.025em', lineHeight: 1.05 }}>
-              Common questions
-            </h1>
-          </div>
-          <p style={{ fontSize: '0.875rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.5)' }}>
-            Find answers about our service area, HOA documentation, warranty, existing structures, pricing, next steps, maintenance, materials, and other netting products.
-          </p>
+      <section style={{ maxWidth: '980px', margin: '0 auto', padding: '0 40px 96px' }}>
+        {faqs.map(([q, a], i) => {
+          const isOpen = open === i
+          return (
+            <div key={q} style={{ borderTop: '1px solid rgba(26,26,24,0.14)' }}>
+              <button
+                onClick={() => setOpen(isOpen ? null : i)}
+                style={{ width: '100%', padding: '28px 0', display: 'flex', justifyContent: 'space-between', gap: '32px', textAlign: 'left', alignItems: 'baseline' }}
+              >
+                <span style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.05rem, 2vw, 1.4rem)', fontWeight: 300, color: isOpen ? '#1E4D2B' : '#1A1A18', letterSpacing: '-0.01em', lineHeight: 1.3 }}>{q}</span>
+                <span aria-hidden style={{ fontSize: '1.25rem', color: '#1E4D2B', flexShrink: 0, lineHeight: 1 }}>{isOpen ? '−' : '+'}</span>
+              </button>
+              {isOpen && (
+                <p style={{ maxWidth: '780px', whiteSpace: 'pre-line', fontSize: '0.9rem', lineHeight: 1.9, color: 'rgba(26,26,24,0.6)', paddingBottom: '32px' }}>{a}</p>
+              )}
+            </div>
+          )
+        })}
+        <div style={{ borderTop: '1px solid rgba(26,26,24,0.14)' }} />
+      </section>
+
+      <section style={{ backgroundColor: '#ECEAE3', padding: '80px 0' }}>
+        <div style={{ maxWidth: '980px', margin: '0 auto', padding: '0 40px' }}>
+          <button
+            onClick={() => navigate('other-nets')}
+            style={{ display: 'inline-block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '14px 32px', backgroundColor: '#1E4D2B', color: '#fff' }}
+          >
+            Find out about our other products
+          </button>
         </div>
       </section>
-
-      {/* Category filter */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '32px 40px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        {['All', ...faqs.map(f => f.category)].map(cat => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            style={{
-              fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase',
-              padding: '8px 18px', border: '1px solid',
-              borderColor: activeCategory === cat ? '#1A1A18' : 'rgba(26,26,24,0.18)',
-              backgroundColor: activeCategory === cat ? '#1A1A18' : 'transparent',
-              color: activeCategory === cat ? '#F8F7F4' : 'rgba(26,26,24,0.5)',
-              transition: 'all 0.15s',
-            }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Accordion */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px 96px' }}>
-        {filteredFaqs.map(group => (
-          <div key={group.category} style={{ marginBottom: '64px' }}>
-            <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '24px', paddingBottom: '16px', borderBottom: '1px solid rgba(26,26,24,0.08)' }}>
-              {group.category}
-            </p>
-            {group.items.map((item, i) => {
-              const key = `${group.category}-${i}`
-              const isOpen = openItem === key
-              return (
-                <div key={i} style={{ borderBottom: '1px solid rgba(26,26,24,0.08)' }}>
-                  <button
-                    onClick={() => toggle(key)}
-                    style={{
-                      width: '100%', textAlign: 'left', padding: '22px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '24px',
-                    }}
-                  >
-                    <span style={{ fontSize: '0.9375rem', fontWeight: isOpen ? 600 : 500, color: '#1A1A18', lineHeight: 1.4, transition: 'font-weight 0.1s' }}>
-                      {item.q}
-                    </span>
-                    <span style={{ flexShrink: 0, width: '20px', height: '20px', borderRadius: '50%', border: '1px solid rgba(26,26,24,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.2s, background-color 0.2s', transform: isOpen ? 'rotate(45deg)' : 'none', backgroundColor: isOpen ? '#1A1A18' : 'transparent' }}>
-                      <svg style={{ width: '10px', height: '10px', color: isOpen ? '#F8F7F4' : 'rgba(26,26,24,0.5)' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16M4 12h16" />
-                      </svg>
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <div style={{ paddingBottom: '24px' }}>
-                      <p style={{ fontSize: '0.875rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.55)', maxWidth: '640px' }}>{item.a}</p>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        ))}
-      </section>
-
-      <CTASection navigate={navigate} headline="Still Have Questions?" subtext="Call us or send a request through our contact page." primaryLabel="Contact Us" primaryPage="contact" secondaryLabel="Find Out More" secondaryPage="other-nets" />
-    </div>
+    </main>
   )
 }
