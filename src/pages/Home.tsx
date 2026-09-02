@@ -25,9 +25,12 @@ const h2Style: React.CSSProperties = {
 }
 
 export default function Home({ navigate }: Props) {
-  const [showCookieBanner, setShowCookieBanner] = useState(true)
+  const [showCookieBanner, setShowCookieBanner] = useState(
+    () => sessionStorage.getItem('golf-nets-cookie-banner-seen') === null,
+  )
 
   const closeCookieBanner = () => {
+    sessionStorage.setItem('golf-nets-cookie-banner-seen', 'true')
     setShowCookieBanner(false)
   }
 
@@ -224,7 +227,7 @@ export default function Home({ navigate }: Props) {
           gap: 28px;
           padding: 14px 24px;
           color: #fff;
-          background: rgba(13, 18, 14, 0.96);
+          background: rgba(13, 18, 14, 0.75);
           border: 1px solid rgba(205, 184, 105, 0.5);
           border-radius: 22px;
           box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
