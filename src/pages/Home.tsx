@@ -48,7 +48,7 @@ export default function Home({ navigate }: Props) {
             Golf Ball Deterrent<br />Netting Systems
           </h1>
           <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.82)', maxWidth: '600px', margin: '0 auto 40px' }}>
-            Learn how we can help you protect your home and family from errant golf balls with our golf protection netting. We understand the issues facing both the homeowners and the Home Owner Associations (HOA).
+            We understand the importance of maintaining a beautiful course and driving range, while also protecting the golfers themselves. Nets Unlimited offers solutions for managed greens, public courses, neighborhoods, and individual homeowners.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <button
