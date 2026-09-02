@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Page } from '../App'
 import CTASection from '../components/CTASection'
 
@@ -24,6 +25,12 @@ const h2Style: React.CSSProperties = {
 }
 
 export default function Home({ navigate }: Props) {
+  const [showCookieBanner, setShowCookieBanner] = useState(true)
+
+  const closeCookieBanner = () => {
+    setShowCookieBanner(false)
+  }
+
   return (
     <main style={{ backgroundColor: '#F8F7F4' }}>
 
@@ -188,8 +195,48 @@ export default function Home({ navigate }: Props) {
         secondaryPage="gallery"
       />
 
+      {showCookieBanner && (
+        <aside className="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+          <div className="cookie-copy">
+            <div>
+              <h2>We value your privacy</h2>
+              <p>We use cookies to improve your browsing experience, analyze site traffic, and personalize content.</p>
+            </div>
+          </div>
+          <div className="cookie-actions">
+            <button className="cookie-reject" onClick={closeCookieBanner}>Reject</button>
+            <button className="cookie-accept" onClick={closeCookieBanner}>Accept All</button>
+          </div>
+        </aside>
+      )}
+
       <style>{`
         .home-audience { display: grid; grid-template-columns: 1fr 1fr; }
+        .cookie-banner {
+          position: fixed;
+          z-index: 1000;
+          left: clamp(16px, 5.5vw, 96px);
+          right: clamp(16px, 5.5vw, 96px);
+          bottom: 24px;
+          display: grid;
+          grid-template-columns: minmax(380px, 1fr) minmax(290px, 340px);
+          align-items: center;
+          gap: 28px;
+          padding: 14px 24px;
+          color: #fff;
+          background: rgba(13, 18, 14, 0.96);
+          border: 1px solid rgba(205, 184, 105, 0.5);
+          border-radius: 22px;
+          box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
+          backdrop-filter: blur(12px);
+        }
+        .cookie-copy { min-width: 0; }
+        .cookie-copy h2 { margin: 0 0 4px; font-size: 0.95rem; font-weight: 700; }
+        .cookie-copy p { margin: 0; color: rgba(255,255,255,0.78); font-size: 0.78rem; line-height: 1.45; }
+        .cookie-actions { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 16px; }
+        .cookie-actions button { min-height: 44px; padding: 10px 16px; font-size: 0.76rem; font-weight: 600; white-space: nowrap; }
+        .cookie-reject { border: 1px solid rgba(255,255,255,0.55); color: #fff; }
+        .cookie-accept { background: #fff; color: #1A1A18; }
         @media (max-width: 900px) {
           .home-audience { grid-template-columns: 1fr !important; }
           .home-audience-card { padding: 56px 0 !important; border-left: none !important; border-top: 1px solid rgba(26,26,24,0.1); }
@@ -197,6 +244,14 @@ export default function Home({ navigate }: Props) {
           .home-audience-image { height: auto !important; aspect-ratio: 16 / 10; }
           .home-gallery-grid { grid-template-columns: 1fr 1fr !important; }
           .home-interest-grid { grid-template-columns: 1fr !important; }
+          .cookie-banner { grid-template-columns: 1fr; gap: 12px; padding: 14px 18px; }
+          .cookie-actions { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 560px) {
+          .cookie-banner { bottom: 12px; border-radius: 16px; }
+          .cookie-copy p { font-size: 0.75rem; line-height: 1.5; }
+          .cookie-actions { gap: 10px; }
+          .cookie-actions button { min-height: 46px; padding: 10px 12px; }
         }
       `}</style>
     </main>

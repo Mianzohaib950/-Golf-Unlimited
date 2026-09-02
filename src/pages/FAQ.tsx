@@ -49,7 +49,7 @@ export default function FAQ({ navigate }: Props) {
       </section>
 
       <section style={{ backgroundColor: '#ECEAE3', padding: '80px 0' }}>
-        <div style={{ maxWidth: '980px', margin: '0 auto', padding: '0 40px' }}>
+        <div style={{ maxWidth: '980px', margin: '0 auto', padding: '0 40px', display: 'flex', justifyContent: 'center' }}>
           <button
             onClick={() => navigate('other-nets')}
             style={{ display: 'inline-block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '14px 32px', backgroundColor: '#1E4D2B', color: '#fff' }}

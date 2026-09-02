@@ -78,12 +78,6 @@ export default function Gallery({ navigate }: Props) {
         >
           Call us to learn More
         </button>
-        <button
-          onClick={() => navigate('contact')}
-          style={{ display: 'block', margin: '18px auto 0', fontSize: '0.8rem', color: 'rgba(26,26,24,0.5)', borderBottom: '1px solid rgba(26,26,24,0.25)', paddingBottom: '2px' }}
-        >
-          Find out more
-        </button>
       </section>
 
       {/* Lightbox */}
