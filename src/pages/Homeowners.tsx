@@ -86,7 +86,7 @@ export default function Homeowners({ navigate }: Props) {
             Whether you have just a couple of windows that need extra protection, or a specific yard or patio area, Nets Unlimited can help. We will review with you the various options so that you can find the best solution to protect you and your home.
           </p>
           <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'rgba(26,26,24,0.45)', lineHeight: 1.7 }}>
-            (Photo left: infill panels attached to decorative archways to protect windows and seating area under covered patio)
+            (Photo right: infill panels attached to decorative archways to protect windows and seating area under covered patio)
           </p>
         </div>
         <div style={{ position: 'relative', minHeight: '460px' }}>
