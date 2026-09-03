@@ -44,7 +44,7 @@ export default function DrivingRange({ navigate }: Props) {
       </section>
 
       {/* Why Nets Unlimited */}
-      <section className="dr-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+      <section className="dr-split dr-first-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: '48px solid #fff' }}>
         <div className="dr-split-image" style={{ position: 'relative', minHeight: '460px' }}>
           <img src="/images/golf-nets/driving-range/cart-path.jpg" alt="Golf Cart Path protection netting" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
@@ -111,6 +111,7 @@ export default function DrivingRange({ navigate }: Props) {
       <style>{`
         @media (max-width: 900px) {
           .dr-split { grid-template-columns: 1fr !important; }
+          .dr-first-split { border-top-width: 28px !important; }
           .dr-split > div { padding: 56px 28px !important; }
           .dr-split-image { min-height: 320px !important; padding: 0 !important; }
           .dr-split-rev > div:first-child { order: 2; }
