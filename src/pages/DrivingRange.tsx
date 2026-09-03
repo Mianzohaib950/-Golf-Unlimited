@@ -44,12 +44,11 @@ export default function DrivingRange({ navigate }: Props) {
       </section>
 
       {/* Why Nets Unlimited */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 40px' }}>
-        <div className="dr-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
-          <div className="dr-equal-image" style={{ position: 'relative', minHeight: '460px' }}>
-            <img src="/images/golf-nets/driving-range/cart-path.jpg" alt="Golf Cart Path protection netting" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-          </div>
-          <div>
+      <section className="dr-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+        <div className="dr-split-image" style={{ position: 'relative', minHeight: '460px' }}>
+          <img src="/images/golf-nets/driving-range/cart-path.jpg" alt="Golf Cart Path protection netting" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+        <div style={{ backgroundColor: '#fff', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <p style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.15rem, 2.3vw, 1.5rem)', fontWeight: 300, lineHeight: 1.6, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '24px' }}>
               Nets Unlimited, Inc. is a licensed, bonded, and insured contractor. We understand the importance of maintaining a beautiful course and driving range, while also protecting the golfers themselves.
             </p>
@@ -59,24 +58,21 @@ export default function DrivingRange({ navigate }: Props) {
             <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'rgba(26,26,24,0.45)', lineHeight: 1.7 }}>
               Golf Cart Path protection netting, black polyester 7/8" netting on black steel structure
             </p>
-          </div>
         </div>
       </section>
 
       {/* Driving Ranges */}
-      <section style={{ backgroundColor: '#ECEAE3', padding: '96px 0' }}>
-        <div className="dr-range-feature" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
-          <div>
+      <section className="dr-split dr-split-rev" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+          <div style={{ backgroundColor: '#ECEAE3', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <p style={{ ...eyebrow, marginBottom: '20px' }}>Driving Ranges</p>
             <h2 style={{ ...heading, marginBottom: '28px' }}>Driving Ranges</h2>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.65)' }}>
               Our netting is made out of 100% knotless polyester netting which makes it the best UV and weather resistant netting available. We build each driving range net custom to fit your course so that the height and type of pole whether it be wood or steel can be custom fit for exactly what you need. Unlike many other net providers, Nets Unlimited, Inc. will come on-site and install everything from the posts to the nets, ensuring a 100% professional look with no errors.
             </p>
           </div>
-          <div className="dr-range-feature-image dr-equal-image" style={{ position: 'relative', minHeight: '460px', overflow: 'hidden' }}>
+          <div className="dr-split-image" style={{ position: 'relative', minHeight: '460px', overflow: 'hidden' }}>
             <img src="/images/golf-nets/driving-range/practice-net.jpg" alt="Custom driving range practice netting and poles" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
-        </div>
       </section>
 
       {/* Provide Premium Experiences */}
@@ -114,9 +110,10 @@ export default function DrivingRange({ navigate }: Props) {
 
       <style>{`
         @media (max-width: 900px) {
-          .dr-row { grid-template-columns: 1fr !important; gap: 32px !important; }
-          .dr-equal-image { min-height: 340px !important; }
-          .dr-range-feature { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .dr-split { grid-template-columns: 1fr !important; }
+          .dr-split > div { padding: 56px 28px !important; }
+          .dr-split-image { min-height: 320px !important; padding: 0 !important; }
+          .dr-split-rev > div:first-child { order: 2; }
           .dr-cards { grid-template-columns: 1fr !important; }
           .dr-card-image { height: 260px !important; }
         }

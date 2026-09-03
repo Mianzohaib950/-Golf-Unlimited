@@ -229,7 +229,7 @@ export default function Home({ navigate }: Props) {
           color: #fff;
           background: rgba(13, 18, 14, 0.75);
           border: 1px solid rgba(205, 184, 105, 0.5);
-          border-radius: 22px;
+          border-radius: 0;
           box-shadow: 0 18px 60px rgba(0, 0, 0, 0.38);
           backdrop-filter: blur(12px);
         }
@@ -251,7 +251,7 @@ export default function Home({ navigate }: Props) {
           .cookie-actions { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 560px) {
-          .cookie-banner { bottom: 12px; border-radius: 16px; }
+          .cookie-banner { bottom: 12px; border-radius: 0; }
           .cookie-copy p { font-size: 0.75rem; line-height: 1.5; }
           .cookie-actions { gap: 10px; }
           .cookie-actions button { min-height: 46px; padding: 10px 12px; }
