@@ -23,7 +23,7 @@ const body: React.CSSProperties = {
 
 const premium = [
   { label: 'TEE BOX', image: '/images/golf-nets/driving-range/course-netting.jpg', alt: 'Protective netting surrounding a golf tee box', rest: 'Golf ball deterrent systems can be adapted to be placed near the Tee Box which makes teeing off less stressful for both golfers and the nearby homeowners.' },
-  { label: 'HITTING NETS', image: '/images/golf-nets/driving-range/practice-net.jpg', alt: 'Golf practice area protected by tall hitting nets', rest: 'The same nets used for deterrent are used for practice bays which can be set up anywhere you have room.' },
+  { label: 'HITTING NETS', image: '/images/golf-nets/driving-range/driving-range.jpg', alt: 'Golf driving range protection netting', rest: 'The same nets used for deterrent are used for practice bays which can be set up anywhere you have room.' },
   { label: 'DRIVING RANGE & PATHWAY NETS', image: '/images/golf-nets/driving-range/cart-path.jpg', alt: 'Protected golf cart pathway with netting', rest: 'Protect pathways for golf carts and pedestrians walking between holes, and protect open spaces near clubhouses to mitigate liability risks on (and off) the course.' },
 ]
 
