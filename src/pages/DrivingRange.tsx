@@ -33,7 +33,7 @@ export default function DrivingRange({ navigate }: Props) {
 
       {/* Hero */}
       <section style={{ position: 'relative', height: '72vh', minHeight: '500px', display: 'flex', alignItems: 'flex-end' }}>
-        <img src="/images/golf-nets/driving-range/driving-range.jpg" alt="Golf driving range protection netting" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src="/images/golf-nets/driving-range/driving-range-banner.jpg" alt="Golf driving range protection netting" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75) 0%, rgba(10,16,11,0.2) 55%, transparent 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
           <p style={{ ...eyebrow, color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>Driving Range &amp; Practice</p>
