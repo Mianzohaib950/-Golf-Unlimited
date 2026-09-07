@@ -64,7 +64,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
           {/* Logo */}
           <button
             onClick={() => go('home')}
-            style={{ display: 'flex', alignItems: 'center', lineHeight: 1, textAlign: 'left', flexShrink: 0 }}
+            style={{ display: 'flex', alignItems: 'center', lineHeight: 1, textAlign: 'left', flexShrink: 0, cursor: 'pointer' }}
           >
             <span style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '1.05rem', fontWeight: 400, color: isDark ? '#fff' : '#1A1A18', letterSpacing: '-0.02em', transition: 'color 0.3s' }}>
               Golf Nets Unlimited
@@ -91,10 +91,12 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                     backgroundColor: active && !isDark ? 'rgba(30,77,43,0.08)' : 'transparent',
                     transition: 'color 0.2s, background-color 0.2s',
                     whiteSpace: 'nowrap',
+                    cursor: 'pointer',
                   }}
                   onMouseEnter={e => {
                     const btn = e.currentTarget as HTMLButtonElement
                     btn.style.color = isDark ? '#fff' : '#1E4D2B'
+                    btn.style.fontWeight = '600'
                     if (!isDark && !active) btn.style.backgroundColor = 'rgba(30,77,43,0.06)'
                   }}
                   onMouseLeave={e => {
@@ -102,6 +104,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                     btn.style.color = isDark
                       ? active ? '#fff' : 'rgba(255,255,255,0.72)'
                       : active ? '#1E4D2B' : '#1A1A18'
+                    btn.style.fontWeight = active ? '600' : '400'
                     if (!active) btn.style.backgroundColor = 'transparent'
                   }}
                 >
@@ -125,7 +128,8 @@ export default function Nav({ currentPage, navigate }: NavProps) {
               backgroundColor: isDark ? 'rgba(255,255,255,0.15)' : '#1E4D2B',
               color: '#fff',
               border: isDark ? '1px solid rgba(255,255,255,0.3)' : '1px solid transparent',
-              transition: 'background-color 0.3s, border-color 0.3s',
+              transition: 'background-color 0.2s, border-color 0.2s',
+              cursor: 'pointer',
             }}
             onMouseEnter={e => {
               const btn = e.currentTarget as HTMLButtonElement
@@ -144,7 +148,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
             className="nav-mobile-toggle"
             onClick={() => setMenuOpen(o => !o)}
             aria-label="Menu"
-            style={{ display: 'none', flexDirection: 'column', gap: '5px', padding: '8px', flexShrink: 0 }}
+            style={{ display: 'none', flexDirection: 'column', gap: '5px', padding: '8px', flexShrink: 0, cursor: 'pointer' }}
           >
             {[0, 1, 2].map(i => (
               <span key={i} style={{ display: 'block', width: '22px', height: '1.5px', backgroundColor: isDark ? '#fff' : '#1A1A18' }} />
@@ -171,6 +175,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                   fontWeight: active ? 600 : 400,
                   color: active ? '#1E4D2B' : '#1A1A18',
                   borderBottom: '1px solid rgba(196,195,188,0.4)',
+                  cursor: 'pointer',
                 }}
               >
                 {item.label}
@@ -179,7 +184,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
           })}
           <button
             onClick={() => go('contact')}
-            style={{ marginTop: '20px', width: '100%', padding: '13px', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: '#1E4D2B', color: '#fff' }}
+            style={{ marginTop: '20px', width: '100%', padding: '13px', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: '#1E4D2B', color: '#fff', cursor: 'pointer' }}
           >
             Contact Us
           </button>

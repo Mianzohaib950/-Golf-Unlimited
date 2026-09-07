@@ -14,10 +14,12 @@ export default function Contact({ navigate: _navigate }: Props) {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState<Partial<FormState>>({})
+  const [submitError, setSubmitError] = useState('')
 
   const reset = () => {
     setForm({ name: '', email: '', phone: '' })
     setErrors({})
+    setSubmitError('')
     setSubmitted(false)
   }
 
@@ -33,9 +35,21 @@ export default function Contact({ navigate: _navigate }: Props) {
     const errs = validate()
     if (Object.keys(errs).length) { setErrors(errs); return }
     setSubmitting(true)
-    await new Promise(r => setTimeout(r, 1000))
-    setSubmitting(false)
-    setSubmitted(true)
+    setSubmitError('')
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const result = await response.json().catch(() => null)
+      if (!response.ok) throw new Error(result?.error || 'Unable to send your request right now.')
+      setSubmitted(true)
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Unable to send your request right now.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const inputStyle = (field: keyof FormState): React.CSSProperties => ({
@@ -121,12 +135,13 @@ export default function Contact({ navigate: _navigate }: Props) {
                   {errors.email && <p style={{ fontSize: '0.7rem', color: '#C0392B', marginTop: '6px' }}>{errors.email}</p>}
                 </div>
 
+                {submitError && <p role="alert" style={{ marginBottom: '20px', fontSize: '0.78rem', color: '#C0392B' }}>{submitError}</p>}
                 <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
                   <button type="submit" disabled={submitting}
                     style={{ padding: '16px 40px', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: '#1E4D2B', color: '#F8F7F4', border: 'none', cursor: submitting ? 'wait' : 'pointer', opacity: submitting ? 0.6 : 1, transition: 'background-color 0.2s, opacity 0.2s', fontFamily: 'Inter, system-ui, sans-serif' }}
                     onMouseEnter={e => { if (!submitting) (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#0F2A18' }}
                     onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#1E4D2B' }}>
-                    Send
+                    {submitting ? 'Sending…' : 'Send'}
                   </button>
                   <button type="button" onClick={reset}
                     style={{ padding: '16px 32px', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: 'transparent', color: 'rgba(26,26,24,0.5)', border: '1px solid rgba(26,26,24,0.2)', cursor: 'pointer', fontFamily: 'Inter, system-ui, sans-serif' }}>

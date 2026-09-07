@@ -39,8 +39,8 @@ export default function CTASection({
             {headline && <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', color: '#1A1A18', lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: subtext ? '24px' : '36px' }}>{headline}</h2>}
             {subtext && <p style={{ fontFamily: headline ? 'Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif' : 'Playfair Display, Georgia, "Times New Roman", serif', fontSize: headline ? '0.95rem' : 'clamp(1.25rem, 2.6vw, 1.9rem)', lineHeight: headline ? 1.75 : 1.45, color: headline ? 'rgba(26,26,24,0.6)' : '#1A1A18', marginBottom: '36px' }}>{subtext}</p>}
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <button onClick={() => navigate(primaryPage)} style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', padding: '14px 32px', backgroundColor: '#1E4D2B', color: '#fff' }}>{primaryLabel}</button>
-              {secondaryLabel && <button onClick={() => navigate(secondaryPage)} style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.65)' }}>{secondaryLabel}</button>}
+              <button className="cta-button cta-button-primary" onClick={() => navigate(primaryPage)} style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', padding: '14px 32px', backgroundColor: '#1E4D2B', color: '#fff' }}>{primaryLabel}</button>
+              {secondaryLabel && <button className="cta-button cta-button-secondary" onClick={() => navigate(secondaryPage)} style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.65)' }}>{secondaryLabel}</button>}
             </div>
           </div>
         ) : (
@@ -73,6 +73,7 @@ export default function CTASection({
             )}
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
               <button
+                className="cta-button cta-button-primary"
                 onClick={() => navigate(primaryPage)}
                 style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', padding: '14px 32px', backgroundColor: '#1E4D2B', color: '#fff', transition: 'background-color 0.2s' }}
                 onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = '#0F2A18')}
@@ -82,6 +83,7 @@ export default function CTASection({
               </button>
               {secondaryLabel && (
                 <button
+                  className="cta-button cta-button-secondary"
                   onClick={() => navigate(secondaryPage)}
                   style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.65)', transition: 'border-color 0.2s, color 0.2s' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#1A1A18'; (e.currentTarget as HTMLButtonElement).style.color = '#1A1A18' }}

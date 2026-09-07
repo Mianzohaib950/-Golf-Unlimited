@@ -54,7 +54,7 @@ export default function Footer({ navigate }: FooterProps) {
           <div>
             <FooterLabel>Hours</FooterLabel>
             {[['Mon – Fri', '7:00 am – 4:00 pm'], ['Saturday', 'Closed'], ['Sunday', 'Closed']].map(([day, hours]) => <div key={day} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', marginBottom: '10px' }}><span style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.75)' }}>{day}</span><span style={{ fontSize: '0.8125rem', color: '#fff' }}>{hours}</span></div>)}
-            <button onClick={() => go('contact')} style={{ marginTop: '28px', width: '100%', padding: '13px', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', border: '1px solid rgba(255,255,255,0.5)', color: '#fff' }}>Get a Quote</button>
+            <button className="footer-quote-button" onClick={() => go('contact')} style={{ marginTop: '28px', width: '100%', padding: '13px', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', border: '1px solid rgba(255,255,255,0.5)', color: '#fff' }}>Get a Quote</button>
           </div>
         </div>
 
@@ -112,5 +112,5 @@ function FooterLabel({ children }: { children: React.ReactNode }) {
 }
 
 function FooterLinks({ title, items, go }: { title: string; items: typeof navItems; go: (page: Page) => void }) {
-  return <div><FooterLabel>{title}</FooterLabel>{items.map(item => <button key={item.page} onClick={() => go(item.page)} style={{ display: 'block', textAlign: 'left', marginBottom: '12px', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.75)' }}>{item.label}</button>)}</div>
+  return <div><FooterLabel>{title}</FooterLabel>{items.map(item => <button className="footer-nav-link" key={item.page} onClick={() => go(item.page)} style={{ display: 'block', textAlign: 'left', marginBottom: '12px', fontSize: '0.8125rem', color: 'rgba(255,255,255,0.75)' }}>{item.label}</button>)}</div>
 }
