@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import type { Page } from '../App'
+import type { MouseEvent } from 'react'
+import { getPagePath, type Page } from '../App'
 
 interface NavProps {
   currentPage: Page
@@ -35,7 +36,10 @@ export default function Nav({ currentPage, navigate }: NavProps) {
     setMenuOpen(false)
   }, [currentPage])
 
-  const go = (p: Page) => navigate(p)
+  const go = (p: Page, event?: MouseEvent<HTMLAnchorElement>) => {
+    event?.preventDefault()
+    navigate(p)
+  }
 
   const isDark = darkHeroPages.includes(currentPage) && !scrolled && !menuOpen
 
@@ -62,23 +66,25 @@ export default function Nav({ currentPage, navigate }: NavProps) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
 
           {/* Logo */}
-          <button
-            onClick={() => go('home')}
-            style={{ display: 'flex', alignItems: 'center', lineHeight: 1, textAlign: 'left', flexShrink: 0, cursor: 'pointer' }}
+          <a
+            href={getPagePath('home')}
+            onClick={event => go('home', event)}
+            style={{ display: 'flex', alignItems: 'center', lineHeight: 1, textAlign: 'left', flexShrink: 0, cursor: 'pointer', textDecoration: 'none' }}
           >
             <span style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '1.05rem', fontWeight: 400, color: isDark ? '#fff' : '#1A1A18', letterSpacing: '-0.02em', transition: 'color 0.3s' }}>
               Golf Nets Unlimited
             </span>
-          </button>
+          </a>
 
           {/* Desktop nav links */}
           <nav className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
             {navItems.map(item => {
               const active = currentPage === item.page
               return (
-                <button
+                <a
                   key={item.page}
-                  onClick={() => go(item.page)}
+                  href={getPagePath(item.page)}
+                  onClick={event => go(item.page, event)}
                   style={{
                     fontSize: '0.78rem',
                     fontWeight: active ? 600 : 400,
@@ -92,15 +98,16 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                     transition: 'color 0.2s, background-color 0.2s',
                     whiteSpace: 'nowrap',
                     cursor: 'pointer',
+                    textDecoration: 'none',
                   }}
                   onMouseEnter={e => {
-                    const btn = e.currentTarget as HTMLButtonElement
+                    const btn = e.currentTarget as HTMLAnchorElement
                     btn.style.color = isDark ? '#fff' : '#1E4D2B'
                     btn.style.fontWeight = '600'
                     if (!isDark && !active) btn.style.backgroundColor = 'rgba(30,77,43,0.06)'
                   }}
                   onMouseLeave={e => {
-                    const btn = e.currentTarget as HTMLButtonElement
+                    const btn = e.currentTarget as HTMLAnchorElement
                     btn.style.color = isDark
                       ? active ? '#fff' : 'rgba(255,255,255,0.72)'
                       : active ? '#1E4D2B' : '#1A1A18'
@@ -109,15 +116,16 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                   }}
                 >
                   {item.label}
-                </button>
+                </a>
               )
             })}
           </nav>
 
           {/* Desktop CTA */}
-          <button
+          <a
             className="nav-desktop"
-            onClick={() => go('contact')}
+            href={getPagePath('contact')}
+            onClick={event => go('contact', event)}
             style={{
               flexShrink: 0,
               fontSize: '0.72rem',
@@ -130,18 +138,19 @@ export default function Nav({ currentPage, navigate }: NavProps) {
               border: isDark ? '1px solid rgba(255,255,255,0.3)' : '1px solid transparent',
               transition: 'background-color 0.2s, border-color 0.2s',
               cursor: 'pointer',
+              textDecoration: 'none',
             }}
             onMouseEnter={e => {
-              const btn = e.currentTarget as HTMLButtonElement
+              const btn = e.currentTarget as HTMLAnchorElement
               btn.style.backgroundColor = isDark ? 'rgba(255,255,255,0.25)' : '#0F2A18'
             }}
             onMouseLeave={e => {
-              const btn = e.currentTarget as HTMLButtonElement
+              const btn = e.currentTarget as HTMLAnchorElement
               btn.style.backgroundColor = isDark ? 'rgba(255,255,255,0.15)' : '#1E4D2B'
             }}
           >
             Contact Us
-          </button>
+          </a>
 
           {/* Mobile toggle */}
           <button
@@ -163,9 +172,10 @@ export default function Nav({ currentPage, navigate }: NavProps) {
           {navItems.map(item => {
             const active = currentPage === item.page
             return (
-              <button
+              <a
                 key={item.page}
-                onClick={() => go(item.page)}
+                href={getPagePath(item.page)}
+                onClick={event => go(item.page, event)}
                 style={{
                   display: 'block',
                   width: '100%',
@@ -176,18 +186,20 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                   color: active ? '#1E4D2B' : '#1A1A18',
                   borderBottom: '1px solid rgba(196,195,188,0.4)',
                   cursor: 'pointer',
+                  textDecoration: 'none',
                 }}
               >
                 {item.label}
-              </button>
+              </a>
             )
           })}
-          <button
-            onClick={() => go('contact')}
-            style={{ marginTop: '20px', width: '100%', padding: '13px', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: '#1E4D2B', color: '#fff', cursor: 'pointer' }}
+          <a
+            href={getPagePath('contact')}
+            onClick={event => go('contact', event)}
+            style={{ display: 'block', marginTop: '20px', width: '100%', padding: '13px', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: '#1E4D2B', color: '#fff', cursor: 'pointer', textAlign: 'center', textDecoration: 'none' }}
           >
             Contact Us
-          </button>
+          </a>
         </div>
       )}
 

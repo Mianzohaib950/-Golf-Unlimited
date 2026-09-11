@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tailwindcss(),
+      robotsHeaderPlugin(),
       figmaSiteConfiguration(siteConfiguration),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
@@ -41,6 +42,18 @@ export default defineConfig(({ mode }) => {
     },
   }
 })
+
+function robotsHeaderPlugin(): Plugin {
+  return {
+    name: 'robots-header',
+    configureServer(server) {
+      server.middlewares.use((_req, res, next) => {
+        res.setHeader('X-Robots-Tag', 'index, follow')
+        next()
+      })
+    },
+  }
+}
 
 type FigmaSiteConfiguration = {
   title?: string

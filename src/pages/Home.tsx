@@ -5,15 +5,16 @@ import CTASection from '../components/CTASection'
 interface Props { navigate: (p: Page) => void }
 
 const IMG = {
-  hero: '/images/golf-nets/home/home-residential.jpg',
-  homeowners: '/images/golf-nets/homeowners/residential-net.jpg',
-  managers: '/images/golf-nets/driving-range/driving-range.jpg',
-  g1: '/images/golf-nets/gallery/gallery-01.jpg',
-  g2: '/images/golf-nets/gallery/gallery-02.jpeg',
-  g3: '/images/golf-nets/gallery/gallery-03.jpg',
-  sport: '/images/golf-nets/other-nets/service-06.jpeg',
-  aviary: '/images/golf-nets/other-nets/service-03.jpeg',
-  decor: '/images/golf-nets/other-nets/service-07.jpeg',
+  hero: '/images/optimized/home-residential-1600.jpg',
+  heroMobile: '/images/optimized/home-residential-900.jpg',
+  homeowners: '/images/optimized/residential-net-760.jpg',
+  managers: '/images/optimized/driving-range-760.jpg',
+  g1: '/images/optimized/gallery-01-760.jpg',
+  g2: '/images/optimized/gallery-02-760.jpg',
+  g3: '/images/optimized/gallery-03-760.jpg',
+  sport: '/images/optimized/service-06-760.jpg',
+  aviary: '/images/optimized/service-03-760.jpg',
+  decor: '/images/optimized/service-07-760.jpg',
 }
 
 const h2Style: React.CSSProperties = {
@@ -40,7 +41,7 @@ export default function Home({ navigate }: Props) {
       {/* ── HERO ── */}
       <section style={{ position: 'relative', height: '100vh', minHeight: '640px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: '#0E1710' }}>
-          <img src={IMG.hero} alt="Residential golf ball deterrent netting beside a golf course" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.75 }} />
+          <img src={IMG.hero} srcSet={`${IMG.heroMobile} 900w, ${IMG.hero} 1600w`} sizes="100vw" alt="Residential golf ball deterrent netting beside a golf course" fetchPriority="high" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.75 }} />
         </div>
         <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(8,14,10,0.62)' }} />
 
@@ -88,7 +89,7 @@ export default function Home({ navigate }: Props) {
 
             <button onClick={() => navigate('homeowners')} className="home-audience-card" style={{ width: '100%', textAlign: 'left', display: 'block', padding: '80px 56px 80px 0' }}>
               <div className="home-audience-image" style={{ width: '100%', overflow: 'hidden', marginBottom: '32px', height: '340px' }}>
-                <img src={IMG.homeowners} alt="Residential golf ball deterrent netting" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={IMG.homeowners} alt="Residential golf ball deterrent netting" loading="lazy" decoding="async" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h2 style={{ ...h2Style, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', marginBottom: '18px' }}>Homeowners</h2>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.6)', marginBottom: '24px' }}>
@@ -101,7 +102,7 @@ export default function Home({ navigate }: Props) {
 
             <button onClick={() => navigate('driving-range')} className="home-audience-card" style={{ width: '100%', textAlign: 'left', display: 'block', padding: '80px 0 80px 56px', borderLeft: '1px solid rgba(26,26,24,0.1)' }}>
               <div className="home-audience-image" style={{ width: '100%', overflow: 'hidden', marginBottom: '32px', height: '340px' }}>
-                <img src={IMG.managers} alt="Golf course protection netting" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={IMG.managers} alt="Golf course protection netting" loading="lazy" decoding="async" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h2 style={{ ...h2Style, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', marginBottom: '18px' }}>Property Managers</h2>
               <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.6)', marginBottom: '24px' }}>
@@ -141,6 +142,8 @@ export default function Home({ navigate }: Props) {
                 <img
                   src={img.src}
                   alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)' }}
                   onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.06)')}
                   onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
@@ -175,7 +178,7 @@ export default function Home({ navigate }: Props) {
             ].map(item => (
               <button key={item.title} onClick={() => navigate('other-nets')} style={{ backgroundColor: '#fff', textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ overflow: 'hidden', aspectRatio: '4/3' }}>
-                  <img src={item.img} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={item.img} alt={item.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div style={{ padding: '32px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                   <h3 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.25rem, 1.8vw, 1.4rem)', fontWeight: 400, lineHeight: 1.3, color: '#1A1A18', marginBottom: '14px' }}>{item.title}</h3>

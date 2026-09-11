@@ -21,7 +21,7 @@ export default function About({ navigate: _navigate }: Props) {
       {/* Hero image */}
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px 88px' }}>
         <div style={{ position: 'relative', height: 'clamp(280px, 45vw, 540px)', overflow: 'hidden' }}>
-          <img src="/images/golf-nets/home/home-residential.jpg" alt="Golf ball deterrent netting protecting a fairway home" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/home-residential-900.jpg" alt="Golf ball deterrent netting protecting a fairway home" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       </section>
 

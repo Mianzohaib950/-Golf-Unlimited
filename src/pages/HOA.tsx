@@ -27,7 +27,7 @@ export default function HOA({ navigate }: Props) {
 
       {/* Hero */}
       <section style={{ position: 'relative', height: '72vh', minHeight: '500px', display: 'flex', alignItems: 'flex-end' }}>
-        <img src="/images/golf-nets/hoa/community-netting.jpeg" alt="Golf protection netting integrated into a residential community" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src="/images/optimized/community-netting-1200.jpg" alt="Golf protection netting integrated into a residential community" fetchPriority="high" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75) 0%, rgba(10,16,11,0.2) 55%, transparent 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
           <p style={{ ...eyebrow, color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>HOA</p>
@@ -55,7 +55,7 @@ export default function HOA({ navigate }: Props) {
       {/* Create Beautiful Uniformity */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="hoa-split">
         <div style={{ position: 'relative', minHeight: '520px' }}>
-          <img src="/images/golf-nets/gallery/gallery-08.jpg" alt="Residential golf netting within a golf-course community" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/residential-net-760.jpg" alt="Residential golf netting within a golf-course community" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
         <div style={{ backgroundColor: '#ECEAE3', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h2 style={{ ...heading, marginBottom: '28px' }}>Create Beautiful Uniformity</h2>

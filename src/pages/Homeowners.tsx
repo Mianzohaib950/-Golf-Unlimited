@@ -28,8 +28,10 @@ export default function Homeowners({ navigate }: Props) {
       {/* Hero */}
       <section style={{ position: 'relative', height: '72vh', minHeight: '500px', display: 'flex', alignItems: 'flex-end' }}>
         <img
-          src="/images/golf-nets/homeowners/residential-system.jpg"
+          src="/images/optimized/residential-system-1200.jpg"
           alt="Custom residential golf ball deterrent netting"
+          fetchPriority="high"
+          decoding="async"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
         />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.72) 0%, rgba(10,16,11,0.2) 60%, transparent 100%)' }} />
@@ -59,7 +61,7 @@ export default function Homeowners({ navigate }: Props) {
       {/* How do they look? */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="ho-split">
         <div style={{ position: 'relative', minHeight: '460px' }}>
-          <img src="/images/golf-nets/homeowners/residential-net.jpg" alt="Inconspicuous residential golf netting structure" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/residential-net-760.jpg" alt="Inconspicuous residential golf netting structure" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
         <div style={{ backgroundColor: '#fff', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h2 style={{ ...qHeading, marginBottom: '28px' }}>How do they look?</h2>
@@ -90,7 +92,7 @@ export default function Homeowners({ navigate }: Props) {
           </p>
         </div>
         <div style={{ position: 'relative', minHeight: '460px' }}>
-          <img src="/images/golf-nets/homeowners/patio-infill.jpeg" alt="Net infill panels protecting patio windows and seating" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/patio-infill-760.jpg" alt="Net infill panels protecting patio windows and seating" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       </section>
 

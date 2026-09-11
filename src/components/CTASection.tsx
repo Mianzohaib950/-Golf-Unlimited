@@ -25,9 +25,11 @@ export default function CTASection({
     <section style={{ position: 'relative', padding: '100px 0', overflow: 'hidden' }}>
       {/* Background image */}
       <img
-        src="/images/golf-nets/home/home-residential.jpg"
+        src="/images/optimized/home-residential-900.jpg"
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
       />
       <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(240,239,233,0.94)' }} />

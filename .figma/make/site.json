@@ -1,8 +1,15 @@
 {
-  "title": "Golf Nets Unlimited",
-  "description": "Premium golf ball containment and netting systems — custom-engineered for homeowners, driving ranges, HOAs, and commercial facilities.",
+  "title": "Golf Nets Unlimited | Golf Ball Deterrent Netting Systems",
+  "description": "Premium golf ball containment and netting systems for homeowners, driving ranges, HOAs, and commercial facilities.",
+  "language": "en",
   "robots": {
-    "index": false
+    "index": true
+  },
+  "icons": {
+    "icon": "/images/golf-nets/about/about-company.png"
+  },
+  "openGraph": {
+    "image": "https://golfnetsunlimited.com/images/golf-nets/home/home-residential.jpg"
   },
   "accessibility": {
     "addBypassLinks": false,

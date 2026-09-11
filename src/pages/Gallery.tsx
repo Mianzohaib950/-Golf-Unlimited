@@ -4,18 +4,18 @@ import type { Page } from '../App'
 interface Props { navigate: (p: Page) => void }
 
 const images = [
-  '/images/golf-nets/gallery/gallery-01.jpg',
-  '/images/golf-nets/gallery/gallery-12-replacement.png',
-  '/images/golf-nets/gallery/gallery-03.jpg',
-  '/images/golf-nets/gallery/gallery-04.jpg',
-  '/images/golf-nets/gallery/gallery-05.jpg',
-  '/images/golf-nets/gallery/gallery-06.jpg',
-  '/images/golf-nets/gallery/gallery-07.jpg',
-  '/images/golf-nets/gallery/gallery-08.jpg',
-  '/images/golf-nets/gallery/gallery-09.jpg',
-  '/images/golf-nets/homeowners/residential-net.jpg',
-  '/images/golf-nets/driving-range/cart-path.jpg',
-  '/images/golf-nets/gallery/gallery-02-replacement.png',
+  '/images/optimized/gallery-01-760.jpg',
+  '/images/optimized/gallery-12-replacement-760.jpg',
+  '/images/optimized/gallery-03-760.jpg',
+  '/images/optimized/gallery-04-760.jpg',
+  '/images/optimized/gallery-05-760.jpg',
+  '/images/optimized/gallery-06-760.jpg',
+  '/images/optimized/gallery-07-760.jpg',
+  '/images/optimized/gallery-08-760.jpg',
+  '/images/optimized/gallery-09-760.jpg',
+  '/images/optimized/residential-net-760.jpg',
+  '/images/optimized/cart-path-760.jpg',
+  '/images/optimized/gallery-02-replacement-760.jpg',
 ]
 
 const padImageNumber = (number: number) => String(number).padStart(3, '0')
@@ -92,7 +92,7 @@ export default function Gallery({ navigate }: Props) {
         <div className="gallery-masonry">
           {currentImages.map((src, index) => (
             <button key={src} onClick={() => setActiveIndex(index)} aria-label={`Open ${displayedImageNumber(index)}`} style={{ cursor: 'zoom-in', overflow: 'hidden', position: 'relative', display: 'block', width: '100%', aspectRatio: '4 / 3' }}>
-              <img src={src} alt={`${galleryType === 'golf' ? 'Golf Nets Unlimited' : 'Nets Unlimited'} gallery ${displayedImageNumber(index)}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }} onMouseEnter={event => (event.currentTarget.style.transform = 'scale(1.03)')} onMouseLeave={event => (event.currentTarget.style.transform = 'scale(1)')} />
+              <img src={src} alt={`${galleryType === 'golf' ? 'Golf Nets Unlimited' : 'Nets Unlimited'} gallery ${displayedImageNumber(index)}`} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s ease' }} onMouseEnter={event => (event.currentTarget.style.transform = 'scale(1.03)')} onMouseLeave={event => (event.currentTarget.style.transform = 'scale(1)')} />
               <span className="gallery-image-number">{displayedImageNumber(index)}</span>
             </button>
           ))}
