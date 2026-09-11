@@ -140,18 +140,35 @@ export default function App() {
   return (
     <div className="min-h-screen" style={{ fontFamily: 'Inter, system-ui, sans-serif', backgroundColor: '#F8F7F4' }}>
       <Nav currentPage={page} navigate={navigate} />
-      {page === 'home' && <Home navigate={navigate} />}
-      <Suspense fallback={null}>
-        {page === 'homeowners' && <Homeowners navigate={navigate} />}
-        {page === 'driving-range' && <DrivingRange navigate={navigate} />}
-        {page === 'hoa' && <HOA navigate={navigate} />}
-        {page === 'other-nets' && <OtherNets navigate={navigate} />}
-        {page === 'gallery' && <Gallery navigate={navigate} />}
-        {page === 'about' && <About navigate={navigate} />}
-        {page === 'faq' && <FAQ navigate={navigate} />}
-        {page === 'contact' && <Contact navigate={navigate} />}
-      </Suspense>
+      <div style={{ minHeight: page === 'home' ? '100vh' : '72vh' }}>
+        {page === 'home' && <Home navigate={navigate} />}
+        <Suspense fallback={<PageLoadingShell page={page} />}>
+          {page === 'homeowners' && <Homeowners navigate={navigate} />}
+          {page === 'driving-range' && <DrivingRange navigate={navigate} />}
+          {page === 'hoa' && <HOA navigate={navigate} />}
+          {page === 'other-nets' && <OtherNets navigate={navigate} />}
+          {page === 'gallery' && <Gallery navigate={navigate} />}
+          {page === 'about' && <About navigate={navigate} />}
+          {page === 'faq' && <FAQ navigate={navigate} />}
+          {page === 'contact' && <Contact navigate={navigate} />}
+        </Suspense>
+      </div>
       <Footer navigate={navigate} />
     </div>
+  )
+}
+
+function PageLoadingShell({ page }: { page: Page }) {
+  const isPlainPage = page === 'gallery' || page === 'about' || page === 'faq' || page === 'contact'
+
+  return (
+    <main
+      aria-hidden="true"
+      style={{
+        minHeight: isPlainPage ? '56vh' : '72vh',
+        paddingTop: isPlainPage ? '150px' : 0,
+        backgroundColor: '#F8F7F4',
+      }}
+    />
   )
 }
