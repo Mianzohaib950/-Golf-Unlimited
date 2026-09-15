@@ -1,6 +1,7 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import fs from 'node:fs'
 import path from 'node:path'
 
 import siteConfiguration from './.figma/make/site.json'
@@ -20,6 +21,7 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
       robotsHeaderPlugin(),
+      staticRouteFallbackPlugin(),
       figmaSiteConfiguration(siteConfiguration),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
@@ -51,6 +53,35 @@ function robotsHeaderPlugin(): Plugin {
         res.setHeader('X-Robots-Tag', 'index, follow')
         next()
       })
+    },
+  }
+}
+
+function staticRouteFallbackPlugin(): Plugin {
+  const routes = [
+    'homeowners',
+    'driving-range',
+    'hoa',
+    'other-nets',
+    'gallery',
+    'about',
+    'faq',
+    'contact',
+  ]
+
+  return {
+    name: 'static-route-fallback',
+    writeBundle(options) {
+      const outDir = options.dir ?? path.resolve(__dirname, 'dist')
+      const indexPath = path.join(outDir, 'index.html')
+      if (!fs.existsSync(indexPath)) return
+
+      const indexHtml = fs.readFileSync(indexPath, 'utf8')
+      for (const route of routes) {
+        const routeDir = path.join(outDir, route)
+        fs.mkdirSync(routeDir, { recursive: true })
+        fs.writeFileSync(path.join(routeDir, 'index.html'), indexHtml)
+      }
     },
   }
 }

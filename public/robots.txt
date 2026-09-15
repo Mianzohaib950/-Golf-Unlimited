@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://golfnetsunlimited.com/sitemap.xml
+LLMs: https://golfnetsunlimited.com/llms.txt
