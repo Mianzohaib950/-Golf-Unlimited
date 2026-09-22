@@ -61,7 +61,7 @@ export default function Homeowners({ navigate }: Props) {
       {/* How do they look? */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="ho-split">
         <div style={{ position: 'relative', minHeight: '460px' }}>
-          <img src="/images/optimized/residential-net-760.jpg" alt="Inconspicuous residential golf netting structure" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/residential-net-570.jpg" alt="Inconspicuous residential golf netting structure" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
         <div style={{ backgroundColor: '#fff', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h2 style={{ ...qHeading, marginBottom: '28px' }}>How do they look?</h2>
@@ -92,7 +92,7 @@ export default function Homeowners({ navigate }: Props) {
           </p>
         </div>
         <div style={{ position: 'relative', minHeight: '460px' }}>
-          <img src="/images/optimized/patio-infill-760.jpg" alt="Net infill panels protecting patio windows and seating" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/patio-infill-570.jpg" alt="Net infill panels protecting patio windows and seating" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       </section>
 

@@ -55,7 +55,7 @@ export default function HOA({ navigate }: Props) {
       {/* Create Beautiful Uniformity */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="hoa-split">
         <div style={{ position: 'relative', minHeight: '520px' }}>
-          <img src="/images/optimized/residential-net-760.jpg" alt="Residential golf netting within a golf-course community" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/residential-net-570.jpg" alt="Residential golf netting within a golf-course community" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
         <div style={{ backgroundColor: '#ECEAE3', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h2 style={{ ...heading, marginBottom: '28px' }}>Create Beautiful Uniformity</h2>

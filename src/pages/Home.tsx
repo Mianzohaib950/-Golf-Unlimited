@@ -7,14 +7,14 @@ interface Props { navigate: (p: Page) => void }
 const IMG = {
   hero: '/images/optimized/home-residential-1600.jpg',
   heroMobile: '/images/optimized/home-residential-900.jpg',
-  homeowners: '/images/optimized/residential-net-760.jpg',
-  managers: '/images/optimized/driving-range-760.jpg',
-  g1: '/images/optimized/gallery-01-760.jpg',
-  g2: '/images/optimized/gallery-02-760.jpg',
-  g3: '/images/optimized/gallery-03-760.jpg',
-  sport: '/images/optimized/service-06-760.jpg',
-  aviary: '/images/optimized/service-03-760.jpg',
-  decor: '/images/optimized/service-07-760.jpg',
+  homeowners: '/images/optimized/residential-net-570.jpg',
+  managers: '/images/optimized/driving-range-570.jpg',
+  g1: '/images/optimized/gallery-01-570.jpg',
+  g2: '/images/optimized/gallery-02-570.jpg',
+  g3: '/images/optimized/gallery-03-570.jpg',
+  sport: '/images/optimized/service-06-570.jpg',
+  aviary: '/images/optimized/service-03-570.jpg',
+  decor: '/images/optimized/service-07-570.jpg',
 }
 
 const h2Style: React.CSSProperties = {

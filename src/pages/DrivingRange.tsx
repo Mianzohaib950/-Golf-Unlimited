@@ -22,9 +22,9 @@ const body: React.CSSProperties = {
 }
 
 const premium = [
-  { label: 'TEE BOX', image: '/images/optimized/course-netting-760.jpg', alt: 'Protective netting surrounding a golf tee box', rest: 'Golf ball deterrent systems can be adapted to be placed near the Tee Box which makes teeing off less stressful for both golfers and the nearby homeowners.' },
-  { label: 'HITTING NETS', image: '/images/optimized/driving-range-760.jpg', alt: 'Golf driving range protection netting', rest: 'The same nets used for deterrent are used for practice bays which can be set up anywhere you have room.' },
-  { label: 'DRIVING RANGE & PATHWAY NETS', image: '/images/optimized/cart-path-760.jpg', alt: 'Protected golf cart pathway with netting', rest: 'Protect pathways for golf carts and pedestrians walking between holes, and protect open spaces near clubhouses to mitigate liability risks on (and off) the course.' },
+  { label: 'TEE BOX', image: '/images/optimized/course-netting-570.jpg', alt: 'Protective netting surrounding a golf tee box', rest: 'Golf ball deterrent systems can be adapted to be placed near the Tee Box which makes teeing off less stressful for both golfers and the nearby homeowners.' },
+  { label: 'HITTING NETS', image: '/images/optimized/driving-range-570.jpg', alt: 'Golf driving range protection netting', rest: 'The same nets used for deterrent are used for practice bays which can be set up anywhere you have room.' },
+  { label: 'DRIVING RANGE & PATHWAY NETS', image: '/images/optimized/cart-path-570.jpg', alt: 'Protected golf cart pathway with netting', rest: 'Protect pathways for golf carts and pedestrians walking between holes, and protect open spaces near clubhouses to mitigate liability risks on (and off) the course.' },
 ]
 
 export default function DrivingRange({ navigate }: Props) {
@@ -46,7 +46,7 @@ export default function DrivingRange({ navigate }: Props) {
       {/* Why Nets Unlimited */}
       <section className="dr-split dr-first-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: '48px solid #fff' }}>
         <div className="dr-split-image" style={{ position: 'relative', minHeight: '460px' }}>
-          <img src="/images/optimized/cart-path-760.jpg" alt="Golf Cart Path protection netting" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/cart-path-570.jpg" alt="Golf Cart Path protection netting" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
         <div style={{ backgroundColor: '#fff', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <p style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.15rem, 2.3vw, 1.5rem)', fontWeight: 300, lineHeight: 1.6, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '24px' }}>
@@ -71,7 +71,7 @@ export default function DrivingRange({ navigate }: Props) {
             </p>
           </div>
           <div className="dr-split-image" style={{ position: 'relative', minHeight: '460px', overflow: 'hidden' }}>
-            <img src="/images/optimized/practice-net-760.jpg" alt="Custom driving range practice netting and poles" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img src="/images/optimized/practice-net-570.jpg" alt="Custom driving range practice netting and poles" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
       </section>
 

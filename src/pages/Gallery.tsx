@@ -4,18 +4,18 @@ import type { Page } from '../App'
 interface Props { navigate: (p: Page) => void }
 
 const images = [
-  '/images/optimized/gallery-01-760.jpg',
-  '/images/optimized/gallery-12-replacement-760.jpg',
-  '/images/optimized/gallery-03-760.jpg',
-  '/images/optimized/gallery-04-760.jpg',
-  '/images/optimized/gallery-05-760.jpg',
-  '/images/optimized/gallery-06-760.jpg',
-  '/images/optimized/gallery-07-760.jpg',
-  '/images/optimized/gallery-08-760.jpg',
-  '/images/optimized/gallery-09-760.jpg',
-  '/images/optimized/residential-net-760.jpg',
-  '/images/optimized/cart-path-760.jpg',
-  '/images/optimized/gallery-02-replacement-760.jpg',
+  '/images/optimized/gallery-01-570.jpg',
+  '/images/optimized/gallery-12-replacement-570.jpg',
+  '/images/optimized/gallery-03-570.jpg',
+  '/images/optimized/gallery-04-570.jpg',
+  '/images/optimized/gallery-05-570.jpg',
+  '/images/optimized/gallery-06-570.jpg',
+  '/images/optimized/gallery-07-570.jpg',
+  '/images/optimized/gallery-08-570.jpg',
+  '/images/optimized/gallery-09-570.jpg',
+  '/images/optimized/residential-net-570.jpg',
+  '/images/optimized/cart-path-570.jpg',
+  '/images/optimized/gallery-02-replacement-570.jpg',
 ]
 
 const padImageNumber = (number: number) => String(number).padStart(3, '0')
