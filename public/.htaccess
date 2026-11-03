@@ -1,33 +1,46 @@
 Options -MultiViews
+# Serve /about from /about/index.html without redirecting to /about/ (keeps URLs matching the canonicals).
+DirectorySlash Off
+ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  RewriteRule ^index\.html$ - [L]
-  RewriteRule ^robots\.txt$ - [L]
-  RewriteRule ^sitemap\.xml$ - [L]
-  RewriteRule ^api/ - [L]
-  RewriteRule ^assets/ - [L]
-  RewriteRule ^images/ - [L]
+  # Trailing-slash URLs 301 to the canonical slash-less form.
+  RewriteCond %{REQUEST_URI} ^/(.+)/$
+  RewriteRule ^ /%1 [R=301,L]
 
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
+  # Prerendered routes: /about -> /about/index.html
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^([a-z0-9-]+)$ $1/index.html [L]
+
+  # Existing files are served as-is; anything else falls through to the real 404 page.
+  RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
-
-  RewriteRule . /index.html [L]
 </IfModule>
 
 <IfModule mod_headers.c>
   Header set X-Robots-Tag "index, follow"
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 
   <FilesMatch "\.(js|css|jpg|jpeg|png|webp|svg|ico)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  <FilesMatch "^(robots\.txt|sitemap\.xml)$">
+  <FilesMatch "^(robots\.txt|sitemap\.xml|llms\.txt)$">
     Header set Cache-Control "public, max-age=3600"
   </FilesMatch>
+
+  <FilesMatch "^404\.html$">
+    Header set X-Robots-Tag "noindex"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/manifest+json image/svg+xml
 </IfModule>

@@ -18,7 +18,7 @@ const heading: React.CSSProperties = {
 }
 
 const body: React.CSSProperties = {
-  fontSize: '0.9rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.6)',
+  fontSize: '0.9rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.68)',
 }
 
 export default function HOA({ navigate }: Props) {
@@ -27,7 +27,7 @@ export default function HOA({ navigate }: Props) {
 
       {/* Hero */}
       <section style={{ position: 'relative', height: '72vh', minHeight: '500px', display: 'flex', alignItems: 'flex-end' }}>
-        <img src="/images/optimized/community-netting-1200.jpg" alt="Golf protection netting integrated into a residential community" fetchPriority="high" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src="/images/optimized/community-netting-1200.jpg" srcSet="/images/optimized/community-netting-760.jpg 760w, /images/optimized/community-netting-1200.jpg 1200w" sizes="100vw" alt="Golf protection netting integrated into a residential community" fetchPriority="high" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75) 0%, rgba(10,16,11,0.2) 55%, transparent 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
           <p style={{ ...eyebrow, color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>HOA</p>

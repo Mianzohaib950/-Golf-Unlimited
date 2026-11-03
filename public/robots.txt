@@ -1,5 +1,11 @@
+# Golf Nets Unlimited: open to search engines and AI search/answer engines.
+# A single wildcard group covers every crawler (Googlebot, Bingbot, OAI-SearchBot,
+# ChatGPT-User, GPTBot, Claude-SearchBot, Claude-User, ClaudeBot, PerplexityBot,
+# Perplexity-User, Google-Extended, Applebot-Extended, Amazonbot, meta-externalagent, ...).
+# Named groups would replace these rules for that bot, so add one only for a deliberate opt-out.
+# LLM-friendly site summary: https://golfnetsunlimited.com/llms.txt
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://golfnetsunlimited.com/sitemap.xml
-LLMs: https://golfnetsunlimited.com/llms.txt

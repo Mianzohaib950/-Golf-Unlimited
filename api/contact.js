@@ -1,13 +1,17 @@
 import nodemailer from 'nodemailer'
 
 const requiredEnv = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'SMTP_FROM_EMAIL', 'ADMIN_EMAIL']
-const clean = (value, maxLength) => typeof value === 'string' ? value.trim().slice(0, maxLength) : ''
+// Strip control characters (incl. CR/LF) so submitted values cannot inject mail headers.
+const clean = (value, maxLength) => typeof value === 'string' ? value.replace(/[\u0000-\u001f\u007f]/g, ' ').trim().slice(0, maxLength) : ''
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST')
     return res.status(405).json({ error: 'Method not allowed.' })
   }
+
+  // Honeypot field is invisible to people; pretend success so bots do not retry.
+  if (clean(req.body?.website, 200)) return res.status(200).json({ ok: true })
 
   const missing = requiredEnv.filter((key) => !process.env[key])
   if (missing.length) {

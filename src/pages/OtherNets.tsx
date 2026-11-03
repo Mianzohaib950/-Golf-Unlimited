@@ -18,7 +18,7 @@ const nets = [
 export default function OtherNets({ navigate }: Props) {
   return <div style={{ backgroundColor: '#F8F7F4' }}>
     <section className="other-hero" style={{ position: 'relative', height: '60vh', minHeight: '440px', display: 'flex', alignItems: 'flex-end' }}>
-      <img src="/images/optimized/service-01-1200.jpg" alt="Children playing on a custom rope-and-net climbing structure" fetchPriority="high" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+      <img src="/images/optimized/service-01-1200.jpg" srcSet="/images/optimized/service-01-hero-760.jpg 760w, /images/optimized/service-01-1200.jpg 1200w" sizes="100vw" alt="Children playing on a custom rope-and-net climbing structure" fetchPriority="high" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75), rgba(10,16,11,0.2) 55%, transparent)' }} />
       <div className="other-hero-content" style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
         <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '16px' }}>Other Nets</p>
@@ -41,7 +41,7 @@ export default function OtherNets({ navigate }: Props) {
           <div className="other-copy" style={{ padding: '64px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center', order: i % 2 ? -1 : 0 }}>
             <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '16px' }}>{net.category}</p>
             <h2 style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2rem)', color: '#1A1A18', marginBottom: '20px' }}>{net.title}</h2>
-            <p style={{ fontSize: '0.8125rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.5)' }}>{net.desc}</p>
+            <p style={{ fontSize: '0.8125rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.68)' }}>{net.desc}</p>
           </div>
         </article>)}
       </div>

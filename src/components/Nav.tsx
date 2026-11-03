@@ -77,7 +77,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
           </a>
 
           {/* Desktop nav links */}
-          <nav className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+          <nav className="nav-desktop" aria-label="Main" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
             {navItems.map(item => {
               const active = currentPage === item.page
               return (
@@ -85,6 +85,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                   key={item.page}
                   href={getPagePath(item.page)}
                   onClick={event => go(item.page, event)}
+                  aria-current={active ? 'page' : undefined}
                   style={{
                     fontSize: '0.78rem',
                     fontWeight: active ? 600 : 400,
@@ -155,8 +156,11 @@ export default function Nav({ currentPage, navigate }: NavProps) {
           {/* Mobile toggle */}
           <button
             className="nav-mobile-toggle"
+            type="button"
             onClick={() => setMenuOpen(o => !o)}
-            aria-label="Menu"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
             style={{ display: 'none', flexDirection: 'column', gap: '5px', padding: '8px', flexShrink: 0, cursor: 'pointer' }}
           >
             {[0, 1, 2].map(i => (
@@ -168,7 +172,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="nav-mobile-panel" style={{ display: 'none', backgroundColor: '#F8F7F4', borderTop: '1px solid rgba(196,195,188,0.5)', padding: '16px 32px 28px' }}>
+        <nav id="mobile-menu" aria-label="Mobile" className="nav-mobile-panel" style={{ display: 'none', backgroundColor: '#F8F7F4', borderTop: '1px solid rgba(196,195,188,0.5)', padding: '16px 32px 28px' }}>
           {navItems.map(item => {
             const active = currentPage === item.page
             return (
@@ -200,7 +204,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
           >
             Contact Us
           </a>
-        </div>
+        </nav>
       )}
 
       <style>{`

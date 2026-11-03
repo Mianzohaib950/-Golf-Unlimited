@@ -1,4 +1,4 @@
-import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
+import { createServer, defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import fs from 'node:fs'
@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
       robotsHeaderPlugin(),
-      staticRouteFallbackPlugin(),
+      prerenderRoutesPlugin(),
       figmaSiteConfiguration(siteConfiguration),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
@@ -57,30 +57,91 @@ function robotsHeaderPlugin(): Plugin {
   }
 }
 
-function staticRouteFallbackPlugin(): Plugin {
-  const routes = [
-    'homeowners',
-    'driving-range',
-    'hoa',
-    'other-nets',
-    'gallery',
-    'about',
-    'faq',
-    'contact',
-  ]
+/**
+ * Prerenders every route into its own HTML file after the client build, so
+ * crawlers and AI agents that do not run JavaScript get the full page content,
+ * a unique title/description/canonical, and JSON-LD. Unknown URLs get 404.html.
+ */
+function prerenderRoutesPlugin(): Plugin {
+  let outDir = ''
+  let root = ''
+  let isSsrBuild = false
+
+  const escapeAttr = (value: string) =>
+    value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
   return {
-    name: 'static-route-fallback',
-    writeBundle(options) {
-      const outDir = options.dir ?? path.resolve(__dirname, 'dist')
-      const indexPath = path.join(outDir, 'index.html')
-      if (!fs.existsSync(indexPath)) return
+    name: 'prerender-routes',
+    apply: 'build',
+    configResolved(config) {
+      root = config.root
+      outDir = path.resolve(config.root, config.build.outDir)
+      isSsrBuild = !!config.build.ssr
+    },
+    async closeBundle() {
+      const templatePath = path.join(outDir, 'index.html')
+      if (isSsrBuild || !fs.existsSync(templatePath)) return
 
-      const indexHtml = fs.readFileSync(indexPath, 'utf8')
-      for (const route of routes) {
-        const routeDir = path.join(outDir, route)
-        fs.mkdirSync(routeDir, { recursive: true })
-        fs.writeFileSync(path.join(routeDir, 'index.html'), indexHtml)
+      const template = fs.readFileSync(templatePath, 'utf8')
+      const server = await createServer({
+        configFile: false,
+        root,
+        logLevel: 'error',
+        appType: 'custom',
+        server: { middlewareMode: true, hmr: false, ws: false },
+        resolve: { alias: { '@': path.resolve(__dirname, './src') } },
+        plugins: [react()],
+      })
+
+      try {
+        const ssr = await server.ssrLoadModule('/src/entry-server.tsx')
+        const pages = [...ssr.indexablePages, 'not-found']
+
+        for (const page of pages) {
+          const meta = ssr.pageMeta[page]
+          const isNotFound = page === 'not-found'
+          const canonical = ssr.canonicalUrl(page)
+          const ogImage = meta.ogImage ?? ssr.DEFAULT_OG_IMAGE
+          const head = [
+            `<title>${escapeAttr(meta.title)}</title>`,
+            `<meta name="description" content="${escapeAttr(meta.description)}" />`,
+            meta.keywords && `<meta name="keywords" content="${escapeAttr(meta.keywords)}" />`,
+            `<meta name="robots" content="${isNotFound ? 'noindex, follow' : 'index, follow, max-image-preview:large'}" />`,
+            !isNotFound && `<link rel="canonical" href="${canonical}" />`,
+            `<meta property="og:title" content="${escapeAttr(meta.title)}" />`,
+            `<meta property="og:description" content="${escapeAttr(meta.description)}" />`,
+            !isNotFound && `<meta property="og:url" content="${canonical}" />`,
+            `<meta property="og:image" content="${ogImage}" />`,
+            `<meta property="og:image:alt" content="${escapeAttr(meta.name)} | Golf Nets Unlimited" />`,
+            `<meta name="twitter:title" content="${escapeAttr(meta.title)}" />`,
+            `<meta name="twitter:description" content="${escapeAttr(meta.description)}" />`,
+            `<meta name="twitter:image" content="${ogImage}" />`,
+            meta.heroImage &&
+              `<link rel="preload" as="image" href="${meta.heroImage.href}"${meta.heroImage.srcset ? ` imagesrcset="${meta.heroImage.srcset}" imagesizes="${meta.heroImage.sizes ?? '100vw'}"` : ''} fetchpriority="high" />`,
+            !isNotFound &&
+              `<script type="application/ld+json">${JSON.stringify(ssr.structuredData(page)).replace(/</g, '\\u003c')}</script>`,
+          ].filter(Boolean).join('\n    ')
+
+          const appHtml = await ssr.render(page)
+          const html = template
+            .replace(/<!-- seo:start[\s\S]*?<!-- seo:end -->/, head)
+            .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
+
+          const file = page === 'home' ? 'index.html' : isNotFound ? '404.html' : path.join(ssr.pagePaths[page].slice(1), 'index.html')
+          fs.mkdirSync(path.dirname(path.join(outDir, file)), { recursive: true })
+          fs.writeFileSync(path.join(outDir, file), html)
+        }
+
+        const lastmod = new Date().toISOString().slice(0, 10)
+        const urls = ssr.indexablePages
+          .map((page: string) => `  <url>\n    <loc>${ssr.canonicalUrl(page)}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`)
+          .join('\n')
+        fs.writeFileSync(
+          path.join(outDir, 'sitemap.xml'),
+          `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+        )
+      } finally {
+        await server.close()
       }
     },
   }
@@ -167,23 +228,25 @@ function figmaSiteConfiguration(config: FigmaSiteConfiguration): Plugin {
         result = replaceHtmlCommentSlot(result, 'figma:body-start', bodyStart)
         result = replaceHtmlCommentSlot(result, 'figma:body-end', bodyEnd)
 
+        // Skip tags index.html already defines, so pages never ship duplicate meta tags.
+        const has = (needle: string) => html.includes(needle)
         const tags: HtmlTagDescriptor[] = []
-        if (description) {
+        if (description && !has('name="description"')) {
           tags.push({ tag: 'meta', attrs: { name: 'description', content: description }, injectTo: 'head' })
         }
         if (config.robots?.index === false) {
           tags.push({ tag: 'meta', attrs: { name: 'robots', content: 'noindex, nofollow' }, injectTo: 'head' })
         }
-        if (favicon) {
+        if (favicon && !has('rel="icon"')) {
           tags.push({ tag: 'link', attrs: { rel: 'icon', href: favicon }, injectTo: 'head' })
         }
-        if (title) {
+        if (title && !has('property="og:title"')) {
           tags.push({ tag: 'meta', attrs: { property: 'og:title', content: title }, injectTo: 'head' })
         }
-        if (description) {
+        if (description && !has('property="og:description"')) {
           tags.push({ tag: 'meta', attrs: { property: 'og:description', content: description }, injectTo: 'head' })
         }
-        if (socialImage) {
+        if (socialImage && !has('property="og:image"')) {
           tags.push(
             { tag: 'meta', attrs: { property: 'og:image', content: socialImage }, injectTo: 'head' },
             { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' }, injectTo: 'head' },

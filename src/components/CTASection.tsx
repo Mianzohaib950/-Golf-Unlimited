@@ -1,4 +1,5 @@
 import type { Page } from '../App'
+import PageLink from './PageLink'
 
 interface CTASectionProps {
   navigate: (page: Page) => void
@@ -39,10 +40,10 @@ export default function CTASection({
         {centered ? (
           <div style={{ maxWidth: '760px', margin: '0 auto', textAlign: 'center' }}>
             {headline && <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', color: '#1A1A18', lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: subtext ? '24px' : '36px' }}>{headline}</h2>}
-            {subtext && <p style={{ fontFamily: headline ? 'Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif' : 'Playfair Display, Georgia, "Times New Roman", serif', fontSize: headline ? '0.95rem' : 'clamp(1.25rem, 2.6vw, 1.9rem)', lineHeight: headline ? 1.75 : 1.45, color: headline ? 'rgba(26,26,24,0.6)' : '#1A1A18', marginBottom: '36px' }}>{subtext}</p>}
+            {subtext && <p style={{ fontFamily: headline ? 'Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif' : 'Playfair Display, Georgia, "Times New Roman", serif', fontSize: headline ? '0.95rem' : 'clamp(1.25rem, 2.6vw, 1.9rem)', lineHeight: headline ? 1.75 : 1.45, color: headline ? 'rgba(26,26,24,0.68)' : '#1A1A18', marginBottom: '36px' }}>{subtext}</p>}
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <button className="cta-button cta-button-primary" onClick={() => navigate(primaryPage)} style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', padding: '14px 32px', backgroundColor: '#1E4D2B', color: '#fff' }}>{primaryLabel}</button>
-              {secondaryLabel && <button className="cta-button cta-button-secondary" onClick={() => navigate(secondaryPage)} style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.65)' }}>{secondaryLabel}</button>}
+              <PageLink className="cta-button cta-button-primary" page={primaryPage} navigate={navigate} style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', padding: '14px 32px', backgroundColor: '#1E4D2B', color: '#fff' }}>{primaryLabel}</PageLink>
+              {secondaryLabel && <PageLink className="cta-button cta-button-secondary" page={secondaryPage} navigate={navigate} style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.68)' }}>{secondaryLabel}</PageLink>}
             </div>
           </div>
         ) : (
@@ -66,7 +67,7 @@ export default function CTASection({
                 fontSize: headline ? '0.9rem' : 'clamp(1.25rem, 2.6vw, 1.9rem)',
                 fontWeight: headline ? 400 : 300,
                 lineHeight: headline ? 1.75 : 1.4,
-                color: headline ? 'rgba(26,26,24,0.55)' : '#1A1A18',
+                color: headline ? 'rgba(26,26,24,0.68)' : '#1A1A18',
                 letterSpacing: headline ? '0' : '-0.015em',
                 marginBottom: '36px',
               }}>
@@ -74,25 +75,27 @@ export default function CTASection({
               </p>
             )}
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-              <button
+              <PageLink
                 className="cta-button cta-button-primary"
-                onClick={() => navigate(primaryPage)}
+                page={primaryPage}
+                navigate={navigate}
                 style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', padding: '14px 32px', backgroundColor: '#1E4D2B', color: '#fff', transition: 'background-color 0.2s' }}
-                onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = '#0F2A18')}
-                onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = '#1E4D2B')}
+                onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#0F2A18')}
+                onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#1E4D2B')}
               >
                 {primaryLabel}
-              </button>
+              </PageLink>
               {secondaryLabel && (
-                <button
+                <PageLink
                   className="cta-button cta-button-secondary"
-                  onClick={() => navigate(secondaryPage)}
-                  style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.65)', transition: 'border-color 0.2s, color 0.2s' }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#1A1A18'; (e.currentTarget as HTMLButtonElement).style.color = '#1A1A18' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(26,26,24,0.25)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(26,26,24,0.65)' }}
+                  page={secondaryPage}
+                  navigate={navigate}
+                  style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.68)', transition: 'border-color 0.2s, color 0.2s' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = '#1A1A18'; (e.currentTarget as HTMLAnchorElement).style.color = '#1A1A18' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(26,26,24,0.25)'; (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(26,26,24,0.68)' }}
                 >
                   {secondaryLabel}
-                </button>
+                </PageLink>
               )}
             </div>
           </div>

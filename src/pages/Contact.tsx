@@ -3,13 +3,13 @@ import type { Page } from '../App'
 
 interface Props { navigate: (p: Page) => void }
 
-type FormState = { name: string; email: string; phone: string }
+type FormState = { name: string; email: string; phone: string; website: string }
 type FocusState = { name: boolean; email: boolean; phone: boolean }
 
 const ADDRESS_QUERY = '20625 N. 29th Place, Phoenix, Arizona 85050'
 
 export default function Contact({ navigate: _navigate }: Props) {
-  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '' })
+  const [form, setForm] = useState<FormState>({ name: '', email: '', phone: '', website: '' })
   const [focus, setFocus] = useState<FocusState>({ name: false, email: false, phone: false })
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -17,7 +17,7 @@ export default function Contact({ navigate: _navigate }: Props) {
   const [submitError, setSubmitError] = useState('')
 
   const reset = () => {
-    setForm({ name: '', email: '', phone: '' })
+    setForm({ name: '', email: '', phone: '', website: '' })
     setErrors({})
     setSubmitError('')
     setSubmitted(false)
@@ -52,7 +52,7 @@ export default function Contact({ navigate: _navigate }: Props) {
     }
   }
 
-  const inputStyle = (field: keyof FormState): React.CSSProperties => ({
+  const inputStyle = (field: keyof FocusState): React.CSSProperties => ({
     width: '100%',
     padding: '14px 0',
     fontSize: '0.9rem',
@@ -70,7 +70,7 @@ export default function Contact({ navigate: _navigate }: Props) {
     fontWeight: 600,
     letterSpacing: '0.14em',
     textTransform: 'uppercase',
-    color: 'rgba(26,26,24,0.4)',
+    color: 'rgba(26,26,24,0.68)',
     display: 'block',
     marginBottom: '2px',
   }
@@ -93,31 +93,37 @@ export default function Contact({ navigate: _navigate }: Props) {
           {/* Form */}
           <div>
             {submitted ? (
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '28px', padding: '40px 0' }}>
-                <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#1E4D2B', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '1.2rem' }}>✓</div>
+              <div role="status" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '28px', padding: '40px 0' }}>
+                <div aria-hidden="true" style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: '#1E4D2B', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '1.2rem' }}>✓</div>
+                <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: '#1A1A18' }}>Thank you! Your request has been sent. Our team will contact you shortly.</p>
                 <button
                   type="button"
                   onClick={reset}
-                  style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '13px 28px', border: '1px solid rgba(26,26,24,0.2)', color: 'rgba(26,26,24,0.5)' }}
+                  style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '13px 28px', border: '1px solid rgba(26,26,24,0.2)', color: 'rgba(26,26,24,0.68)' }}
                 >
                   Cancel
                 </button>
               </div>
             ) : (
-              <form onSubmit={submit} noValidate>
+              <form onSubmit={submit} noValidate aria-label="Request a golf netting quote">
+                {/* Honeypot: hidden from people, bots that fill it are rejected by /api/contact. */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                  <label htmlFor="contact-website">Website</label>
+                  <input id="contact-website" type="text" name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={e => setForm(f => ({ ...f, website: e.target.value }))} />
+                </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 32px' }} className="contact-name-row">
                   <div style={{ marginBottom: '32px' }}>
-                    <label style={labelStyle}>Name</label>
-                    <input type="text" value={form.name}
+                    <label htmlFor="contact-name" style={labelStyle}>Name*</label>
+                    <input id="contact-name" name="name" type="text" autoComplete="name" required aria-invalid={!!errors.name} aria-describedby={errors.name ? 'contact-name-error' : undefined} value={form.name}
                       onChange={e => { setForm(f => ({ ...f, name: e.target.value })); setErrors(r => ({ ...r, name: undefined })) }}
                       onFocus={() => setFocus(f => ({ ...f, name: true }))}
                       onBlur={() => setFocus(f => ({ ...f, name: false }))}
                       style={inputStyle('name')} />
-                    {errors.name && <p style={{ fontSize: '0.7rem', color: '#C0392B', marginTop: '6px' }}>{errors.name}</p>}
+                    {errors.name && <p id="contact-name-error" style={{ fontSize: '0.7rem', color: '#C0392B', marginTop: '6px' }}>{errors.name}</p>}
                   </div>
                   <div style={{ marginBottom: '32px' }}>
-                    <label style={labelStyle}>Phone</label>
-                    <input type="tel" value={form.phone}
+                    <label htmlFor="contact-phone" style={labelStyle}>Phone</label>
+                    <input id="contact-phone" name="phone" type="tel" autoComplete="tel" value={form.phone}
                       onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
                       onFocus={() => setFocus(f => ({ ...f, phone: true }))}
                       onBlur={() => setFocus(f => ({ ...f, phone: false }))}
@@ -126,13 +132,13 @@ export default function Contact({ navigate: _navigate }: Props) {
                 </div>
 
                 <div style={{ marginBottom: '32px' }}>
-                  <label style={labelStyle}>Email*</label>
-                  <input type="email" value={form.email}
+                  <label htmlFor="contact-email" style={labelStyle}>Email*</label>
+                  <input id="contact-email" name="email" type="email" autoComplete="email" required aria-invalid={!!errors.email} aria-describedby={errors.email ? 'contact-email-error' : undefined} value={form.email}
                     onChange={e => { setForm(f => ({ ...f, email: e.target.value })); setErrors(r => ({ ...r, email: undefined })) }}
                     onFocus={() => setFocus(f => ({ ...f, email: true }))}
                     onBlur={() => setFocus(f => ({ ...f, email: false }))}
                     style={inputStyle('email')} />
-                  {errors.email && <p style={{ fontSize: '0.7rem', color: '#C0392B', marginTop: '6px' }}>{errors.email}</p>}
+                  {errors.email && <p id="contact-email-error" style={{ fontSize: '0.7rem', color: '#C0392B', marginTop: '6px' }}>{errors.email}</p>}
                 </div>
 
                 {submitError && <p role="alert" style={{ marginBottom: '20px', fontSize: '0.78rem', color: '#C0392B' }}>{submitError}</p>}
@@ -144,11 +150,10 @@ export default function Contact({ navigate: _navigate }: Props) {
                     {submitting ? 'Sending…' : 'Send'}
                   </button>
                   <button type="button" onClick={reset}
-                    style={{ padding: '16px 32px', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: 'transparent', color: 'rgba(26,26,24,0.5)', border: '1px solid rgba(26,26,24,0.2)', cursor: 'pointer', fontFamily: 'Inter, system-ui, sans-serif' }}>
+                    style={{ padding: '16px 32px', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', backgroundColor: 'transparent', color: 'rgba(26,26,24,0.68)', border: '1px solid rgba(26,26,24,0.2)', cursor: 'pointer', fontFamily: 'Inter, system-ui, sans-serif' }}>
                     Cancel
                   </button>
                 </div>
-                <p style={{ marginTop: '20px', fontSize: '0.68rem', lineHeight: 1.6, color: 'rgba(26,26,24,0.4)' }}>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
               </form>
             )}
           </div>
@@ -158,16 +163,17 @@ export default function Contact({ navigate: _navigate }: Props) {
             <div style={{ padding: '48px 40px', backgroundColor: '#ECEAE3', marginBottom: '24px' }}>
               <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '20px' }}>Golf Nets Unlimited</p>
               <p style={{ fontSize: '0.9rem', color: 'rgba(26,26,24,0.65)', lineHeight: 1.75, marginBottom: '20px' }}>
-                20625 N. 29th Place, Phoenix, Arizona 85050, United States (480) 515-1300
+                20625 N. 29th Place, Phoenix, Arizona 85050, United States<br />
+                <a href="tel:+14805151300" style={{ color: '#1E4D2B' }}>(480) 515-1300</a>
               </p>
-              <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.4)', marginBottom: '6px' }}>Hours</p>
-              <p style={{ fontSize: '0.9rem', color: 'rgba(26,26,24,0.65)', marginBottom: '20px' }}>Open today 07:00 am – 04:00 pm</p>
-              <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.4)', marginBottom: '6px' }}>Email Us</p>
-              <a href="mailto:info@netsunlimited.com" style={{ fontSize: '0.9rem', color: '#1E4D2B', borderBottom: '1px solid rgba(30,77,43,0.3)', paddingBottom: '1px' }}>Email Us</a>
+              <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.68)', marginBottom: '6px' }}>Hours</p>
+              <p style={{ fontSize: '0.9rem', color: 'rgba(26,26,24,0.65)', marginBottom: '20px' }}>Monday – Friday, 7:00 am – 4:00 pm</p>
+              <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(26,26,24,0.68)', marginBottom: '6px' }}>Email Us</p>
+              <a href="mailto:info@netsunlimited.com" style={{ fontSize: '0.9rem', color: '#1E4D2B', borderBottom: '1px solid rgba(30,77,43,0.3)', paddingBottom: '1px' }}>info@netsunlimited.com</a>
             </div>
             <div style={{ display: 'flex', gap: '24px', padding: '4px 0' }}>
-              <a href="mailto:info@netsunlimited.com" style={{ fontSize: '0.8125rem', color: 'rgba(26,26,24,0.6)', borderBottom: '1px solid rgba(26,26,24,0.25)', paddingBottom: '1px' }}>Email Us</a>
-              <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(ADDRESS_QUERY)}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.8125rem', color: 'rgba(26,26,24,0.6)', borderBottom: '1px solid rgba(26,26,24,0.25)', paddingBottom: '1px' }}>Get directions</a>
+              <a href="mailto:info@netsunlimited.com" style={{ fontSize: '0.8125rem', color: 'rgba(26,26,24,0.72)', borderBottom: '1px solid rgba(26,26,24,0.25)', paddingBottom: '1px' }}>Email Us</a>
+              <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(ADDRESS_QUERY)}`} target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.8125rem', color: 'rgba(26,26,24,0.72)', borderBottom: '1px solid rgba(26,26,24,0.25)', paddingBottom: '1px' }}>Get directions</a>
             </div>
           </div>
         </div>
@@ -176,7 +182,7 @@ export default function Contact({ navigate: _navigate }: Props) {
       {/* Map */}
       <section style={{ height: '440px', position: 'relative', backgroundColor: '#E8E7E1' }}>
         <iframe
-          title="Golf Nets Unlimited"
+          title="Map: Golf Nets Unlimited, 20625 N. 29th Place, Phoenix, AZ"
           src={`https://www.google.com/maps?q=${encodeURIComponent(ADDRESS_QUERY)}&output=embed`}
           style={{ border: 0, width: '100%', height: '100%', display: 'block' }}
           loading="lazy"

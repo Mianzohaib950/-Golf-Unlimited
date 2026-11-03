@@ -3,7 +3,7 @@ import type { Page } from '../App'
 interface Props { navigate: (p: Page) => void }
 
 const body: React.CSSProperties = {
-  fontSize: '0.95rem', lineHeight: 1.9, color: 'rgba(26,26,24,0.62)',
+  fontSize: '0.95rem', lineHeight: 1.9, color: 'rgba(26,26,24,0.68)',
 }
 
 export default function About({ navigate: _navigate }: Props) {
@@ -21,7 +21,7 @@ export default function About({ navigate: _navigate }: Props) {
       {/* Hero image */}
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px 88px' }}>
         <div style={{ position: 'relative', height: 'clamp(280px, 45vw, 540px)', overflow: 'hidden' }}>
-          <img src="/images/optimized/home-residential-900.jpg" alt="Golf ball deterrent netting protecting a fairway home" loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/images/optimized/home-residential-900.jpg" alt="Golf ball deterrent netting protecting a fairway home" fetchPriority="high" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       </section>
 

@@ -18,7 +18,7 @@ const heading: React.CSSProperties = {
 }
 
 const body: React.CSSProperties = {
-  fontSize: '0.9rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.6)',
+  fontSize: '0.9rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.68)',
 }
 
 const premium = [
@@ -33,7 +33,7 @@ export default function DrivingRange({ navigate }: Props) {
 
       {/* Hero */}
       <section style={{ position: 'relative', height: '72vh', minHeight: '500px', display: 'flex', alignItems: 'flex-end' }}>
-        <img src="/images/optimized/driving-range-banner-1200.jpg" alt="Golf driving range protection netting" fetchPriority="high" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        <img src="/images/optimized/driving-range-banner-1200.jpg" srcSet="/images/optimized/driving-range-banner-760.jpg 760w, /images/optimized/driving-range-banner-1200.jpg 1200w" sizes="100vw" alt="Golf driving range protection netting" fetchPriority="high" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75) 0%, rgba(10,16,11,0.2) 55%, transparent 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
           <p style={{ ...eyebrow, color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>Driving Range &amp; Practice</p>
@@ -55,7 +55,7 @@ export default function DrivingRange({ navigate }: Props) {
             <p style={{ ...body, marginBottom: '20px' }}>
               We will work with you to build protection solutions that are unobtrusive and effective, while making sure that these barriers do not take away from the aesthetic of the course. We have over 25 years of experience ensuring that any areas that can see potentially detrimental golf balls like driving paths are protected thereby offering Property Managers and Course Owners peace of mind that golfers and other course patrons, staff, and guests are safe. Nets Unlimited offers solutions for managed greens, public courses, neighborhoods, and individual homeowners. Let us help you with your netting solutions today.
             </p>
-            <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'rgba(26,26,24,0.45)', lineHeight: 1.7 }}>
+            <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'rgba(26,26,24,0.68)', lineHeight: 1.7 }}>
               Golf Cart Path protection netting, black polyester 7/8" netting on black steel structure
             </p>
         </div>
@@ -66,7 +66,7 @@ export default function DrivingRange({ navigate }: Props) {
           <div style={{ backgroundColor: '#ECEAE3', padding: '88px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <p style={{ ...eyebrow, marginBottom: '20px' }}>Driving Ranges</p>
             <h2 style={{ ...heading, marginBottom: '28px' }}>Driving Ranges</h2>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.65)' }}>
+            <p style={{ fontSize: '0.95rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.68)' }}>
               Our netting is made out of 100% knotless polyester netting which makes it the best UV and weather resistant netting available. We build each driving range net custom to fit your course so that the height and type of pole whether it be wood or steel can be custom fit for exactly what you need. Unlike many other net providers, Nets Unlimited, Inc. will come on-site and install everything from the posts to the nets, ensuring a 100% professional look with no errors.
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function DrivingRange({ navigate }: Props) {
               </div>
               <div style={{ padding: '32px' }}>
                 <div style={{ width: '32px', height: '2px', backgroundColor: '#1E4D2B', marginBottom: '24px' }} />
-                <p style={{ fontSize: '0.85rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.6)' }}>
+                <p style={{ fontSize: '0.85rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.68)' }}>
                   <strong style={{ color: '#1A1A18', fontWeight: 700 }}>{item.label}</strong>-{item.rest}
                 </p>
               </div>
@@ -101,8 +101,8 @@ export default function DrivingRange({ navigate }: Props) {
       <CTASection
         navigate={navigate}
         centered
-        subtext="Work with Nets Unlimited to see how we can help you create the perfect range or protection systems for your driving rage, practice areas and on the course."
-        primaryLabel="Learn More"
+        subtext="Work with Nets Unlimited to see how we can help you create the perfect range or protection systems for your driving range, practice areas and on the course."
+        primaryLabel="Contact Us to Learn More"
         primaryPage="contact"
         secondaryLabel="Find out more"
         secondaryPage="gallery"

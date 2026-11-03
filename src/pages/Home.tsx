@@ -1,6 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Page } from '../App'
 import CTASection from '../components/CTASection'
+import PageLink from '../components/PageLink'
+
+const CONSENT_KEY = 'golf-nets-cookie-consent'
+
+declare global {
+  interface Window { dataLayer?: unknown[] }
+}
+
+function readConsent() {
+  try { return localStorage.getItem(CONSENT_KEY) } catch { return null }
+}
+
+// Google Consent Mode v2 update, picked up by the GTM container.
+function saveConsent(choice: 'granted' | 'denied') {
+  try { localStorage.setItem(CONSENT_KEY, choice) } catch { /* storage blocked */ }
+  window.dataLayer = window.dataLayer || []
+  function gtag(..._args: unknown[]) {
+    // gtag commands must be pushed as an Arguments object, not an array.
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer!.push(arguments)
+  }
+  gtag('consent', 'update', {
+    analytics_storage: choice,
+    ad_storage: choice,
+    ad_user_data: choice,
+    ad_personalization: choice,
+  })
+}
 
 interface Props { navigate: (p: Page) => void }
 
@@ -26,17 +54,20 @@ const h2Style: React.CSSProperties = {
 }
 
 export default function Home({ navigate }: Props) {
-  const [showCookieBanner, setShowCookieBanner] = useState(
-    () => sessionStorage.getItem('golf-nets-cookie-banner-seen') === null,
-  )
+  // Read storage after mount so the prerendered HTML and first client render match.
+  const [showCookieBanner, setShowCookieBanner] = useState(false)
 
-  const closeCookieBanner = () => {
-    sessionStorage.setItem('golf-nets-cookie-banner-seen', 'true')
+  useEffect(() => {
+    if (readConsent() === null) setShowCookieBanner(true)
+  }, [])
+
+  const closeCookieBanner = (choice: 'granted' | 'denied') => {
+    saveConsent(choice)
     setShowCookieBanner(false)
   }
 
   return (
-    <main style={{ backgroundColor: '#F8F7F4' }}>
+    <div style={{ backgroundColor: '#F8F7F4' }}>
 
       {/* ── HERO ── */}
       <section style={{ position: 'relative', height: '100vh', minHeight: '640px', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -62,22 +93,24 @@ export default function Home({ navigate }: Props) {
             We understand the importance of maintaining a beautiful course and driving range, while also protecting the golfers themselves. Nets Unlimited offers solutions for managed greens, public courses, neighborhoods, and individual homeowners.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <button
-              onClick={() => navigate('contact')}
-              style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '14px 36px', backgroundColor: '#fff', color: '#1A1A18', transition: 'background-color 0.2s' }}
-              onMouseEnter={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = '#F8F7F4')}
-              onMouseLeave={e => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = '#fff')}
+            <PageLink
+              page="contact"
+              navigate={navigate}
+              style={{ display: 'inline-block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '14px 36px', backgroundColor: '#fff', color: '#1A1A18', transition: 'background-color 0.2s' }}
+              onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#F8F7F4')}
+              onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = '#fff')}
             >
               Contact us
-            </button>
-            <button
-              onClick={() => navigate('gallery')}
-              style={{ fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.8)', transition: 'border-color 0.2s, color 0.2s' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.7)'; (e.currentTarget as HTMLButtonElement).style.color = '#fff' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.3)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(255,255,255,0.8)' }}
+            </PageLink>
+            <PageLink
+              page="gallery"
+              navigate={navigate}
+              style={{ display: 'inline-block', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '14px 28px', border: '1px solid rgba(255,255,255,0.3)', color: 'rgba(255,255,255,0.8)', transition: 'border-color 0.2s, color 0.2s' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.7)'; (e.currentTarget as HTMLAnchorElement).style.color = '#fff' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(255,255,255,0.3)'; (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.8)' }}
             >
               See our Gallery
-            </button>
+            </PageLink>
           </div>
         </div>
       </section>
@@ -87,31 +120,31 @@ export default function Home({ navigate }: Props) {
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px' }}>
           <div className="home-audience" style={{ alignItems: 'start' }}>
 
-            <button onClick={() => navigate('homeowners')} className="home-audience-card" style={{ width: '100%', textAlign: 'left', display: 'block', padding: '80px 56px 80px 0' }}>
+            <PageLink page="homeowners" navigate={navigate} className="home-audience-card" style={{ width: '100%', textAlign: 'left', display: 'block', padding: '80px 56px 80px 0' }}>
               <div className="home-audience-image" style={{ width: '100%', overflow: 'hidden', marginBottom: '32px', height: '340px' }}>
                 <img src={IMG.homeowners} alt="Residential golf ball deterrent netting" loading="lazy" decoding="async" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h2 style={{ ...h2Style, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', marginBottom: '18px' }}>Homeowners</h2>
-              <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.6)', marginBottom: '24px' }}>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.68)', marginBottom: '24px' }}>
                 Learn how we can help you protect your home and family from errant golf balls with our golf protection netting. We understand the issues facing both the homeowners and the Home Owner Associations (HOA).
               </p>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '13px 24px', backgroundColor: '#1E4D2B', color: '#fff', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase' }}>
                 View More Detail <span aria-hidden="true">→</span>
               </span>
-            </button>
+            </PageLink>
 
-            <button onClick={() => navigate('driving-range')} className="home-audience-card" style={{ width: '100%', textAlign: 'left', display: 'block', padding: '80px 0 80px 56px', borderLeft: '1px solid rgba(26,26,24,0.1)' }}>
+            <PageLink page="driving-range" navigate={navigate} className="home-audience-card" style={{ width: '100%', textAlign: 'left', display: 'block', padding: '80px 0 80px 56px', borderLeft: '1px solid rgba(26,26,24,0.1)' }}>
               <div className="home-audience-image" style={{ width: '100%', overflow: 'hidden', marginBottom: '32px', height: '340px' }}>
                 <img src={IMG.managers} alt="Golf course protection netting" loading="lazy" decoding="async" style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
               <h2 style={{ ...h2Style, fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', marginBottom: '18px' }}>Property Managers</h2>
-              <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.6)', marginBottom: '24px' }}>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'rgba(26,26,24,0.68)', marginBottom: '24px' }}>
                 We provide a wide array of options to meet the challenge of creating aesthetically pleasing solutions to protect against property damage and personal injury from stray golf balls. Call us for your golf net needs.
               </p>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '13px 24px', backgroundColor: '#1E4D2B', color: '#fff', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase' }}>
                 View More Detail <span aria-hidden="true">→</span>
               </span>
-            </button>
+            </PageLink>
 
           </div>
         </div>
@@ -123,7 +156,7 @@ export default function Home({ navigate }: Props) {
           <p style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.4rem, 2.6vw, 2.1rem)', fontWeight: 300, color: '#1A1A18', lineHeight: 1.45, letterSpacing: '-0.01em', marginBottom: '32px' }}>
             Nets Unlimited Inc. is the industry leader in the fabrication and installation of golf ball deterrent netting systems. For homes and businesses, on or near the fairway, Nets Unlimited gives you back the enjoyment of living on a golf course by creating a non-invasive, yet necessary barrier, to the real perils posed by wayward golf balls.
           </p>
-          <p style={{ fontSize: '0.95rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.6)' }}>
+          <p style={{ fontSize: '0.95rem', lineHeight: 1.85, color: 'rgba(26,26,24,0.68)' }}>
             Our golf net systems are an attractive and professional solution to the errant golf ball that causes expensive property damage and creates a threat of personal injury.
           </p>
         </div>
@@ -138,7 +171,7 @@ export default function Home({ navigate }: Props) {
               { src: IMG.g2, alt: 'Residential golf protection netting project' },
               { src: IMG.g3, alt: 'Golf-course netting installation' },
             ].map((img, i) => (
-              <button key={i} onClick={() => navigate('gallery')} style={{ overflow: 'hidden', aspectRatio: '3/4', position: 'relative', backgroundColor: '#D8D6CE', display: 'block' }}>
+              <PageLink key={i} page="gallery" navigate={navigate} aria-label={`${img.alt}: view gallery`} style={{ overflow: 'hidden', aspectRatio: '3/4', position: 'relative', backgroundColor: '#D8D6CE', display: 'block' }}>
                 <img
                   src={img.src}
                   alt={img.alt}
@@ -148,18 +181,19 @@ export default function Home({ navigate }: Props) {
                   onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.06)')}
                   onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
                 />
-              </button>
+              </PageLink>
             ))}
           </div>
           <div style={{ textAlign: 'center', marginTop: '40px' }}>
-            <button
-              onClick={() => navigate('gallery')}
-              style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '12px 30px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.65)', transition: 'border-color 0.2s, color 0.2s' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = '#1A1A18'; (e.currentTarget as HTMLButtonElement).style.color = '#1A1A18' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(26,26,24,0.25)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(26,26,24,0.65)' }}
+            <PageLink
+              page="gallery"
+              navigate={navigate}
+              style={{ display: 'inline-block', fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '12px 30px', border: '1px solid rgba(26,26,24,0.25)', color: 'rgba(26,26,24,0.68)', transition: 'border-color 0.2s, color 0.2s' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = '#1A1A18'; (e.currentTarget as HTMLAnchorElement).style.color = '#1A1A18' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(26,26,24,0.25)'; (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(26,26,24,0.68)' }}
             >
               See our Gallery
-            </button>
+            </PageLink>
           </div>
         </div>
       </section>
@@ -176,16 +210,16 @@ export default function Home({ navigate }: Props) {
               { title: 'Aviaries & Pet Protection', desc: 'We provide a wide array of options to obtain the perfect environment, whether you are trying to keep an animal in, or out.', cta: 'Learn More', img: IMG.aviary },
               { title: 'Theming & Decor', desc: 'Nets Unlimited has a wide range of nets and decor for you to create your perfect backyard oasis.', cta: 'Decorate Now', img: IMG.decor },
             ].map(item => (
-              <button key={item.title} onClick={() => navigate('other-nets')} style={{ backgroundColor: '#fff', textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
+              <PageLink key={item.title} page="other-nets" navigate={navigate} style={{ backgroundColor: '#fff', textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ overflow: 'hidden', aspectRatio: '4/3' }}>
                   <img src={item.img} alt={item.title} loading="lazy" decoding="async" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 <div style={{ padding: '32px 28px', display: 'flex', flexDirection: 'column', flex: 1 }}>
                   <h3 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.25rem, 1.8vw, 1.4rem)', fontWeight: 400, lineHeight: 1.3, color: '#1A1A18', marginBottom: '14px' }}>{item.title}</h3>
-                  <p style={{ fontSize: '0.8125rem', lineHeight: 1.7, color: 'rgba(26,26,24,0.55)', marginBottom: '20px', flex: 1 }}>{item.desc}</p>
+                  <p style={{ fontSize: '0.8125rem', lineHeight: 1.7, color: 'rgba(26,26,24,0.68)', marginBottom: '20px', flex: 1 }}>{item.desc}</p>
                   <span style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#1E4D2B' }}>{item.cta}</span>
                 </div>
-              </button>
+              </PageLink>
             ))}
           </div>
         </div>
@@ -202,7 +236,7 @@ export default function Home({ navigate }: Props) {
       />
 
       {showCookieBanner && (
-        <aside className="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+        <aside className="cookie-banner" role="region" aria-label="Cookie consent">
           <div className="cookie-copy">
             <div>
               <h2>We value your privacy</h2>
@@ -210,8 +244,8 @@ export default function Home({ navigate }: Props) {
             </div>
           </div>
           <div className="cookie-actions">
-            <button className="cookie-reject" onClick={closeCookieBanner}>Reject</button>
-            <button className="cookie-accept" onClick={closeCookieBanner}>Accept All</button>
+            <button type="button" className="cookie-reject" onClick={() => closeCookieBanner('denied')}>Reject</button>
+            <button type="button" className="cookie-accept" onClick={() => closeCookieBanner('granted')}>Accept All</button>
           </div>
         </aside>
       )}
@@ -260,6 +294,6 @@ export default function Home({ navigate }: Props) {
           .cookie-actions button { min-height: 46px; padding: 10px 12px; }
         }
       `}</style>
-    </main>
+    </div>
   )
 }
