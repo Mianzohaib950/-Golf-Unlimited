@@ -139,7 +139,7 @@ const staticMeta: Record<StaticPage, PageMeta> = {
     ogImage: `${SITE_URL}/images/optimized/residential-system-1200.jpg`,
   },
   blog: {
-    name: 'Blog',
+    name: 'Blogs',
     title: 'Golf Netting Guides & Blog | Golf Nets Unlimited',
     description: 'Practical guides on golf ball netting: what it costs, who pays for golf ball damage, getting HOA approval, and when to repair or replace a golf net.',
     keywords: 'golf netting blog, golf net guides, golf ball netting cost, HOA golf netting, golf net repair',

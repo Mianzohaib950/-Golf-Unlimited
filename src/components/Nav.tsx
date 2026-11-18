@@ -8,16 +8,20 @@ interface NavProps {
   navigate: (page: Page) => void
 }
 
-const navItems: { label: string; page: Page }[] = [
+// Home (the logo) and Contact Us (the green button) are left out of the desktop bar so the
+// links fit on laptop screens; the mobile menu shows every item.
+const desktopHidden: Page[] = ['home', 'contact']
+
+const navItems: { label: string; page: Page; short?: string }[] = [
   { label: 'Home', page: 'home' },
   { label: 'Homeowners', page: 'homeowners' },
-  { label: 'Driving Range & Practice', page: 'driving-range' },
+  { label: 'Driving Range & Practice', page: 'driving-range', short: 'Driving Range' },
   { label: 'HOA', page: 'hoa' },
   { label: 'Services', page: 'services' },
   { label: 'Other Nets', page: 'other-nets' },
   { label: 'Gallery', page: 'gallery' },
   { label: 'About Us', page: 'about' },
-  { label: 'Blog', page: 'blog' },
+  { label: 'Blogs', page: 'blog' },
   { label: 'FAQs', page: 'faq' },
   { label: 'Contact Us', page: 'contact' },
 ]
@@ -85,11 +89,13 @@ export default function Nav({ currentPage, navigate }: NavProps) {
 
           {/* Desktop nav links */}
           <nav className="nav-desktop" aria-label="Main" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
-            {navItems.map(item => {
+            {navItems.filter(item => !desktopHidden.includes(item.page)).map(item => {
               const active = isActive(item.page, currentPage)
               return (
                 <a
                   key={item.page}
+                  className="nav-link"
+                  aria-label={item.short ? item.label : undefined}
                   href={getPagePath(item.page)}
                   onClick={event => go(item.page, event)}
                   aria-current={active ? 'page' : undefined}
@@ -123,7 +129,9 @@ export default function Nav({ currentPage, navigate }: NavProps) {
                     if (!active) btn.style.backgroundColor = 'transparent'
                   }}
                 >
-                  {item.label}
+                  {item.short
+                    ? <><span className="nav-label-full">{item.label}</span><span className="nav-label-short">{item.short}</span></>
+                    : item.label}
                 </a>
               )
             })}
@@ -131,7 +139,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
 
           {/* Desktop CTA */}
           <a
-            className="nav-desktop"
+            className="nav-desktop nav-cta"
             href={getPagePath('contact')}
             onClick={event => go('contact', event)}
             style={{
@@ -215,7 +223,15 @@ export default function Nav({ currentPage, navigate }: NavProps) {
       )}
 
       <style>{`
-        @media (max-width: 1320px) {
+        .nav-label-short { display: none; }
+        /* Laptops and zoomed-in browsers: tighter links so the full bar still fits. */
+        @media (max-width: 1300px) {
+          .nav-link { font-size: 0.74rem !important; padding: 6px 6px !important; }
+          .nav-cta { padding: 9px 14px !important; font-size: 0.68rem !important; }
+          .nav-label-full { display: none; }
+          .nav-label-short { display: inline; }
+        }
+        @media (max-width: 1023px) {
           .nav-desktop { display: none !important; }
           .nav-mobile-toggle { display: flex !important; }
           .nav-mobile-panel { display: block !important; }
