@@ -12,7 +12,7 @@ export default function FAQ({ navigate }: Props) {
     <div style={{ backgroundColor: '#F8F7F4' }}>
       <header style={{ maxWidth: '980px', margin: '0 auto', padding: '150px 40px 56px' }}>
         <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(3rem, 8vw, 5.5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.03em', lineHeight: 1 }}>
-          FAQS
+          Golf Netting FAQs
         </h1>
       </header>
 

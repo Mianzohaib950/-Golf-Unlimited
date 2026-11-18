@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { MouseEvent } from 'react'
 import { getPagePath, type Page } from '../App'
+import { isBlogPost, isServicePage } from '../seo'
 
 interface NavProps {
   currentPage: Page
@@ -12,12 +13,18 @@ const navItems: { label: string; page: Page }[] = [
   { label: 'Homeowners', page: 'homeowners' },
   { label: 'Driving Range & Practice', page: 'driving-range' },
   { label: 'HOA', page: 'hoa' },
+  { label: 'Services', page: 'services' },
   { label: 'Other Nets', page: 'other-nets' },
   { label: 'Gallery', page: 'gallery' },
-  { label: 'Contact Us', page: 'contact' },
   { label: 'About Us', page: 'about' },
+  { label: 'Blog', page: 'blog' },
   { label: 'FAQs', page: 'faq' },
+  { label: 'Contact Us', page: 'contact' },
 ]
+
+// A section stays highlighted on its child pages (a service under Services, a post under Blog).
+const isActive = (item: Page, current: Page) =>
+  item === current || (item === 'services' && isServicePage(current)) || (item === 'blog' && isBlogPost(current))
 
 // Pages with a dark hero — nav should be white text when unscrolled
 const darkHeroPages: Page[] = ['home']
@@ -79,7 +86,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
           {/* Desktop nav links */}
           <nav className="nav-desktop" aria-label="Main" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
             {navItems.map(item => {
-              const active = currentPage === item.page
+              const active = isActive(item.page, currentPage)
               return (
                 <a
                   key={item.page}
@@ -174,7 +181,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
       {menuOpen && (
         <nav id="mobile-menu" aria-label="Mobile" className="nav-mobile-panel" style={{ display: 'none', backgroundColor: '#F8F7F4', borderTop: '1px solid rgba(196,195,188,0.5)', padding: '16px 32px 28px' }}>
           {navItems.map(item => {
-            const active = currentPage === item.page
+            const active = isActive(item.page, currentPage)
             return (
               <a
                 key={item.page}
@@ -208,7 +215,7 @@ export default function Nav({ currentPage, navigate }: NavProps) {
       )}
 
       <style>{`
-        @media (max-width: 1100px) {
+        @media (max-width: 1320px) {
           .nav-desktop { display: none !important; }
           .nav-mobile-toggle { display: flex !important; }
           .nav-mobile-panel { display: block !important; }

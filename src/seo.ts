@@ -1,31 +1,55 @@
+import { blogMeta, blogSlugs, type BlogSlug } from './data/blogMeta'
+import { drivingRangeFaqs, hoaFaqs, homeownersFaqs, servicesHubFaqs, type FaqList } from './data/faqs'
+import { services, serviceSlugs, type ServiceSlug } from './data/services'
+
 export const SITE_URL = 'https://golfnetsunlimited.com'
 export const SITE_NAME = 'Golf Nets Unlimited'
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/images/optimized/home-residential-1600.jpg`
 
-export type Page =
+export type StaticPage =
   | 'home'
   | 'homeowners'
   | 'driving-range'
   | 'hoa'
   | 'other-nets'
+  | 'services'
   | 'gallery'
   | 'about'
+  | 'blog'
   | 'faq'
   | 'contact'
   | 'not-found'
 
-export const pagePaths: Record<Page, string> = {
+export type ServicePage = `service/${ServiceSlug}`
+export type BlogPage = `blog/${BlogSlug}`
+export type Page = StaticPage | ServicePage | BlogPage
+
+export const servicePage = (slug: ServiceSlug) => `service/${slug}` as ServicePage
+export const blogPage = (slug: BlogSlug) => `blog/${slug}` as BlogPage
+export const isServicePage = (page: Page): page is ServicePage => page.startsWith('service/')
+export const isBlogPost = (page: Page): page is BlogPage => page.startsWith('blog/')
+export const slugOf = (page: ServicePage | BlogPage) => page.slice(page.indexOf('/') + 1)
+
+const staticPaths: Record<StaticPage, string> = {
   home: '/',
   homeowners: '/homeowners',
   'driving-range': '/driving-range',
   hoa: '/hoa',
   'other-nets': '/other-nets',
+  services: '/services',
   gallery: '/gallery',
   about: '/about',
+  blog: '/blogs',
   faq: '/faq',
   contact: '/contact',
   'not-found': '/404',
 }
+
+export const pagePaths = {
+  ...staticPaths,
+  ...Object.fromEntries(serviceSlugs.map(slug => [servicePage(slug), `/services/${slug}`])),
+  ...Object.fromEntries(blogSlugs.map(slug => [blogPage(slug), `/blogs/${slug}`])),
+} as Record<Page, string>
 
 export interface PageMeta {
   title: string
@@ -33,12 +57,16 @@ export interface PageMeta {
   keywords: string
   /** Label used in breadcrumbs and structured data. */
   name: string
+  /** Parent page for the breadcrumb trail (defaults to Home). */
+  parent?: Page
+  /** Questions answered on the page, emitted as FAQPage JSON-LD. */
+  faqs?: FaqList
   /** Above-the-fold image preloaded in the prerendered HTML. */
   heroImage?: { href: string; srcset?: string; sizes?: string }
   ogImage?: string
 }
 
-export const pageMeta: Record<Page, PageMeta> = {
+const staticMeta: Record<StaticPage, PageMeta> = {
   home: {
     name: 'Home',
     title: 'Golf Nets Unlimited | Golf Ball Deterrent Netting Systems',
@@ -55,6 +83,7 @@ export const pageMeta: Record<Page, PageMeta> = {
     title: 'Residential Golf Ball Netting | Golf Nets Unlimited',
     description: 'Custom residential golf netting systems that protect homes, patios, windows, and families from errant golf balls. Low-visibility nets on galvanized steel poles.',
     keywords: 'residential golf nets, home golf netting, golf ball protection, patio netting, window protection netting, golf course home protection',
+    faqs: homeownersFaqs,
     heroImage: {
       href: '/images/optimized/residential-system-760.jpg',
       srcset: '/images/optimized/residential-system-760.jpg 760w, /images/optimized/residential-system-1200.jpg 1200w',
@@ -67,6 +96,7 @@ export const pageMeta: Record<Page, PageMeta> = {
     title: 'Driving Range & Golf Course Netting | Golf Nets Unlimited',
     description: 'Professional driving range, tee box, cart path, and golf course protection netting designed, fabricated, and installed by Nets Unlimited, Inc.',
     keywords: 'driving range netting, golf course netting, tee box netting, cart path netting, practice netting, golf range safety nets',
+    faqs: drivingRangeFaqs,
     heroImage: {
       href: '/images/optimized/driving-range-banner-760.jpg',
       srcset: '/images/optimized/driving-range-banner-760.jpg 760w, /images/optimized/driving-range-banner-1200.jpg 1200w',
@@ -79,6 +109,7 @@ export const pageMeta: Record<Page, PageMeta> = {
     title: 'HOA Golf Protection Netting | Golf Nets Unlimited',
     description: 'Golf ball deterrent netting for HOAs, golf-course communities, and property managers, with drawings, samples, and guideline support for uniform installs.',
     keywords: 'HOA golf netting, community golf protection, property manager golf nets, golf course community netting, homeowner association netting',
+    faqs: hoaFaqs,
     heroImage: {
       href: '/images/optimized/community-netting-760.jpg',
       srcset: '/images/optimized/community-netting-760.jpg 760w, /images/optimized/community-netting-1200.jpg 1200w',
@@ -97,6 +128,21 @@ export const pageMeta: Record<Page, PageMeta> = {
       sizes: '100vw',
     },
     ogImage: `${SITE_URL}/images/optimized/service-01-1200.jpg`,
+  },
+  services: {
+    name: 'Services',
+    title: 'Golf Netting Services in Arizona | Golf Nets Unlimited',
+    description: 'Golf netting installation, net replacement and repair, netting-only supply, and window and patio protection from a licensed Phoenix contractor.',
+    keywords: 'golf netting services, golf net installation, golf net replacement, golf netting supplier, golf ball protection services, Phoenix golf netting contractor',
+    faqs: servicesHubFaqs,
+    heroImage: { href: '/images/optimized/residential-system-760.jpg' },
+    ogImage: `${SITE_URL}/images/optimized/residential-system-1200.jpg`,
+  },
+  blog: {
+    name: 'Blog',
+    title: 'Golf Netting Guides & Blog | Golf Nets Unlimited',
+    description: 'Practical guides on golf ball netting: what it costs, who pays for golf ball damage, getting HOA approval, and when to repair or replace a golf net.',
+    keywords: 'golf netting blog, golf net guides, golf ball netting cost, HOA golf netting, golf net repair',
   },
   gallery: {
     name: 'Gallery',
@@ -132,7 +178,46 @@ export const pageMeta: Record<Page, PageMeta> = {
   },
 }
 
+export const pageMeta = {
+  ...staticMeta,
+  ...Object.fromEntries(serviceSlugs.map(slug => {
+    const service = services[slug]
+    const meta: PageMeta = {
+      name: service.name,
+      title: service.title,
+      description: service.description,
+      keywords: service.keywords,
+      parent: 'services',
+      faqs: service.faqs,
+      heroImage: { href: service.image.src },
+      ogImage: `${SITE_URL}${service.image.src}`,
+    }
+    return [servicePage(slug), meta]
+  })),
+  ...Object.fromEntries(blogSlugs.map(slug => {
+    const post = blogMeta[slug]
+    const meta: PageMeta = {
+      name: post.title,
+      title: post.metaTitle,
+      description: post.description,
+      keywords: post.keywords,
+      parent: 'blog',
+      faqs: post.faqs,
+      heroImage: { href: post.image.src },
+      ogImage: `${SITE_URL}${post.image.src}`,
+    }
+    return [blogPage(slug), meta]
+  })),
+} as Record<Page, PageMeta>
+
 export const indexablePages = (Object.keys(pagePaths) as Page[]).filter(page => page !== 'not-found')
+
+// Built, prerendered and linked on the site, but kept out of sitemap.xml for now.
+// To list them later, remove the matching condition here and rebuild.
+const keepOutOfSitemap = (page: Page) =>
+  page === 'services' || page === 'blog' || isServicePage(page) || isBlogPost(page)
+
+export const sitemapPages = indexablePages.filter(page => !keepOutOfSitemap(page))
 
 export function pageFromPath(pathname: string, base = '/'): Page {
   let path = pathname
@@ -154,7 +239,7 @@ export const faqs: [string, string][] = [
   ['I have an estimate, what are the next steps?', 'We require a 50% deposit with the placement of the order, with the balance due upon completion.\n\nOnce a deposit is received, we will provide a site plan for your approval and continue to work with you throughout the course of your HOA approval process, if applicable. We will schedule the installation of your golf ball deterrent system based on availability after everything is approved. In most cases, installation takes between 2-5 days to complete.'],
   ['What are the maintenance requirements for golf net deterrent systems?', 'Routine maintenance or repair should not be necessary for the netting structure as long as plants are kept well-trimmed, and away from the net. However, if something does occur we are available to make repairs at reasonable rates.'],
   ["I don't want to build a new structure... Can I buy just the netting?", 'Absolutely! We are happy to provide netting as a material only purchase. Just give us a call or send a request through our contact page and we can provide pricing and information about the time it takes for fabrication. Everything we do is custom so let us know what you are interested in and we are happy to help.'],
-  ['What do you make the golf net deterrent systems out of?', 'All of our poles are schedule 40 galvanized steel for strength, durability, and longevity. The size of the post depends on the height of your structure. Heights of structures vary with terrain, proximity to the Tee, the home, and HOA allowances. Black is the most common color for the steel structures but poles can be custom colored with either powder coating in an array of colors or painted to match the HOA requirements or home color.\n\nOur golf nets are high-performance sports netting made of either polyester or nylon for superior UV ratings and typically have a polypropylene rope border. Black, Beige, White, and Green are the most common color choices—others are available upon request.'],
+  ['What do you make the golf net deterrent systems out of?', 'All of our poles are schedule 40 galvanized steel for strength, durability, and longevity. The size of the post depends on the height of your structure. Heights of structures vary with terrain, proximity to the Tee, the home, and HOA allowances. Black is the most common color for the steel structures but poles can be custom colored with either powder coating in an array of colors or painted to match the HOA requirements or home color.\n\nOur golf nets are high-performance sports netting made of either polyester or nylon for superior UV ratings and typically have a polypropylene rope border. Black, Beige, White, and Green are the most common color choices. Others are available upon request.'],
   ['Do you have other types of netting products?', "We specialize in a wide variety of rope and netting products. Whether you want to add a tropical theme to your backyard, add safety netting for your pets, or have another project in mind, we would love to help. Either give us a call to speak to one of our specialized representatives or go to our parent company's main website for information and inspiration!"],
 ]
 
@@ -199,6 +284,7 @@ const business = {
       ['Residential golf ball deterrent netting', 'homeowners'],
       ['HOA golf protection netting', 'hoa'],
       ['Driving range and golf course netting', 'driving-range'],
+      ...serviceSlugs.map(slug => [services[slug].serviceType, servicePage(slug)]),
       ['Sport, pet, shade, and decorative netting', 'other-nets'],
     ].map(([name, page]) => ({
       '@type': 'Offer',
@@ -207,10 +293,30 @@ const business = {
   },
 }
 
+/** Home → parent(s) → page, used by the visible breadcrumb and BreadcrumbList. */
+export function breadcrumbTrail(page: Page): { page: Page; name: string }[] {
+  const trail: { page: Page; name: string }[] = []
+  let current: Page | undefined = page
+  while (current && current !== 'home') {
+    trail.unshift({ page: current, name: pageMeta[current].name })
+    current = pageMeta[current].parent
+  }
+  return [{ page: 'home', name: 'Home' }, ...trail]
+}
+
+const faqEntities = (list: FaqList) =>
+  list.map(([question, answer]) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: answer.replace(/\n\n/g, ' ') },
+  }))
+
 /** JSON-LD graph for a page, emitted into the prerendered HTML. */
 export function structuredData(page: Page) {
   const meta = pageMeta[page]
   const url = canonicalUrl(page)
+  const pageFaqs = page === 'faq' ? faqs : meta.faqs
+  const baseType = page === 'contact' ? 'ContactPage' : page === 'about' ? 'AboutPage' : page === 'blog' ? 'CollectionPage' : 'WebPage'
   const graph: Record<string, unknown>[] = [
     business,
     {
@@ -222,7 +328,7 @@ export function structuredData(page: Page) {
       inLanguage: 'en-US',
     },
     {
-      '@type': page === 'faq' ? ['WebPage', 'FAQPage'] : page === 'contact' ? 'ContactPage' : page === 'about' ? 'AboutPage' : 'WebPage',
+      '@type': pageFaqs ? [baseType, 'FAQPage'] : baseType,
       '@id': `${url}#webpage`,
       url,
       name: meta.title,
@@ -230,22 +336,50 @@ export function structuredData(page: Page) {
       isPartOf: { '@id': `${SITE_URL}/#website` },
       about: { '@id': `${SITE_URL}/#business` },
       inLanguage: 'en-US',
-      ...(page === 'faq' && {
-        mainEntity: faqs.map(([question, answer]) => ({
-          '@type': 'Question',
-          name: question,
-          acceptedAnswer: { '@type': 'Answer', text: answer.replace(/\n\n/g, ' ') },
-        })),
-      }),
+      ...(meta.ogImage && { primaryImageOfPage: { '@type': 'ImageObject', url: meta.ogImage } }),
+      ...(pageFaqs && { mainEntity: faqEntities(pageFaqs) }),
     },
   ]
+  if (isServicePage(page)) {
+    const service = services[slugOf(page) as ServiceSlug]
+    graph.push({
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: service.name,
+      serviceType: service.serviceType,
+      description: service.description,
+      url,
+      image: `${SITE_URL}${service.image.src}`,
+      provider: { '@id': `${SITE_URL}/#business` },
+      areaServed: [{ '@type': 'State', name: 'Arizona' }, { '@type': 'Country', name: 'United States' }],
+    })
+  }
+  if (isBlogPost(page)) {
+    const post = blogMeta[slugOf(page) as BlogSlug]
+    graph.push({
+      '@type': 'BlogPosting',
+      '@id': `${url}#article`,
+      headline: post.title,
+      description: post.description,
+      image: `${SITE_URL}${post.image.src}`,
+      datePublished: post.published,
+      dateModified: post.updated ?? post.published,
+      author: { '@type': 'Organization', name: 'Golf Nets Unlimited team', url: `${SITE_URL}/about` },
+      publisher: { '@id': `${SITE_URL}/#business` },
+      mainEntityOfPage: { '@id': `${url}#webpage` },
+      articleSection: post.category,
+      inLanguage: 'en-US',
+    })
+  }
   if (page !== 'home') {
     graph.push({
       '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
-        { '@type': 'ListItem', position: 2, name: meta.name, item: url },
-      ],
+      itemListElement: breadcrumbTrail(page).map((crumb, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: crumb.name,
+        item: canonicalUrl(crumb.page),
+      })),
     })
   }
   return { '@context': 'https://schema.org', '@graph': graph }

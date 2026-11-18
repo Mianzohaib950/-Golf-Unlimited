@@ -1,4 +1,7 @@
 import CTASection from '../components/CTASection'
+import { FaqBlock, LinkCards, Section, TextLink } from '../components/ContentBlocks'
+import { homeownersFaqs } from '../data/faqs'
+import { blogPage, servicePage } from '../seo'
 import type { Page } from '../App'
 
 interface Props { navigate: (p: Page) => void }
@@ -39,7 +42,7 @@ export default function Homeowners({ navigate }: Props) {
         <div style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
           <p style={{ ...eyebrow, color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>Homeowners</p>
           <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(2.6rem, 6vw, 5rem)', fontWeight: 200, color: '#fff', lineHeight: 1.05, letterSpacing: '-0.025em', maxWidth: '760px' }}>
-            Golf Ball Deterrent Netting Systems
+            Residential Golf Ball Netting for Homes
           </h1>
         </div>
       </section>
@@ -53,7 +56,7 @@ export default function Homeowners({ navigate }: Props) {
               When buying a home on a beautiful green golf course, many homeowners do not realize that errant golf balls can lead to expensive property damage and pose a threat of personal injury.
             </p>
             <p style={body}>
-              When you need protection, Nets Unlimited's custom residential golf ball deterrent systems are the answer. Our systems are made with commercial-grade steel and netting to provide safety and security without compromising your view or the aesthetics of your home.
+              When you need protection, Nets Unlimited's custom residential golf ball deterrent systems are the answer. Our systems are made with commercial-grade steel and netting to provide safety and security without compromising your view or the aesthetics of your home. We design, fabricate and install every system ourselves from Phoenix, Arizona.
             </p>
           </div>
         </div>
@@ -86,7 +89,7 @@ export default function Homeowners({ navigate }: Props) {
             Many homeowners call Nets Unlimited looking for other creative solutions to their golf ball problem, or possibly the HOA will not allow for a full structure.
           </p>
           <p style={{ ...body, marginBottom: '24px' }}>
-            Whether you have just a couple of windows that need extra protection, or a specific yard or patio area, Nets Unlimited can help. We will review with you the various options so that you can find the best solution to protect you and your home.
+            Whether you have just a couple of windows that need extra protection, or a specific yard or patio area, Nets Unlimited can help with <TextLink page={servicePage('window-patio-golf-ball-protection')} navigate={navigate}>window and patio golf ball protection</TextLink>. We will review with you the various options so that you can find the best solution to protect you and your home.
           </p>
           <p style={{ fontSize: '0.78rem', fontStyle: 'italic', color: 'rgba(26,26,24,0.68)', lineHeight: 1.7 }}>
             (Photo right: infill panels attached to decorative archways to protect windows and seating area under covered patio)
@@ -100,17 +103,27 @@ export default function Homeowners({ navigate }: Props) {
       {/* What's Next? */}
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '96px 40px' }}>
         <div className="ho-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '80px', alignItems: 'start' }}>
-          <h2 style={{ ...qHeading }}>What's Next?</h2>
+          <h2 style={{ ...qHeading }}>What happens after I call?</h2>
           <div>
             <p style={{ ...body, marginBottom: '20px' }}>
               We are happy to discuss general budget information and answer any questions you may have over the phone. Then, a Nets Unlimited team member will schedule one of our site specialists to come out and review your property with you.
             </p>
             <p style={body}>
-              During our on-site visit we will take a look at your location; discuss the nature of the damage you've seen, and ask questions about what you are hoping to achieve. We will then generate a custom plan and provide you with an estimate for Nets Unlimited to get you back to enjoying your yard.
+              During our on-site visit we will take a look at your location; discuss the nature of the damage you've seen, and ask questions about what you are hoping to achieve. We will then generate a custom plan and provide you with an estimate for Nets Unlimited to get you back to enjoying your yard. See how <TextLink page={servicePage('golf-netting-installation')} navigate={navigate}>golf netting installation</TextLink> works from there.
             </p>
           </div>
         </div>
       </section>
+
+      <FaqBlock heading="Residential golf netting FAQs" items={homeownersFaqs} />
+
+      <Section eyebrow="Keep reading" heading="Guides and services for homeowners" tone="white">
+        <LinkCards navigate={navigate} items={[
+          { page: blogPage('golf-ball-netting-cost'), title: 'How much does golf ball netting cost?', body: 'Typical prices for homes, and what makes a net cost more or less.' },
+          { page: blogPage('golf-ball-damage-to-house-who-pays'), title: 'Golf ball damage: who pays?', body: 'What insurers and lawyers say about golfer, course and homeowner liability.' },
+          { page: servicePage('golf-net-replacement-repair'), title: 'Golf net replacement & repair', body: 'Worn net on sound poles? Replace the net, not the whole structure.' },
+        ]} />
+      </Section>
 
       <CTASection
         navigate={navigate}

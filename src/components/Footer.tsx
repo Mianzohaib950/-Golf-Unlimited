@@ -1,5 +1,7 @@
 import type { MouseEvent, ReactNode } from 'react'
 import { getPagePath, type Page } from '../App'
+import { serviceList } from '../data/services'
+import { servicePage } from '../seo'
 
 interface FooterProps {
   navigate: (page: Page) => void
@@ -15,6 +17,13 @@ const navItems: { label: string; page: Page }[] = [
   { label: 'Contact Us', page: 'contact' },
   { label: 'About Us', page: 'about' },
   { label: 'FAQs', page: 'faq' },
+  { label: 'Services', page: 'services' },
+  { label: 'Blog', page: 'blog' },
+]
+
+const serviceLinks: { label: string; page: Page }[] = [
+  ...serviceList.map(s => ({ label: s.name, page: servicePage(s.slug) as Page })),
+  { label: 'All Services', page: 'services' },
 ]
 
 const social = [
@@ -37,7 +46,7 @@ export default function Footer({ navigate }: FooterProps) {
     <footer style={{ backgroundColor: '#1E4D2B' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '72px 40px 40px' }}>
 
-        <div className="r-footer-top" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '48px', paddingBottom: '24px' }}>
+        <div className="r-footer-top" style={{ display: 'grid', gridTemplateColumns: '1.6fr 1.2fr 1fr 1fr 1fr', gap: '48px', paddingBottom: '24px' }}>
           <div>
             <a href={getPagePath('home')} onClick={event => go('home', event)} style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', marginBottom: '24px', textDecoration: 'none' }}>
               <span style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: '1.25rem', fontWeight: 300, color: '#fff' }}>Golf Nets Unlimited</span>
@@ -54,7 +63,8 @@ export default function Footer({ navigate }: FooterProps) {
           </div>
 
           <FooterLinks title="Solutions" items={navItems.filter(item => ['homeowners', 'driving-range', 'hoa', 'other-nets'].includes(item.page))} go={go} />
-          <FooterLinks title="Company" items={navItems.filter(item => ['about', 'gallery', 'faq', 'contact'].includes(item.page))} go={go} />
+          <FooterLinks title="Services" items={serviceLinks} go={go} />
+          <FooterLinks title="Company" items={navItems.filter(item => ['about', 'gallery', 'blog', 'faq', 'contact'].includes(item.page))} go={go} />
           <div>
             <FooterLabel>Hours</FooterLabel>
             {[['Mon – Fri', '7:00 am – 4:00 pm'], ['Saturday', 'Closed'], ['Sunday', 'Closed']].map(([day, hours]) => <div key={day} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', marginBottom: '10px' }}><span style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.75)' }}>{day}</span><span style={{ fontSize: '0.8125rem', color: '#fff' }}>{hours}</span></div>)}
@@ -89,6 +99,10 @@ export default function Footer({ navigate }: FooterProps) {
       </div>
 
       <style>{`
+        @media (max-width: 1024px) {
+          .r-footer-top { grid-template-columns: 1fr 1fr 1fr !important; }
+          .r-footer-top > div:first-child { grid-column: 1 / -1; }
+        }
         @media (max-width: 768px) {
           .r-footer-top { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
         }

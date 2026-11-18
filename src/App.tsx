@@ -3,7 +3,9 @@ import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
-import { canonicalUrl, DEFAULT_OG_IMAGE, pageFromPath, pageMeta, pagePaths, type Page } from './seo'
+import { canonicalUrl, DEFAULT_OG_IMAGE, isBlogPost, isServicePage, pageFromPath, pageMeta, pagePaths, slugOf, type Page } from './seo'
+import type { BlogSlug } from './data/blogMeta'
+import type { ServiceSlug } from './data/services'
 
 const Homeowners = lazy(() => import('./pages/Homeowners'))
 const DrivingRange = lazy(() => import('./pages/DrivingRange'))
@@ -13,6 +15,10 @@ const Gallery = lazy(() => import('./pages/Gallery'))
 const About = lazy(() => import('./pages/About'))
 const FAQ = lazy(() => import('./pages/FAQ'))
 const Contact = lazy(() => import('./pages/Contact'))
+const Services = lazy(() => import('./pages/Services'))
+const ServiceDetail = lazy(() => import('./pages/Services').then(m => ({ default: m.ServiceDetail })))
+const Blog = lazy(() => import('./pages/Blog'))
+const BlogPost = lazy(() => import('./pages/Blog').then(m => ({ default: m.BlogPost })))
 
 export type { Page }
 
@@ -80,6 +86,10 @@ export default function App({ initialPage }: { initialPage?: Page }) {
           {page === 'about' && <About navigate={navigate} />}
           {page === 'faq' && <FAQ navigate={navigate} />}
           {page === 'contact' && <Contact navigate={navigate} />}
+          {page === 'services' && <Services navigate={navigate} />}
+          {isServicePage(page) && <ServiceDetail key={page} navigate={navigate} slug={slugOf(page) as ServiceSlug} />}
+          {page === 'blog' && <Blog navigate={navigate} />}
+          {isBlogPost(page) && <BlogPost key={page} navigate={navigate} slug={slugOf(page) as BlogSlug} />}
         </Suspense>
       </main>
       <Footer navigate={navigate} />

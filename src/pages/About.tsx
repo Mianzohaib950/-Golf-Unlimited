@@ -14,7 +14,7 @@ export default function About({ navigate: _navigate }: Props) {
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '150px 40px 72px' }}>
         <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#1E4D2B', marginBottom: '20px' }}>About Us</p>
         <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(2.6rem, 6vw, 5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.03em', lineHeight: 1.02, maxWidth: '900px' }}>
-          Who is Golf Nets Unlimited?
+          About Golf Nets Unlimited
         </h1>
       </section>
 
@@ -28,22 +28,22 @@ export default function About({ navigate: _navigate }: Props) {
       {/* Body */}
       <section style={{ maxWidth: '760px', margin: '0 auto', padding: '0 40px 96px' }}>
         <p style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.2rem, 2.4vw, 1.6rem)', fontWeight: 300, lineHeight: 1.55, color: '#1A1A18', letterSpacing: '-0.01em', marginBottom: '16px' }}>
-          Golf Nets Unlimited is an operating division of Nets Unlimited, Inc. (AZ ROC #236070)
+          Golf Nets Unlimited is an operating division of Nets Unlimited, Inc. (AZ ROC #236070), a Phoenix, Arizona rope and netting contractor founded in 2003.
         </p>
         <p style={{ ...body, marginBottom: '32px' }}>
-          Nets Unlimited, Inc. is a licensed, bonded, and insured contractor.
+          Nets Unlimited, Inc. is a licensed, bonded, and insured contractor. We design, fabricate, and install golf ball deterrent netting for homeowners, HOAs, golf courses, and driving ranges, mainly in Arizona, and ship netting anywhere.
         </p>
         <p style={{ ...body, marginBottom: '24px' }}>
           Nets Unlimited specializes in custom products made with rope, netting, cable, and rigging. Our rope and netting products are used for animal containment in zoos, play elements in waterparks and themeparks, handrails in residential and commercial locations, nautical/tropical themeing for resorts, homeowners, and hotels and finally they are used as climbing nets for playgrounds and the military. Many of the themeparks, waterparks, zoos, and other attractions that you visit each year are customers of Nets Unlimited Inc.
         </p>
         <p style={{ ...body, marginBottom: '24px' }}>
-          Over the years some of our customers who live on golf courses had persistent problems with errant golf balls creating either hazardous conditions in the yard or doing damage to their property. Nets Unlimited stepped up to provide them with an attractive yet non-intrusive solution to the problem. The system Nets Unlimited uses to address the golf ball issue was so highly sought after and unique that it led to the creation of a dedicated division for Nets Unlimited—Golf Nets Unlimited.
+          Over the years some of our customers who live on golf courses had persistent problems with errant golf balls creating either hazardous conditions in the yard or doing damage to their property. Nets Unlimited stepped up to provide them with an attractive yet non-intrusive solution to the problem. The system Nets Unlimited uses to address the golf ball issue was so highly sought after and unique that it led to the creation of a dedicated division for Nets Unlimited: Golf Nets Unlimited.
         </p>
         <p style={{ ...body, marginBottom: '24px' }}>
           The goal for all of our projects is to combine quality craftsmanship with custom solutions, whether the client is a local homeowner who isn't able to enjoy the backyard without fear of hearing "Fore!" or a mega Themepark opening a new and exciting attraction.
         </p>
         <p style={{ ...body, marginBottom: '24px' }}>
-          We here at Nets Unlimited try to stay on the pulse of what people want, both our commercial clients as well as our residential homeowners. Architecture and products are constantly evolving and we like to develop and evolve along with them--from those who want to add a nautical feeling to their house or yard to architects asking for a new and unique railing product to create a one of a kind modern designs we have the solution.
+          We here at Nets Unlimited try to stay on the pulse of what people want, both our commercial clients as well as our residential homeowners. Architecture and products are constantly evolving and we like to develop and evolve along with them, from those who want to add a nautical feeling to their house or yard to architects asking for a new and unique railing product to create a one of a kind modern designs we have the solution.
         </p>
         <p style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(1.15rem, 2.3vw, 1.5rem)', fontWeight: 300, lineHeight: 1.55, color: '#1A1A18', letterSpacing: '-0.01em' }}>
           Our favorite phone call starts with "I had this idea…." so call us and share your ideas today. We look forward to working with you.

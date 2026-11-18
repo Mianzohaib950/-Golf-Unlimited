@@ -133,7 +133,7 @@ function prerenderRoutesPlugin(): Plugin {
         }
 
         const lastmod = new Date().toISOString().slice(0, 10)
-        const urls = ssr.indexablePages
+        const urls = ssr.sitemapPages
           .map((page: string) => `  <url>\n    <loc>${ssr.canonicalUrl(page)}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`)
           .join('\n')
         fs.writeFileSync(

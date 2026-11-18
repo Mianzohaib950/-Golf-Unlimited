@@ -22,7 +22,8 @@ export default function OtherNets({ navigate }: Props) {
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,16,11,0.75), rgba(10,16,11,0.2) 55%, transparent)' }} />
       <div className="other-hero-content" style={{ position: 'relative', zIndex: 2, maxWidth: '1280px', width: '100%', margin: '0 auto', padding: '0 40px 72px' }}>
         <p style={{ fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '16px' }}>Other Nets</p>
-        <h1 style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)', color: '#fff', lineHeight: 1.05, letterSpacing: '-0.025em' }}>We don't just do golf nets, but we do a whole lot of:</h1>
+        <h1 style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)', color: '#fff', lineHeight: 1.05, letterSpacing: '-0.025em' }}>Sport, Pet, Shade &amp; Decorative Netting</h1>
+        <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.82)', marginTop: '18px' }}>We don't just do golf nets, but we do a whole lot of:</p>
       </div>
     </section>
 

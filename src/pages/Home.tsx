@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react'
 import type { Page } from '../App'
 import CTASection from '../components/CTASection'
 import PageLink from '../components/PageLink'
+import { LinkCards, Section } from '../components/ContentBlocks'
+import { blogList } from '../data/blogMeta'
+import { serviceList } from '../data/services'
+import { blogPage, servicePage } from '../seo'
 
 const CONSENT_KEY = 'golf-nets-cookie-consent'
 
@@ -90,7 +94,7 @@ export default function Home({ navigate }: Props) {
             Golf Ball Deterrent<br />Netting Systems
           </h1>
           <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'rgba(255,255,255,0.82)', maxWidth: '600px', margin: '0 auto 40px' }}>
-            We understand the importance of maintaining a beautiful course and driving range, while also protecting the golfers themselves. Nets Unlimited offers solutions for managed greens, public courses, neighborhoods, and individual homeowners.
+            Custom golf ball netting that protects homes, patios, communities and golf courses from errant golf balls. Designed, fabricated and installed by a licensed Phoenix, Arizona netting contractor for homeowners, HOAs, managed greens and public courses.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
             <PageLink
@@ -162,6 +166,14 @@ export default function Home({ navigate }: Props) {
         </div>
       </section>
 
+      {/* ── SERVICES ── */}
+      <Section eyebrow="Services" heading="Golf netting services" tone="white">
+        <LinkCards
+          navigate={navigate}
+          items={serviceList.map(s => ({ page: servicePage(s.slug), title: s.name, body: s.summary, image: s.image.src.replace('-760', '-570'), imageAlt: s.image.alt }))}
+        />
+      </Section>
+
       {/* ── GALLERY PREVIEW ── */}
       <section style={{ backgroundColor: '#ECEAE3', padding: '96px 0' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 40px' }}>
@@ -224,6 +236,11 @@ export default function Home({ navigate }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ── GUIDES ── */}
+      <Section eyebrow="Guides" heading="Golf netting guides">
+        <LinkCards navigate={navigate} items={blogList.map(post => ({ page: blogPage(post.slug), title: post.title, body: post.excerpt }))} />
+      </Section>
 
       <CTASection
         navigate={navigate}

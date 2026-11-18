@@ -8,7 +8,11 @@
     { "source": "/gallery", "destination": "/gallery/index.html" },
     { "source": "/about", "destination": "/about/index.html" },
     { "source": "/faq", "destination": "/faq/index.html" },
-    { "source": "/contact", "destination": "/contact/index.html" }
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/services/:slug", "destination": "/services/:slug/index.html" },
+    { "source": "/blogs", "destination": "/blogs/index.html" },
+    { "source": "/blogs/:slug", "destination": "/blogs/:slug/index.html" }
   ],
   "headers": [
     {

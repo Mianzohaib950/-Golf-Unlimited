@@ -78,7 +78,7 @@ export default function Gallery({ navigate }: Props) {
   return (
     <div style={{ backgroundColor: '#F8F7F4' }}>
       <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '150px 40px 28px' }}>
-        <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(3rem, 8vw, 5.5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.03em', lineHeight: 1 }}>Gallery</h1>
+        <h1 style={{ fontFamily: 'Playfair Display, Georgia, serif', fontSize: 'clamp(3rem, 8vw, 5.5rem)', fontWeight: 200, color: '#1A1A18', letterSpacing: '-0.03em', lineHeight: 1 }}>Golf Netting Project Gallery</h1>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', marginTop: '44px' }}>
           <button
             type="button"
